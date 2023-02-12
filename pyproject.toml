@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robotic-manipulator-rloa"
+version = "0.1.0"
+description = "Framework for training Robotic Manipulators on the Obstacle Avoidance task through Reinforcement Learning."
+readme = "README.md"
+authors = [{ name = "Javier Martinez", email = "jmartinezojeda5upv@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["Robotics", "Manipulator", "Framework", "Reinforcement Learning", "Obstacle Avoidance"]
+dependencies = [
+    "torch",
+    "numpy",
+    "pybullet",
+    "matplotlib"
+]
+requires-python = ">=3.8"
+
+[project.urls]
+homepage = "https://github.com/JavierMtz5/ArtificialIntelligence"
