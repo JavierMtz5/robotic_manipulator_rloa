@@ -33,7 +33,7 @@ Logger.set_logger_setup()
 @dataclass
 class HyperParameters:
     """
-    Data Class for storing the required hyper-parameters.
+    Data Class for the storage of the required hyper-parameters.
     """
     buffer_size: int = 100000
     batch_size: int = 128
@@ -48,8 +48,7 @@ class ManipulatorFramework:
 
     def __init__(self) -> None:
         """
-        Constructor for initializing the ManipulatorFramework. It initializes the required
-        hyper-parameters to their default value.
+        Main class of the package. Initializes the required hyper-parameters to their default value.
         """
         self.env: Union[Environment, None] = None
         self.naf_agent: Union[NAFAgent, None] = None
@@ -126,7 +125,7 @@ class ManipulatorFramework:
     def plot_training_rewards(episode: int, mean_range: int = 50) -> None:
         """
         Plots the mean reward of each batch of {mean_range} episodes for the "scores.txt" file stored
-        in the /checkpoints folder, corresponding to the episode received as parameter.
+        in the checkpoints/ folder, corresponding to the episode received as parameter.
         Args:
             episode: Episode number from which to plot the results. The episode provided must be one of the
                 checkpoints generated in the /checkpoints directory.
@@ -255,7 +254,7 @@ class ManipulatorFramework:
         """
         Loads previously trained weights into the current networks.
         The pretrained weights are retrieved from the checkpoints generated on a training execution, so
-        the episode provided must be present in the /checkpoints folder. As the weights are loaded in the
+        the episode provided must be present in the checkpoints/ folder. As the weights are loaded in the
         neural networks contained in the NAFAgent class, the method will raise an error if either
         the Environment or the NAFAgent class are not initialized.
         Args:
@@ -382,18 +381,18 @@ class ManipulatorFramework:
         """
         Initialize the Environment by creating an instance of the Environment class.
         Args:
-            manipulator_file: Path to the manipulator's URDF or SDF file
-            endeffector_index: Index of the manipulator's end-effector
-            fixed_joints: List containing the indices of every joint not involved in the training
-            involved_joints: List containing the indices of every joint involved in the training
-            target_position: List containing the position of the target object, as 3D Cartesian coordinates
-            obstacle_position: List containing the position of the obstacle, as 3D Cartesian coordinates
+            manipulator_file: Path to the manipulator's URDF or SDF file.
+            endeffector_index: Index of the manipulator's end-effector.
+            fixed_joints: List containing the indices of every joint not involved in the training.
+            involved_joints: List containing the indices of every joint involved in the training.
+            target_position: List containing the position of the target object, as 3D Cartesian coordinates.
+            obstacle_position: List containing the position of the obstacle, as 3D Cartesian coordinates.
             initial_joint_positions: List containing as many items as the number of joints of the manipulator.
                 Each item in the list corresponds to the initial position wanted for the joint with that same index.
             initial_positions_variation_range: List containing as many items as the number of joints of the manipulator.
                 Each item in the list corresponds to the variation range wanted for the joint with that same index.
-            max_force: Maximum force to be applied on the joints
-            visualize: Visualization mode
+            max_force: Maximum force to be applied on the joints.
+            visualize: Visualization mode.
         Raises:
             InvalidEnvironmentParameter: One or more parameters provided for the Environment initialization are invalid.
             InvalidManipulatorFile: The URDF/SDF file provided does not exist or cannot be loaded
@@ -433,11 +432,11 @@ class ManipulatorFramework:
         """
         Initialize the NAF Agent by creating an instance of the NAFAgent class.
         Args:
-            checkpoint_frequency: Number of episodes required to generate a checkpoint
-            seed: Random seed
+            checkpoint_frequency: Number of episodes required to generate a checkpoint.
+            seed: Random seed.
         Raises:
-            EnvironmentNotInitialized: Environment class has not been initialized
-            InvalidNAFAgentParameter: Either "checkpoint_frequency" or "seed" parameters have an invalid value/type
+            EnvironmentNotInitialized: Environment class has not been initialized.
+            InvalidNAFAgentParameter: Either "checkpoint_frequency" or "seed" parameters have an invalid value/type.
         """
         if not self.env:
             raise EnvironmentNotInitialized
@@ -467,7 +466,7 @@ class ManipulatorFramework:
 
     def delete_naf_agent(self) -> None:
         """
-        Deletes the existing NAFAgent instance
+        Deletes the existing NAFAgent instance.
         """
         if not self.naf_agent:
             logger.error('No existing instance of NAFAgent found')
@@ -488,12 +487,12 @@ class ManipulatorFramework:
             the action chosen from that state, the current reward and the cummulative reward until that timestep.
             In addition, each time an episode ends information about the total reward obtained, the number of
             frames required to complete the episode, the mean reward obtained along the episode and the
-            execution time of the episode are logged.
+            execution time of the episode are logged.\n
             - If set to False, each time an episode ends information about the total reward obtained, the number of
             frames required to complete the episode, the mean reward obtained along the episode and the
-            execution time of the episode are logged.
-                It is recommended to use the verbose mode only in a development/debugging context, since logging
-                information for each timestep greatly reduces the visibility of what is happening during the training.
+            execution time of the episode are logged.\n
+            It is recommended to use the verbose mode only in a development/debugging context, since logging
+            information for each timestep greatly reduces the visibility of what is happening during the training.
         Raises:
             ConfigurationIncomplete: Either NAFAgent or Environment has not been initialized.
         """
@@ -508,8 +507,8 @@ class ManipulatorFramework:
         configuration process and the number of episodes is not enough to achieve a good performance in the manipulator.
         Args:
             demo_type: Valid values:\n
-            - 'kuka_training': training with the KUKA IIWA Robotic Manipulator.
-            - 'xarm6_training': training with the XArm6 Robotic Manipulator.
+            - 'kuka_training': training with the KUKA IIWA Robotic Manipulator.\n
+            - 'xarm6_training': training with the XArm6 Robotic Manipulator.\n
             verbose: Verbose mode. Verbose mode functionality is applied on the same way as for the
                 run_training() method.
         """
@@ -604,8 +603,8 @@ class ManipulatorFramework:
         manipulator learns with the framework. The demo loads pretrained weights and executes 50 test episodes.
         Args:
             demo_type: Valid values:\n
-            - 'kuka_testing': testing with the KUKA IIWA Robotic Manipulator.
-            - 'xarm6_testing': testing with the XArm6 Robotic Manipulator.
+            - 'kuka_testing': testing with the KUKA IIWA Robotic Manipulator.\n
+            - 'xarm6_testing': testing with the XArm6 Robotic Manipulator.\n
         """
         logger.warning('Both the demo testing and the demo training are executed with the Log level '
                        'set to DEBUG, so that the framework can be understood at a low level.')

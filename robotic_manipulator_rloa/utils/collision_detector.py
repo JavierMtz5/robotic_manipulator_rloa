@@ -18,7 +18,7 @@ class CollisionObject:
 
 class CollisionDetector:
 
-    def __init__(self, collision_object: CollisionObject, obstacle_ids: List[str]) -> None:
+    def __init__(self, collision_object: CollisionObject, obstacle_ids: List[str]):
         """
         Calculates distances between bodies' joints.
         Args:
