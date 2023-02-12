@@ -10,25 +10,22 @@ from numpy.typing import NDArray
 class CollisionObject:
     """
     Dataclass which contains the UID of the manipulator/body and the link number of the joint from which to
-    calculate distances to other bodies
+    calculate distances to other bodies.
     """
     body: str
     link: int
 
 
 class CollisionDetector:
-    """
-    Class which calculates distances between bodies' joints
-    """
 
     def __init__(self, collision_object: CollisionObject, obstacle_ids: List[str]) -> None:
         """
-        Constructor for the CollisionDetector class.
+        Calculates distances between bodies' joints.
         Args:
             collision_object: CollisionObject instance, which indicates the body/joint from
-                which to calculate distances/collisions
+                which to calculate distances/collisions.
             obstacle_ids: Obstacle body UID. Distances are calculated from the joint/body given in the
-                "collision_object" parameter to the "obstacle_ids" bodies
+                "collision_object" parameter to the "obstacle_ids" bodies.
         """
         self.obstacles = obstacle_ids
         self.collision_object = collision_object
@@ -39,7 +36,7 @@ class CollisionDetector:
         to the bodies defined in self.obstacles.
         Args:
             max_distance: Bodies farther apart than this distance are not queried by PyBullet, the return value
-                for the distance between such bodies will be max_distance
+                for the distance between such bodies will be max_distance.
         Returns:
             A numpy array of distances, one per pair of collision objects.
         """
@@ -65,13 +62,13 @@ class CollisionDetector:
 
     def compute_collisions_in_manipulator(self, affected_joints: List[int], max_distance: float = 10.) -> NDArray:
         """
-        Compute collisions of the manipulator with itself.
+        Compute collisions between manipulator's parts.
         Args:
-            affected_joints: Joints to consider when calculating distances
+            affected_joints: Joints to consider when calculating distances.
             max_distance: Maximum distance to be considered. Distances further than this will be ignored, and
-                the "max_distance" value will be returned
+                the "max_distance" value will be returned.
         Returns:
-            Array where each element corresponds to the distances from a given joint to the other joints
+            Array where each element corresponds to the distances from a given joint to the other joints.
         """
         distances = list()
         for joint_ind in affected_joints:

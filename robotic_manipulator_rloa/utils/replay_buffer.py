@@ -18,10 +18,10 @@ class ReplayBuffer:
         Buffer to store experience tuples. Each experience has the following structure:
         (state, action, reward, next_state, done)
         Args:
-            buffer_size: Maximum size for the buffer. Higher buffer size imply higher RAM consumption
-            batch_size: Number of experiences to be retrieved from the ReplayBuffer per batch
-            device: CUDA device
-            seed: Random seed
+            buffer_size: Maximum size for the buffer. Higher buffer size imply higher RAM consumption.
+            batch_size: Number of experiences to be retrieved from the ReplayBuffer per batch.
+            device: CUDA device.
+            seed: Random seed.
         """
         self.device = device
         self.memory = deque(maxlen=buffer_size)
@@ -31,13 +31,13 @@ class ReplayBuffer:
 
     def add(self, state: NDArray, action: NDArray, reward: float, next_state: NDArray, done: int) -> None:
         """
-        Add a new experience to the Replay Buffer
+        Add a new experience to the Replay Buffer.
         Args:
-            state: NDArray of the current state
-            action: NDArray of the action taken from state {state}
-            reward: Reward obtained after performing action {action} from state {state}
-            next_state: NDArray of the state reached after performing action {action} from state {state}
-            done: Integer (0 or 1) indicating whether the next_state is a terminal state
+            state: NDArray of the current state.
+            action: NDArray of the action taken from state {state}.
+            reward: Reward obtained after performing action {action} from state {state}.
+            next_state: NDArray of the state reached after performing action {action} from state {state}.
+            done: Integer (0 or 1) indicating whether the next_state is a terminal state.
         """
         # Create namedtuple object from the experience
         exp = self.experience(state, action, reward, next_state, done)
@@ -46,10 +46,10 @@ class ReplayBuffer:
 
     def sample(self) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         """
-        Randomly sample a batch of experiences from memory
+        Randomly sample a batch of experiences from memory.
         Returns:
             Tuple of 5 elements, which are (states, actions, rewards, next_states, dones). Each element
-            in the tuple is a torch Tensor composed of {batch_size} items
+            in the tuple is a torch Tensor composed of {batch_size} items.
         """
         # Randomly sample a batch of experiences
         experiences = random.sample(self.memory, k=self.batch_size)
