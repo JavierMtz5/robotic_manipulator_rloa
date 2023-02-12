@@ -23,11 +23,11 @@ class NAF(nn.Module):
         - Output for L network (used for calculating P = L . Lt)\n
             - Linear (layer_size, (action_size*action_size+1)/2)\n
         Args:
-            state_size: Dimension of a state
-            action_size: Dimension of an action
-            layer_size: Size of the hidden layers of the neural network
-            seed: Random seed
-            device: CUDA device
+            state_size: Dimension of a state.
+            action_size: Dimension of an action.
+            layer_size: Size of the hidden layers of the neural network.
+            seed: Random seed.
+            device: CUDA device.
         """
         super(NAF, self).__init__()
         self.seed = torch.manual_seed(seed)
@@ -58,18 +58,17 @@ class NAF(nn.Module):
                 action: Optional[torch.Tensor] = None) -> Tuple[torch.Tensor, Optional[Any], Any]:
         """
         Forward propagation.
-        It feeds the NN with the input, and gets the output for the mu, V and L networks.
-
-        - Output from the L network is used to create the P matrix
-        - Output from the V network is used to calculate the Q value: Q = A + V
+        It feeds the NN with the input, and gets the output for the mu, V and L networks.\n
+        - Output from the L network is used to create the P matrix.\n
+        - Output from the V network is used to calculate the Q value: Q = A + V\n
         - Output from the mu network is used to calculate A. The action output of mu nn is considered
-            the action that maximizes Q-function
+            the action that maximizes Q-function.
         Args:
-            input_: input for the neural network's input layer
-            action: current action, used for calculating the Q-Function estimate
+            input_: Input for the neural network's input layer.
+            action: Current action, used for calculating the Q-Function estimate.
         Returns:
-            Returns a tuple containing the action whihc maximizes the Q-Function, the
-            Q-Function estimate and the Value Function
+            Returns a tuple containing the action which maximizes the Q-Function, the
+            Q-Function estimate and the Value Function.
         """
         # ============ FEED INPUT DATA TO THE NEURAL NETWORK =================================
 

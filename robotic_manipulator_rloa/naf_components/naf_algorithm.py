@@ -40,22 +40,22 @@ class NAFAgent:
                  device: torch.device,
                  seed: int) -> None:
         """
-        Constructor for the NAFAgent class. Interacts with and learns from the environment via the NAF algorithm
+        Interacts with and learns from the environment via the NAF algorithm.
         Args:
-            environment: Instance of Environment class
-            state_size: Dimension of the states
-            action_size: Dimension of the actions
-            layer_size: Size for the hidden layers of the neural network
-            batch_size: Number of experiences to train with per training batch
-            buffer_size: Maximum number of experiences to be stored in Replay Buffer
-            learning_rate: Learning rate for neural network's optimizer
-            tau: Hyperparameter for soft updating the target network
-            gamma: Discount factor
-            update_freq: Number of timesteps after which the main neural network is updated
-            num_updates: Number of updates performed when learning
-            checkpoint_frequency: Number of episodes after which a checkpoint is generated
-            device: Device used (CPU or CUDA)
-            seed: Random seed
+            environment: Instance of Environment class.
+            state_size: Dimension of the states.
+            action_size: Dimension of the actions.
+            layer_size: Size for the hidden layers of the neural network.
+            batch_size: Number of experiences to train with per training batch.
+            buffer_size: Maximum number of experiences to be stored in Replay Buffer.
+            learning_rate: Learning rate for neural network's optimizer.
+            tau: Hyperparameter for soft updating the target network.
+            gamma: Discount factor.
+            update_freq: Number of timesteps after which the main neural network is updated.
+            num_updates: Number of updates performed when learning.
+            checkpoint_frequency: Number of episodes after which a checkpoint is generated.
+            device: Device used (CPU or CUDA).
+            seed: Random seed.
         """
         # Create required parent directory
         os.makedirs('checkpoints/', exist_ok=True)
@@ -92,10 +92,11 @@ class NAFAgent:
         """
         Loads the previously trained weights into the main and target neural networks.
         The pretrained weights are retrieved from the checkpoints generated on a training execution, so
-        the episode provided must be present in the /checkpoints folder. Passing an episode not present
-        in the /checkpoints folder will raise a MissingWeightsFile exception
+        the episode provided must be present in the checkpoints/ folder.
         Args:
-            episode: Episode from which to retrieve the pretrained weights
+            episode: Episode from which to retrieve the pretrained weights.
+        Raises:
+            MissingWeightsFile: The weights.p file is not present in the checkpoints/{episode}/ folder provided.
         """
         # Check if file is present in checkpoints/{episode}/ directory
         if not os.path.isfile(f'checkpoints/{episode}/weights.p'):
@@ -110,9 +111,11 @@ class NAFAgent:
         """
         Loads the previously trained weights into the main and target neural networks.
         The pretrained weights are retrieved from a .p file containing the weights, located in 
-        the {weights_path} path. Passing a non existent path will raise a MissingWeightsFile exception
+        the {weights_path} path.
         Args:
-            weights_path: Path to the .p file containing the network's weights
+            weights_path: Path to the .p file containing the network's weights.
+        Raises:
+            MissingWeightsFile: The file path provided does not exist.
         """
         # Check if file is present
         if not os.path.isfile(weights_path):
@@ -125,16 +128,16 @@ class NAFAgent:
 
     def step(self, state: NDArray, action: NDArray, reward: float, next_state: NDArray, done: int) -> None:
         """
-        Stores the new experience formed by the parameters received in the Replay Buffer,
-        and learns only if the Buffer contains enough experiences to fill a batch. Furthermore, the
-        learning will only occur if the update frequency {update_freq} is reached, in which case it
+        Stores in the ReplayBuffer the new experience composed by the parameters received,
+        and learns only if the Buffer contains enough experiences to fill a batch. The
+        learning will occur if the update frequency {update_freq} is reached, in which case it
         will learn {num_updates} times.
         Args:
-            state: Current state
-            action: Action performed from state {state}
-            reward: Reward obtained after performing action {action} from state {state}
-            next_state: New state reached after performing action {action} from state {state}
-            done: Integer (0 or 1) indicating whether a terminal state have been reached
+            state: Current state.
+            action: Action performed from state {state}.
+            reward: Reward obtained after performing action {action} from state {state}.
+            next_state: New state reached after performing action {action} from state {state}.
+            done: Integer (0 or 1) indicating whether a terminal state have been reached.
         """
 
         # Save experience in replay memory
@@ -157,9 +160,9 @@ class NAFAgent:
         Extracts the action which maximizes the Q-Function, by getting the output of the mu layer
         of the main neural network.
         Args:
-            state: Current state from which to pick the best action
+            state: Current state from which to pick the best action.
         Returns:
-            Action which maximizes Q-Function
+            Action which maximizes Q-Function.
         """
         state = torch.from_numpy(state).float().to(self.device)
 
@@ -181,7 +184,7 @@ class NAFAgent:
         batch of experience tuples to both networks. After loss is calculated, backpropagation is performed on the
         main network from the given loss, so that the weights of the main network are updated.
         Args:
-            experiences: Tuple of five elements, where each element is a torch.tensor of length {batch_size}
+            experiences: Tuple of five elements, where each element is a torch.Tensor of length {batch_size}.
         """
         # Set gradients of all optimized torch Tensors to zero
         self.optimizer.zero_grad()
@@ -213,24 +216,24 @@ class NAFAgent:
 
     def soft_update(self, main_nn: NAF, target_nn: NAF) -> None:
         """
-        Soft update naf_components parameters following this formula
+        Soft update naf_components parameters following this formula:\n
                     θ_target = τ*θ_local + (1 - τ)*θ_target
         Args:
-            main_nn: Main torch neural network
-            target_nn: Target torch neural network
+            main_nn: Main torch neural network.
+            target_nn: Target torch neural network.
         """
         for target_param, main_param in zip(target_nn.parameters(), main_nn.parameters()):
             target_param.data.copy_(self.tau * main_param.data + (1. - self.tau) * target_param.data)
 
     def run(self, frames: int = 1000, episodes: int = 1000, verbose: bool = True) -> Dict[int, Tuple[float, int]]:
         """
-        Execute training flow of the NAF algorithm on the given environment
+        Execute training flow of the NAF algorithm on the given environment.
         Args:
-            frames: Number of maximum frames or timesteps per episode
-            episodes: Number of episodes required to terminate the training
-            verbose: Boolean indicating whether many or few logs are shown
+            frames: Number of maximum frames or timesteps per episode.
+            episodes: Number of episodes required to terminate the training.
+            verbose: Boolean indicating whether many or few logs are shown.
         Returns:
-            Returns the score history generated along the training
+            Returns the score history generated along the training.
         """
         logger.info('Training started')
         # Initialize 'scores' dictionary to store rewards and timesteps executed for each episode

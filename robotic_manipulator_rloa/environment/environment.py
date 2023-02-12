@@ -29,19 +29,19 @@ class EnvironmentConfiguration:
                  max_force: float = 200.,
                  visualize: bool = True):
         """
-        Constructor for the EnvironmentConfiguration, which validates each of the parameters received.
+        Validates each of the parameters required for the Environment class initialization.
         Args:
-            endeffector_index: Index of the manipulator's end-effector
-            fixed_joints: List containing the indices of every joint not involved in the training
-            involved_joints: List containing the indices of every joint involved in the training
-            target_position: List containing the position of the target object, as 3D Cartesian coordinates
-            obstacle_position: List containing the position of the obstacle, as 3D Cartesian coordinates
+            endeffector_index: Index of the manipulator's end-effector.
+            fixed_joints: List containing the indices of every joint not involved in the training.
+            involved_joints: List containing the indices of every joint involved in the training.
+            target_position: List containing the position of the target object, as 3D Cartesian coordinates.
+            obstacle_position: List containing the position of the obstacle, as 3D Cartesian coordinates.
             initial_joint_positions: List containing as many items as the number of joints of the manipulator.
                 Each item in the list corresponds to the initial position wanted for the joint with that same index.
             initial_positions_variation_range: List containing as many items as the number of joints of the manipulator.
                 Each item in the list corresponds to the variation range wanted for the joint with that same index.
-            max_force: Maximum force to be applied on the joints
-            visualize: Visualization mode
+            max_force: Maximum force to be applied on the joints.
+            visualize: Visualization mode.
         """
         self._validate_endeffector_index(endeffector_index)
         self._validate_fixed_joints(fixed_joints)
@@ -53,21 +53,25 @@ class EnvironmentConfiguration:
         self._validate_max_force(max_force)
         self._validate_visualize(visualize)
 
-    def _validate_endeffector_index(self, endeffector_index: int):
+    def _validate_endeffector_index(self, endeffector_index: int) -> None:
         """
         Validates the "endeffector_index" parameter.
         Args:
             endeffector_index: int
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(endeffector_index, int):
             raise InvalidEnvironmentParameter('End Effector index received is not an integer')
         self.endeffector_index = endeffector_index
 
-    def _validate_fixed_joints(self, fixed_joints: List[int]):
+    def _validate_fixed_joints(self, fixed_joints: List[int]) -> None:
         """
         Validates the "fixed_joints" parameter
         Args:
             fixed_joints: list of integers
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(fixed_joints, list):
             raise InvalidEnvironmentParameter('Fixed Joints received is not a list')
@@ -76,11 +80,13 @@ class EnvironmentConfiguration:
                 raise InvalidEnvironmentParameter('An item inside the Fixed Joints list is not an integer')
         self.fixed_joints = fixed_joints
 
-    def _validate_involved_joints(self, involved_joints: List[int]):
+    def _validate_involved_joints(self, involved_joints: List[int]) -> None:
         """
         Validates the "involved_joints" parameter
         Args:
             involved_joints: list of integers
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(involved_joints, list):
             raise InvalidEnvironmentParameter('Involved Joints received is not a list')
@@ -89,11 +95,13 @@ class EnvironmentConfiguration:
                 raise InvalidEnvironmentParameter('An item inside the Involved Joints list is not an integer')
         self.involved_joints = involved_joints
 
-    def _validate_target_position(self, target_position: List[float]):
+    def _validate_target_position(self, target_position: List[float]) -> None:
         """
         Validates the "target_position" parameter
         Args:
             target_position: list of floats
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(target_position, list):
             raise InvalidEnvironmentParameter('Target Position received is not a list')
@@ -102,11 +110,13 @@ class EnvironmentConfiguration:
                 raise InvalidEnvironmentParameter('An item inside the Target Position list is not a float')
         self.target_position = target_position
 
-    def _validate_obstacle_position(self, obstacle_position: List[float]):
+    def _validate_obstacle_position(self, obstacle_position: List[float]) -> None:
         """
         Validates the "obstacle_position" parameter
         Args:
             obstacle_position: list of floats
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(obstacle_position, list):
             raise InvalidEnvironmentParameter('Obstacle Position received is not a list')
@@ -115,11 +125,13 @@ class EnvironmentConfiguration:
                 raise InvalidEnvironmentParameter('An item inside the Obstacle Position list is not a float')
         self.obstacle_position = obstacle_position
 
-    def _validate_initial_joint_positions(self, initial_joint_positions: List[float]):
+    def _validate_initial_joint_positions(self, initial_joint_positions: List[float]) -> None:
         """
         Validates the "initial_joint_positions" parameter
         Args:
             initial_joint_positions: list of floats
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(initial_joint_positions, list):
             raise InvalidEnvironmentParameter('Initial Joint Positions received is not a list')
@@ -128,11 +140,13 @@ class EnvironmentConfiguration:
                 raise InvalidEnvironmentParameter('An item inside the Initial Joint Positions list is not a float')
         self.initial_joint_positions = initial_joint_positions
 
-    def _validate_initial_positions_variation_range(self, initial_positions_variation_range: List[float]):
+    def _validate_initial_positions_variation_range(self, initial_positions_variation_range: List[float]) -> None:
         """
         Validates the "initial_positions_variation_range" parameter
         Args:
             initial_positions_variation_range: list of floats
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(initial_positions_variation_range, list):
             raise InvalidEnvironmentParameter('Initial Positions Variation Range received is not a list')
@@ -142,21 +156,25 @@ class EnvironmentConfiguration:
                                                   'list is not a float')
         self.initial_positions_variation_range = initial_positions_variation_range
 
-    def _validate_max_force(self, max_force: float):
+    def _validate_max_force(self, max_force: float) -> None:
         """
         Validates the "max_force" parameter
         Args:
             max_force: float
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(max_force, (int, float)):
             raise InvalidEnvironmentParameter('Maximum Force value received is not a float')
         self.max_force = max_force
 
-    def _validate_visualize(self, visualize: bool):
+    def _validate_visualize(self, visualize: bool) -> None:
         """
         Validates the "visualize" parameter
         Args:
             visualize: bool
+        Raises:
+            InvalidEnvironmentParameter
         """
         if not isinstance(visualize, bool):
             raise InvalidEnvironmentParameter('Visualize value received is not a boolean')
@@ -167,12 +185,14 @@ class Environment:
 
     def __init__(self,
                  manipulator_file: str,
-                 environment_config: EnvironmentConfiguration) -> None:
+                 environment_config: EnvironmentConfiguration):
         """
-        Class which creates the Pybullet environment used along the training.
+        Creates the Pybullet environment used along the training.
         Args:
-            manipulator_file: URDF or SDF file from which to load the Robotic Manipulator
-            environment_config: instance of the EnvironmentConfiguration class with all its attributes set
+            manipulator_file: Path to the URDF or SDF file from which to load the Robotic Manipulator.
+            environment_config: Instance of the EnvironmentConfiguration class with all its attributes set.
+        Raises:
+            InvalidManipulatorFile: The URDF/SDF file doesn't exist, is invalid or has an invalid extension.
         """
         self.manipulator_file = manipulator_file
         self.visualize = environment_config.visualize
@@ -237,15 +257,17 @@ class Environment:
 
     def reset(self, verbose: bool = True) -> NDArray:
         """
-        Resets the environment to a initial state.
+        Resets the environment to a initial state.\n
         - If "initial_joint_positions" and "initial_positions_variation_range" are not set, all joints will be reset to
-        the 0 position.
-        - If only "initial_joint_positions" is set, the joints will be reset to those positions.
-        - If only "initial_positions_variation_range" is set, the joints will be reset to 0 plus the variation noise.
+        the 0 position.\n
+        - If only "initial_joint_positions" is set, the joints will be reset to those positions.\n
+        - If only "initial_positions_variation_range" is set, the joints will be reset to 0 plus the variation noise.\n
         - If both "initial_joint_positions" and "initial_positions_variation_range" are set, the joints will be reset
         to the positions specified plus the variation noise.
         Args:
-            verbose: boolean indicating whether to print context information or not
+            verbose: Boolean indicating whether to print context information or not.
+        Returns:
+            New state reached after reset.
         """
         if verbose: logger.info('Resetting Environment...')
 
@@ -290,9 +312,9 @@ class Environment:
             obstacle_threshold: Threshold which delimits the terminal state. If the end-effector is closer
                 to the obstacle position than the threshold value, then a terminal state is reached.
             consider_autocollision: If set to True, the collision of any of the joints and parts of the manipulator
-                with any other joint or part will be considered a terminal state
+                with any other joint or part will be considered a terminal state.
         Returns:
-            Integer (0 or 1) indicating whether the new state reached is a terminal state or not
+            Integer (0 or 1) indicating whether the new state reached is a terminal state or not.
         """
         # If the manipulator has a collision with the obstacle, the episode terminates
         if self.get_manipulator_obstacle_collisions(threshold=obstacle_threshold):
@@ -318,12 +340,12 @@ class Environment:
         """
         Computes the reward from the given state.
         Returns:
-            Reward
-            - If the end effector reaches the target position, a reward of 250 is returned
-            - If the end effector collides with the obstacle or with itself*, a reward of -1000 is returned
-            - Otherwise, the negative value of the distance from end effector to the target is returned
+            Rewards:\n
+            - If the end effector reaches the target position, a reward of +250 is returned.\n
+            - If the end effector collides with the obstacle or with itself*, a reward of -1000 is returned.\n
+            - Otherwise, the negative value of the distance from end effector to the target is returned.\n
             * The manipulator's collisions with itself are only considered if "consider_autocollision" parameter is set
-            to True
+            to True.
         """
         # Auto-Collision is only calculated if requested
         self_collision = False
@@ -344,12 +366,12 @@ class Environment:
 
     def get_manipulator_obstacle_collisions(self, threshold: float) -> bool:
         """
-        Calculates if there are any collisions between the manipulator and the obstacle.
+        Calculates if there is a collision between the manipulator and the obstacle.
         Args:
             threshold: If the distance between the end effector and the obstacle is below the "threshold", then
-                it is considered a collision
+                it is considered a collision.
         Returns:
-            Boolean indicating whether a collision occurred
+            Boolean indicating whether a collision occurred.
         """
         joint_distances = list()
         for joint_ind in range(self.num_joints):
@@ -365,10 +387,10 @@ class Environment:
 
     def get_manipulator_collisions_with_itself(self) -> dict:
         """
-        Calculates if there are any collisions of the manipulator with itself.
+        Calculates the distances between each of the manipulator's joints and the other joints.
         Returns:
             Dictionary where each key is the index of a joint, and where each value is an array with the
-            distances from that joint to any other joint in the manipulator
+            distances from that joint to any other joint in the manipulator.
         """
         joint_distances = dict()
         for joint_ind in range(self.num_joints):
@@ -387,10 +409,10 @@ class Environment:
         """
         Calculates if there are any collisions between the end effector and the target.
         Args:
-            threshold: if the distance between the end effector and the target is below {threshold}, then
-                it is considered a collision
+            threshold: If the distance between the end effector and the target is below {threshold}, then
+                it is considered a collision.
         Returns:
-            tuple where the first element is a boolean indicating whether a collision occurred, adn where
+            Tuple where the first element is a boolean indicating whether a collision occurred, adn where
             the second is the distance from end effector to target minus the threshold.
         """
         kuka_end_effector = CollisionObject(body=self.manipulator_uid, link=self.endeffector_index)
@@ -402,12 +424,12 @@ class Environment:
 
     def get_state(self) -> NDArray:
         """
-        Retrieves information from the current state on the environment.
+        Retrieves information from the environment's current state.
         Returns:
-            State such as (joint_pos, joint_vel, end-effector_pos, target_pos, obstacle_pos)
-            - The positions of the target, obstacle and end effector are given as 3D cartesian coordinates
+            State as (joint_pos, joint_vel, end-effector_pos, target_pos, obstacle_pos):\n
+            - The positions of the target, obstacle and end effector are given as 3D cartesian coordinates.\n
             - The joint positions and joint velocities are given as arrays of length equal to the number of
-            joint involved in the training
+            joint involved in the training.
         """
         joint_pos, joint_vel = list(), list()
 
@@ -424,11 +446,11 @@ class Environment:
 
     def step(self, action: NDArray) -> Tuple[NDArray, float, int]:
         """
-        Applies an action on the Robot's joints, so that each joint reaches the desired velocity for
+        Applies the action on the Robot's joints, so that each joint reaches the desired velocity for
         each involved joint.
         Args:
-            action: array where each element corresponds to the velocity to be applied on the joint
-                with that same index
+            action: Array where each element corresponds to the velocity to be applied on the joint
+                with that same index.
         Returns:
             (new_state, reward, done)
         """
@@ -459,11 +481,12 @@ class Environment:
     @staticmethod
     def print_table(data: List[Tuple[int, str, float, float, tuple]]) -> None:
         """
-        Static method to print a table. It is used to print the Manipulator's joint's information in an
-        ordered manner.
+        Prints a table such that the elements received in the "data" parameter are displayed under
+        "Index", "Name", "Upper Limit", "Lower Limit" and "Axis" columns. It is used to print the Manipulator's
+        joint's information in an ordered manner.
         Args:
-            data: list where each element contains all the information about a given joint.
-                Each element on the list will be a tuple containing (index, name, upper_limit, lower_limit, axis)
+            data: List where each element contains all the information about a given joint.
+                Each element on the list will be a tuple containing (index, name, upper_limit, lower_limit, axis).
         """
         logger.debug('{:<6} {:<35} {:<15} {:<15} {:<15}'.format('Index', 'Name', 'Upper Limit', 'Lower Limit', 'Axis'))
         for index, name, up_limit, lo_limit, axis in data:
