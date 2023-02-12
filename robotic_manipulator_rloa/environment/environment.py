@@ -497,7 +497,7 @@ class Environment:
         """
         Getter for the observation space of the environment.
         Returns:
-            Numpy array of zeros with same shape as the environment's states
+            Numpy array of zeros with same shape as the environment's states.
         """
         return self._observation_space
 
@@ -506,6 +506,6 @@ class Environment:
         """
         Getter for the action space of the environment.
         Returns:
-            Numpy array of zeros with same shape as the environment's actions
+            Numpy array of zeros with same shape as the environment's actions.
         """
         return self._action_space
