@@ -23,5 +23,8 @@ dependencies = [
 ]
 requires-python = ">=3.8"
 
+[tool.setuptools]
+packages = ["robotic_manipulator_rloa"]
+
 [project.urls]
-homepage = "https://github.com/JavierMtz5/ArtificialIntelligence"
+homepage = "https://github.com/JavierMtz5/robotic_manipulator_rloa"
