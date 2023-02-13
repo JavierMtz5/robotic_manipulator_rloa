@@ -272,6 +272,50 @@ class ManipulatorFramework:
 
         self.naf_agent.initialize_pretrained_agent_from_episode(episode)
 
+    def get_environment_configuration(self) -> None:
+        """
+        Shows the Environment configuration as logs on stdout.
+        """
+        if not self.env:
+            logger.error("Environment is not initialized yet, can't show configuration")
+            return
+
+        logger.info('Environment Configuration:')
+        logger.info(f'* Manipulator File:                    {self.env.manipulator_file}')
+        logger.info(f'* End Effector index:                  {self.env.endeffector_index}')
+        logger.info(f'* List of fixed Joints:                {self.env.fixed_joints}')
+        logger.info(f'* List of Joints involved in training: {self.env.involved_joints}')
+        logger.info(f'* Position of the Target:              {self.env.target_pos}')
+        logger.info(f'* Position of the Obstacle:            {self.env.obstacle_pos}')
+        logger.info(f'* Initial position of joints:          {self.env.initial_joint_positions}')
+        logger.info(f'* Initial variation range of joints:   {self.env.initial_positions_variation_range}')
+        logger.info(f'* Max Force to be applied on joints:   {self.env.max_force}')
+        logger.info(f'* Visualize mode:                      {self.env.visualize}')
+        logger.info(f'* Instance of the Environment:         {self.env}')
+
+    def get_nafagent_configuration(self) -> None:
+        """
+        Shows the NAFAgent configuration as logs on stdout.
+        """
+        if not self.naf_agent:
+            logger.error("NAFAgent is not initialized yet, can't show configuration")
+            return
+
+        logger.info('NAFAgent Configuration:')
+        logger.info(f'* Environment Instance:                    {self.naf_agent.environment}')
+        logger.info(f'* State Size:                              {self.naf_agent.state_size}')
+        logger.info(f'* Action Size:                             {self.naf_agent.action_size}')
+        logger.info(f'* Size of layers of the Neural Network:    {self.naf_agent.layer_size}')
+        logger.info(f'* Batch Size:                              {self.naf_agent.batch_size}')
+        logger.info(f'* Buffer Size:                             {self.naf_agent.buffer_size}')
+        logger.info(f'* Learning Rate:                           {self.naf_agent.learning_rate}')
+        logger.info(f'* Tau:                                     {self.naf_agent.tau}')
+        logger.info(f'* Gamma:                                   {self.naf_agent.gamma}')
+        logger.info(f'* Update Frequency:                        {self.naf_agent.update_freq}')
+        logger.info(f'* Number of Updates:                       {self.naf_agent.num_updates}')
+        logger.info(f'* Checkpoint frequency:                    {self.naf_agent.checkpoint_frequency}')
+        logger.info(f'* Device:                                  {self.naf_agent.device}')
+
     def test_trained_model(self, n_episodes: int, frames: int) -> None:
         """
         Tests a previously trained agent through the execution of {n_episodes} test episodes,
@@ -321,50 +365,6 @@ class ManipulatorFramework:
         logger.info(f'Average number of frames required to complete an episode: '
                     f'{np.mean(np.array([res[1] for res in results if res[0]]))}')
         logger.info(f'Number of episodes terminated because of collisions: {num_collisions}')
-
-    def get_environment_configuration(self) -> None:
-        """
-        Shows the Environment configuration as logs on stdout.
-        """
-        if not self.env:
-            logger.error("Environment is not initialized yet, can't show configuration")
-            return
-
-        logger.info('Environment Configuration:')
-        logger.info(f'* Manipulator File:                    {self.env.manipulator_file}')
-        logger.info(f'* End Effector index:                  {self.env.endeffector_index}')
-        logger.info(f'* List of fixed Joints:                {self.env.fixed_joints}')
-        logger.info(f'* List of Joints involved in training: {self.env.involved_joints}')
-        logger.info(f'* Position of the Target:              {self.env.target_pos}')
-        logger.info(f'* Position of the Obstacle:            {self.env.obstacle_pos}')
-        logger.info(f'* Initial position of joints:          {self.env.initial_joint_positions}')
-        logger.info(f'* Initial variation range of joints:   {self.env.initial_positions_variation_range}')
-        logger.info(f'* Max Force to be applied on joints:   {self.env.max_force}')
-        logger.info(f'* Visualize mode:                      {self.env.visualize}')
-        logger.info(f'* Instance of the Environment:         {self.env}')
-
-    def get_nafagent_configuration(self) -> None:
-        """
-        Shows the NAFAgent configuration as logs on stdout.
-        """
-        if not self.naf_agent:
-            logger.error("NAFAgent is not initialized yet, can't show configuration")
-            return
-
-        logger.info('NAFAgent Configuration:')
-        logger.info(f'* Environment Instance:                    {self.naf_agent.environment}')
-        logger.info(f'* State Size:                              {self.naf_agent.state_size}')
-        logger.info(f'* Action Size:                             {self.naf_agent.action_size}')
-        logger.info(f'* Size of layers of the Neural Network:    {self.naf_agent.layer_size}')
-        logger.info(f'* Batch Size:                              {self.naf_agent.batch_size}')
-        logger.info(f'* Buffer Size:                             {self.naf_agent.buffer_size}')
-        logger.info(f'* Learning Rate:                           {self.naf_agent.learning_rate}')
-        logger.info(f'* Tau:                                     {self.naf_agent.tau}')
-        logger.info(f'* Gamma:                                   {self.naf_agent.gamma}')
-        logger.info(f'* Update Frequency:                        {self.naf_agent.update_freq}')
-        logger.info(f'* Number of Updates:                       {self.naf_agent.num_updates}')
-        logger.info(f'* Checkpoint frequency:                    {self.naf_agent.checkpoint_frequency}')
-        logger.info(f'* Device:                                  {self.naf_agent.device}')
 
     def initialize_environment(
             self,
