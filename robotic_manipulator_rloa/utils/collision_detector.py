@@ -77,7 +77,7 @@ class CollisionDetector:
             if (self.collision_object.link == joint_ind) or \
                     (joint_ind == self.collision_object.link - 1) or \
                     (joint_ind == self.collision_object.link + 1):
-                continue
+                continue    # pragma: no cover
 
             # Compute the shortest distances between all object pairs
             closest_points = p.getClosestPoints(

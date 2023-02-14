@@ -108,6 +108,18 @@ def test_manipulatorframework__plot_training_rewards(mock_open_file: MagicMock,
     mock_plt.plot.assert_any_call(range(2), [100, 200])
 
 
+@patch('robotic_manipulator_rloa.rl_framework.logger')
+@patch('builtins.open', new_callable=mock_open())
+def test_manipulatorframework__plot_training_rewards__filenotfound(mock_open_file: MagicMock,
+                                                                   mock_logger: MagicMock) -> None:
+    """Test for the plot_training_rewards() method of the ManipulatorFramework class when
+    the file provided does not exist"""
+    mock_open_file.return_value.__enter__().read.side_effect = FileNotFoundError
+
+    with pytest.raises(FileNotFoundError):
+        ManipulatorFramework.plot_training_rewards(1, 1)
+
+
 @pytest.mark.parametrize('hyperparam, value', [
     ('buffer_size', 200),
     ('buffersize', 200),
@@ -492,6 +504,31 @@ def test_manipulatorframework__run_demo_training(mock_input: MagicMock,
 
 
 @patch('robotic_manipulator_rloa.rl_framework.logger')
+@patch('robotic_manipulator_rloa.rl_framework.input')
+@patch('robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_environment')
+@pytest.mark.parametrize('input', [['n', 'y'], ['y', 'n']])
+def test_manipulatorframework__run_demo_training__present_env_nafagent(mock_delete_environment: MagicMock,
+                                                                       mock_input: MagicMock,
+                                                                       mock_logger: MagicMock,
+                                                                       input: list) -> None:
+    """Test for the run_demo_training() method of the ManipulatorFramework class"""
+    mock_logger.setLevel.return_value = None
+    mf = ManipulatorFramework()
+    mf.env, mf.naf_agent = MagicMock(), MagicMock()
+    mock_input.side_effect = input
+
+    mf.run_demo_training('kuka_training')
+
+    if input == ['n', 'y']:
+        mock_logger.info.assert_any_call(
+            'Demo could not run due to the presence of a user-configured Environment instance')
+    else:
+        mock_logger.info.assert_any_call(
+            'Demo could not run due to the presence of a user-configured NAFAgent instance'
+        )
+
+
+@patch('robotic_manipulator_rloa.rl_framework.logger')
 @patch('robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_environment')
 @patch('robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_naf_agent')
 @patch('robotic_manipulator_rloa.rl_framework.ManipulatorFramework.initialize_environment')
@@ -559,3 +596,28 @@ def test_manipulatorframework__run_demo_testing(mock_input: MagicMock,
 
     if demo_type == 'wrong_demo_type':
         mock_logger.error.assert_any_call('Incorrect demo type!')
+
+
+@patch('robotic_manipulator_rloa.rl_framework.logger')
+@patch('robotic_manipulator_rloa.rl_framework.input')
+@patch('robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_environment')
+@pytest.mark.parametrize('input', [['n', 'y'], ['y', 'n']])
+def test_manipulatorframework__run_demo_testing__present_env_nafagent(mock_delete_environment: MagicMock,
+                                                                      mock_input: MagicMock,
+                                                                      mock_logger: MagicMock,
+                                                                      input: list) -> None:
+    """Test for the run_demo_training() method of the ManipulatorFramework class"""
+    mock_logger.setLevel.return_value = None
+    mf = ManipulatorFramework()
+    mf.env, mf.naf_agent = MagicMock(), MagicMock()
+    mock_input.side_effect = input
+
+    mf.run_demo_testing('kuka_testing')
+
+    if input == ['n', 'y']:
+        mock_logger.info.assert_any_call(
+            'Demo could not run due to the presence of a user-configured Environment instance')
+    else:
+        mock_logger.info.assert_any_call(
+            'Demo could not run due to the presence of a user-configured NAFAgent instance'
+        )

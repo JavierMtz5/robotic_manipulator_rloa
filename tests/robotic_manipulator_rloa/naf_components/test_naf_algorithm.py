@@ -1,8 +1,10 @@
 import json
 
 from mock import MagicMock, patch, mock_open
+import pytest
 
 from robotic_manipulator_rloa.naf_components.naf_algorithm import NAFAgent
+from robotic_manipulator_rloa.utils.exceptions import MissingWeightsFile
 
 
 @patch('robotic_manipulator_rloa.naf_components.naf_algorithm.time')
@@ -77,18 +79,28 @@ def test_naf_agent(mock_optim: MagicMock,
     assert naf_agent.update_t_step == 0
 
     # ================== initialize_pretrained_agent_from_episode() ===========
-    naf_agent.initialize_pretrained_agent_from_episode(0)
     fake_torch_load = mock_torch.load.return_value
     mock_os.path.isfile.return_value = True
+    naf_agent.initialize_pretrained_agent_from_episode(0)
     fake_torch_naf.load_state_dict.assert_any_call(fake_torch_load)
     mock_torch.load.assert_any_call('checkpoints/0/weights.p')
 
+    # ================== initialize_pretrained_agent_from_episode() when file is not present
+    mock_os.path.isfile.return_value = False
+    with pytest.raises(MissingWeightsFile):
+        naf_agent.initialize_pretrained_agent_from_episode(0)
+
     # ================== initialize_pretrained_agent_from_weights_file() ======
-    naf_agent.initialize_pretrained_agent_from_weights_file('weights.p')
     fake_torch_load = mock_torch.load.return_value
     mock_os.path.isfile.return_value = True
+    naf_agent.initialize_pretrained_agent_from_weights_file('weights.p')
     fake_torch_naf.load_state_dict.assert_any_call(fake_torch_load)
     mock_torch.load.assert_any_call('weights.p')
+
+    # ================== initialize_pretrained_agent_from_weights_file() when file is not present
+    mock_os.path.isfile.return_value = False
+    with pytest.raises(MissingWeightsFile):
+        naf_agent.initialize_pretrained_agent_from_weights_file('weights.p')
 
 
 @patch('robotic_manipulator_rloa.naf_components.naf_algorithm.ReplayBuffer')
