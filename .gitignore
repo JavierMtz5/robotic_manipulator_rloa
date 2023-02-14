@@ -3,3 +3,4 @@ robotic_manipulator_rloa.egg-info
 .idea
 dist
 .pypirc
+__pycache__/
