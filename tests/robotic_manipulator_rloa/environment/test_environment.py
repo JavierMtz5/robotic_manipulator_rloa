@@ -10,9 +10,7 @@ from robotic_manipulator_rloa.utils.exceptions import InvalidEnvironmentParamete
 
 @pytest.mark.parametrize('initial_pos_and_var_range', [[0], None])
 def test_environment_configuration(initial_pos_and_var_range: Union[list, None]) -> None:
-    """
-    Test for the EnvironmentConfiguration class' happy path.
-    """
+    """Test for the EnvironmentConfiguration class"""
     env_configuration = EnvironmentConfiguration(
         endeffector_index=0,
         fixed_joints=[0],
@@ -63,19 +61,7 @@ def test_environment_configuration__invalid_params(endeffector_index: int,
                                                    initial_positions_variation_range: List[float],
                                                    max_force: float,
                                                    visualize: bool) -> None:
-    """
-    Test for the EnvironmentConfiguration class if invalid parameters are loaded.
-    Args:
-    endeffector_index:
-    fixed_joints:
-    involved_joints:
-    target_position:
-    obstacle_position:
-    initial_joint_positions:
-    initial_positions_variation_range:
-    max_force:
-    visualize:
-    """
+    """Test for the EnvironmentConfiguration class when invalid parameters are loaded"""
     with pytest.raises(InvalidEnvironmentParameter):
         env_configuration = EnvironmentConfiguration(
             endeffector_index=endeffector_index,
@@ -137,6 +123,7 @@ def test_environment(mock_get_manipulator_collisions_with_itself: MagicMock,
                      file: str,
                      initial_pos: Union[list, None],
                      initial_var_range: Union[list, None]) -> None:
+    """Test for the Environment class and its class methods reset(), is_terminal_state() and get_reward()"""
     # ================== TEST FOR Environment constructor =====================
 
     env_configuration = EnvironmentConfiguration(

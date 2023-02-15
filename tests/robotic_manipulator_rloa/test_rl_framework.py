@@ -205,7 +205,8 @@ def test_manipulatorframework__set_hyperparameter(mock_logger: MagicMock,
 def test_manipulatorframework__set_hyperparameter__invalid_hyperparam_or_value(mock_logger: MagicMock,
                                                                                hyperparam: str,
                                                                                value: Union[float, int]) -> None:
-    """Test for the set_hyperparameter() method of the ManipulatorFramework class"""
+    """Test for the set_hyperparameter() method of the ManipulatorFramework class when an invalid
+    hyperparameter name or value are passed"""
     mf = ManipulatorFramework()
     with pytest.raises(InvalidHyperParameter):
         mf.set_hyperparameter(hyperparam, value)
@@ -511,7 +512,8 @@ def test_manipulatorframework__run_demo_training__present_env_nafagent(mock_dele
                                                                        mock_input: MagicMock,
                                                                        mock_logger: MagicMock,
                                                                        input: list) -> None:
-    """Test for the run_demo_training() method of the ManipulatorFramework class"""
+    """Test for the run_demo_training() method of the ManipulatorFramework class when either an Environment
+    instance, a NAFAgent instance or both are present"""
     mock_logger.setLevel.return_value = None
     mf = ManipulatorFramework()
     mf.env, mf.naf_agent = MagicMock(), MagicMock()
@@ -606,7 +608,8 @@ def test_manipulatorframework__run_demo_testing__present_env_nafagent(mock_delet
                                                                       mock_input: MagicMock,
                                                                       mock_logger: MagicMock,
                                                                       input: list) -> None:
-    """Test for the run_demo_training() method of the ManipulatorFramework class"""
+    """Test for the run_demo_training() method of the ManipulatorFramework class when either an Environment
+    instance, a NAFAgent instance or both are present"""
     mock_logger.setLevel.return_value = None
     mf = ManipulatorFramework()
     mf.env, mf.naf_agent = MagicMock(), MagicMock()
