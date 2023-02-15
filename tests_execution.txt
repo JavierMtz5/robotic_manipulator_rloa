@@ -1,1 +1,0 @@
-pytest --cov-report term-missing --cov=robotic_manipulator_rloa/ tests/robotic_manipulator_rloa/
