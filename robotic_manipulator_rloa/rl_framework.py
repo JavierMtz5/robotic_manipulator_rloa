@@ -652,7 +652,8 @@ class ManipulatorFramework:
             self.initialize_naf_agent()
 
             logger.info('Loading demo pretrained parameters')
-            self.load_pretrained_parameters_from_weights_file('demo_weights/weights_kuka.p')
+            self.load_pretrained_parameters_from_weights_file(os.path.dirname(
+                os.path.realpath(__file__)) + '/demo_weights/weights_kuka.p')
 
             logger.info('Running 50 test episodes...')
             self.test_trained_model(50, 750)
@@ -680,7 +681,8 @@ class ManipulatorFramework:
             self.initialize_naf_agent()
 
             logger.info('Loading demo pretrained parameters')
-            self.load_pretrained_parameters_from_weights_file('demo_weights/weights_xarm6.p')
+            self.load_pretrained_parameters_from_weights_file(
+                os.path.dirname(os.path.realpath(__file__)) + '/demo_weights/weights_xarm6.p')
 
             logger.info('Running 50 test episodes...')
             self.test_trained_model(50, 750)
@@ -695,162 +697,3 @@ class ManipulatorFramework:
         # Reset log level
         logger.setLevel(old_level)
         logger.warning('Log level has been reset to its original value')
-
-
-if __name__ == '__main__':
-    pass
-    # mf = ManipulatorFramework()
-    # E2E TEST
-    # # set_log_level()
-    # mf.set_log_level(30)
-    # mf.set_log_level(20)
-    #
-    # # get_required_hyperparameters()
-    # mf.get_required_hyperparameters()
-    # mf.set_log_level(10)
-    # mf.get_required_hyperparameters()
-    # mf.set_log_level(20)
-    #
-    # # plot_training_rewards()
-    # mf.plot_training_rewards(3000)
-    # # mf.plot_training_rewards(3001)  # Raises FileNotFoundError exception
-    #
-    # # set_hyperparameter()
-    # # mf.set_hyperparameter('taug', 2)    # Raises invalid hyperparameter
-    # # mf.set_hyperparameter('tau', -2)  # Raises invalid value
-    # mf.set_hyperparameter('tau', 2)
-    # print(mf._hyperparameters.tau)
-    # mf.set_hyperparameter('tau', 0.001)
-    # print(mf._hyperparameters.tau)
-    #
-    # # load_pretrained_parameters_from_weights_file()
-    # # mf.load_pretrained_parameters_from_weights_file('weights_kuka.p')   # Raises error because no env or nafagent yet
-    #
-    # # load_pretrained_parameters_from_episode()
-    # # mf.load_pretrained_parameters_from_episode(3000)    # Raises error because no env or nafagent yet
-    #
-    # # test_trained_model()
-    # # mf.test_trained_model(10, 750)  # Raises a ConfigurationIncomplete error
-    #
-    # # get_environment_configuration()
-    # mf.get_environment_configuration()  # Logs error because no env yet
-    #
-    # # get_nafagent_configuration()
-    # mf.get_nafagent_configuration()  # Logs error because no naf agent yet
-    #
-    # # initialize_environment()
-    # # mf.initialize_environment(manipulator_file='kuka_iiwa/kuka_with_gripper2.sdf',
-    # #                           endeffector_index='wrong param',
-    # #                           fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
-    # #                           involved_joints=[0, 1, 2, 3, 4, 5],
-    # #                           target_position=[0.4, 0.85, 0.71],
-    # #                           obstacle_position=[0.45, 0.55, 0.55],
-    # #                           initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
-    # #                           initial_positions_variation_range=[0, 0, 0.5, 0.5, 0.5, 0.5],
-    # #                           visualize=False)  # Fails because incorrect param
-    # mf.initialize_environment(manipulator_file='kuka_iiwa/kuka_with_gripper2.sdf',
-    #                           endeffector_index=13,
-    #                           fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
-    #                           involved_joints=[0, 1, 2, 3, 4, 5],
-    #                           target_position=[0.4, 0.85, 0.71],
-    #                           obstacle_position=[0.45, 0.55, 0.55],
-    #                           initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
-    #                           initial_positions_variation_range=[0, 0, 0.5, 0.5, 0.5, 0.5],
-    #                           visualize=False)
-    # print(mf.env)
-    #
-    # # delete_environment()
-    # mf.delete_environment()
-    # print(mf.env)
-    # mf.delete_environment()     # No env
-    # mf.initialize_environment(manipulator_file='kuka_iiwa/kuka_with_gripper2.sdf',
-    #                           endeffector_index=13,
-    #                           fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
-    #                           involved_joints=[0, 1, 2, 3, 4, 5],
-    #                           target_position=[0.4, 0.85, 0.71],
-    #                           obstacle_position=[0.45, 0.55, 0.55],
-    #                           initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
-    #                           initial_positions_variation_range=[0, 0, 0.5, 0.5, 0.5, 0.5],
-    #                           visualize=False)
-    #
-    # # initialize_naf_agent()
-    # # mf.initialize_naf_agent(checkpoint_frequency=100, seed='hey')  # Fails because incorrect seed
-    # # mf.initialize_naf_agent(checkpoint_frequency='hey', seed=0)  # Fails because incorrect check_freq
-    # mf.initialize_naf_agent(checkpoint_frequency=100, seed=0)
-    # print(mf.naf_agent)
-    #
-    # # delete_naf_agent()
-    # mf.delete_naf_agent()
-    # print(mf.naf_agent)
-    # mf.delete_naf_agent()
-    # mf.initialize_naf_agent(checkpoint_frequency=100, seed=0)
-    #
-    # # get_configs
-    # mf.get_nafagent_configuration()
-    # mf.get_environment_configuration()
-    #
-    # # run_training()
-    # #
-    # # run_demo_training()
-    # mf.run_demo_testing('kuka_testing')
-    # mf.run_demo_training('kuka_training', verbose=False)
-    # #
-    # # run_demo_testing()
-
-    # CODE FOR KUKA IIWA ROBOT
-    # mf.initialize_environment(manipulator_file='kuka_iiwa/kuka_with_gripper2.sdf',
-    #                           endeffector_index=13,
-    #                           fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
-    #                           involved_joints=[0, 1, 2, 3, 4, 5],
-    #                           target_position=[0.4, 0.85, 0.71],
-    #                           obstacle_position=[0.45, 0.55, 0.55],
-    #                           initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
-    #                           initial_positions_variation_range=[0, 0, 0.5, 0.5, 0.5, 0.5],
-    #                           visualize=False)
-    # mf.initialize_naf_agent(checkpoint_frequency=100)
-    # mf.run_training(3000, 400, verbose=False)
-
-    # TESTING CODE FOR KUKA IIWA ROBOT
-    # kuka_path = os.path.join(pybullet_data.getDataPath(), 'kuka_iiwa/kuka_with_gripper2.sdf')
-    # mf.initialize_environment(manipulator_file=kuka_path,
-    #                           endeffector_index=13,
-    #                           fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
-    #                           involved_joints=[0, 1, 2, 3, 4, 5],
-    #                           target_position=[0.4, 0.85, 0.71],
-    #                           obstacle_position=[0.45, 0.55, 0.55],
-    #                           initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
-    #                           initial_positions_variation_range=[0, 0, .5, .5, .5, .5],
-    #                           visualize=False)
-    # mf.initialize_naf_agent()
-    # mf.load_pretrained_parameters_from_weights_file('model.p')
-    # mf.test_trained_model(50, 750)
-
-    # CODE FOR XARM6 ROBOT
-    # xarm_path = os.path.join(pybullet_data.getDataPath(), 'xarm/xarm6_with_gripper.urdf')
-    # mf.initialize_environment(manipulator_file=xarm_path,
-    #                           endeffector_index=12,
-    #                           fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
-    #                           involved_joints=[1, 2, 3, 4, 5, 6],
-    #                           target_position=[0.3, 0.47, 0.61],
-    #                           obstacle_position=[0.25, 0.27, 0.5],
-    #                           initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
-    #                           initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
-    #                           visualize=False)
-    # mf.initialize_naf_agent()
-    # mf.run_training(3000, 400, verbose=False)
-
-    # TESTING CODE FOR XARM6 ROBOT
-    # xarm_path = os.path.join(pybullet_data.getDataPath(), 'xarm/xarm6_with_gripper.urdf')
-    # mf.initialize_environment(manipulator_file=xarm_path,
-    #                           endeffector_index=12,
-    #                           fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
-    #                           involved_joints=[1, 2, 3, 4, 5, 6],
-    #                           target_position=[0.3, 0.47, 0.61],
-    #                           obstacle_position=[0.25, 0.27, 0.5],
-    #                           initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
-    #                           initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
-    #                           max_force=200,
-    #                           visualize=True)
-    # mf.initialize_naf_agent()
-    # mf.load_pretrained_parameters_from_weights_file('/home/j.martinez/Escritorio/weights_xarm6.p')
-    # mf.test_trained_model(50, 750)
