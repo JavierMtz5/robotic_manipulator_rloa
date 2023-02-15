@@ -1,4 +1,7 @@
-from mock import MagicMock, patch, mock_open
+import numpy as np
+import torch
+from mock import MagicMock, patch
+
 from robotic_manipulator_rloa.naf_components.naf_neural_network import NAF
 
 
@@ -47,62 +50,18 @@ def test_naf(mock_batchnorm: MagicMock,
     mock_batchnorm.assert_any_call(128)
 
 
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.torch.relu')
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.torch.tanh')
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.torch.zeros')
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.torch.tril_indices')
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.torch.matmul')
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.MultivariateNormal')
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.torch.inverse')
-@patch('robotic_manipulator_rloa.naf_components.naf_neural_network.torch.clamp')
-def test_naf__forward(mock_clamp: MagicMock,
-                      mock_inverse: MagicMock,
-                      mock_multivariate_normal: MagicMock,
-                      mock_matmul: MagicMock,
-                      mock_tril_indices: MagicMock,
-                      mock_zeros: MagicMock,
-                      mock_tanh: MagicMock,
-                      mock_relu: MagicMock) -> None:
+def test_naf__forward() -> None:
     """Test for the forward() method of the NAF class"""
-    # naf = NAF(state_size=10, action_size=5, layer_size=128, seed=0, device='cpu')
-    # fake_input, fake_action = MagicMock(), MagicMock()
-    # fake_input_layer, fake_hidden_layer, fake_action_values, fake_matrix_entries, fake_value, fake_bn1, fake_bn2 = \
-    #     [MagicMock() for _ in range(7)]
-    # naf.input_layer, naf.hidden_layer, naf.action_values, naf.matrix_entries, naf.value = \
-    #     fake_input_layer, fake_hidden_layer, fake_action_values, fake_matrix_entries, fake_value
-    # naf.bn1, naf.bn2 = fake_bn1, fake_bn2
-    # fake_linear_output_1, fake_linear_output_2 = MagicMock(), MagicMock()
-    # fake_action_value_output, fake_matrix_entries_output, fake_value_output = MagicMock(), MagicMock(), MagicMock()
-    # x_0 = fake_input_layer.return_value
-    # x_1 = fake_bn1.return_value
-    # x_2 = fake_hidden_layer.return_value
-    # x_3 = fake_bn2.return_value
-    # mock_relu.side_effect = [fake_linear_output_1, fake_linear_output_2]
-    # x_5 = fake_action_values.return_value
-    # x_6 = fake_matrix_entries.return_value
-    # fake_value.return_value = fake_value_output
-    # mock_tanh.side_effect = [fake_action_value_output, fake_matrix_entries_output]
-    # unsqueezed_action_value = MagicMock()
-    # fake_action_value_output.unsqueeze.return_value = unsqueezed_action_value
-    # fake_L, fake_zeros = MagicMock(), MagicMock()
-    # mock_zeros.return_value = fake_zeros
-    # fake_zeros.to.return_value = fake_L
-    # fake_lower_tri_indices = MagicMock()
-    # mock_tril_indices.return_value = fake_lower_tri_indices
-    #
-    # fake_L_diagonalized, fake_L_exp = MagicMock(), MagicMock()
-    # fake_L.diagonal.retun_value = fake_L_diagonalized
-    # fake_L_diagonalized.exp_.return_value = fake_L_exp
-    # fake_L_transposed = MagicMock()
-    # fake_L_exp.transpose.return_value = fake_L_transposed
-    #
-    # fake_action_unsqueezed = MagicMock()
-    # fake_action.unsqueeze.return_value = fake_action_unsqueezed
-    # mock_matmul.side_effect = []
-    #
-    #
-    # naf.forward(fake_input, fake_action)
-    pass
+    device = torch.device('cpu')
+    naf = NAF(state_size=10, action_size=5, layer_size=256, seed=0, device=device)
+    states = torch.from_numpy(np.stack(
+        [np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), np.array([10, 11, 12, 13, 14, 15, 16, 17, 18, 19])]
+    )).float().to(device)
+    actions = torch.from_numpy(np.vstack(
+        [np.array([0, 1, 2, 3, 4]), np.array([10, 11, 12, 13, 14])]
+    )).long().to(device)
 
+    action, q, v = naf(states, actions)
 
-
+    assert q.tolist() == [[-35.50931930541992], [-638.494873046875]]
+    assert v.tolist() == [[0.5665180683135986], [-0.08311141282320023]]

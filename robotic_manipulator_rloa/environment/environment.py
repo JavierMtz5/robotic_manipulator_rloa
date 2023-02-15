@@ -133,6 +133,9 @@ class EnvironmentConfiguration:
         Raises:
             InvalidEnvironmentParameter
         """
+        if initial_joint_positions is None:
+            self.initial_joint_positions = None
+            return
         if not isinstance(initial_joint_positions, list):
             raise InvalidEnvironmentParameter('Initial Joint Positions received is not a list')
         for val in initial_joint_positions:
@@ -148,6 +151,9 @@ class EnvironmentConfiguration:
         Raises:
             InvalidEnvironmentParameter
         """
+        if initial_positions_variation_range is None:
+            self.initial_positions_variation_range = None
+            return
         if not isinstance(initial_positions_variation_range, list):
             raise InvalidEnvironmentParameter('Initial Positions Variation Range received is not a list')
         for val in initial_positions_variation_range:
