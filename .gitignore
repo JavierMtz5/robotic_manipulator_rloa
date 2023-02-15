@@ -4,4 +4,3 @@ robotic_manipulator_rloa.egg-info
 dist
 .pypirc
 __pycache__/
-.gitignore

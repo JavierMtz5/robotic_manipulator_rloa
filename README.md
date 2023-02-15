@@ -1,80 +1,100 @@
-## Framework and Code for the application of Normalized Advantage Function algorithm for Obstacle Avoidance on Robotic Manipulators
+# robotic_manipulator_rloa
 
-### Installation of requirements (on virtual environment)
+**robotic_manipulator_rloa** is a framework for training Robotic Manipulators on the Obstacle Avoidance task through Reinforcement Learning.
 
-1. Create a virtual environment
-   
-    ```bash
-    $ python3 -m venv venv
-    ```
-   
-2. Activate the virtual environment
-   
-    ```bash
-    $ source venv/bin/activate
-    ```
-   
-3. Install required packages
+## Installation
 
-    ```bash
-    $ python -m pip install -r requirements.txt
-    ```
+Install the package with [pip](https://pip.pypa.io/en/stable/).
 
-### Execution of preloaded trainings
+```bash
+$ pip install robotic_manipulator_rloa
+```
 
-There are two preloaded trainings in the framework, which can be used to test its functionality
-or the work done in the project. The trainings correspond to the robotic manipulators KUKA LBR iiwa and 
-xArm6, as stated in the report. The code neccessary to launch these training is located in the bottom of the 
-**framework.py** file, commented. 
+## Usage
 
-There are 4 sections commented, with the following titles: 
-1. CODE FOR KUKA IIWA ROBOT
-2. TESTING CODE FOR KUKA IIWA ROBOT
-3. CODE FOR XARM6 ROBOT
-4. TESTING CODE FOR XARM6 ROBOT
+### Execution of a demo training and testing process for the KUKA IIWA Robotic Manipulator
 
-Sections **1** and **3** can be used to launch a training with the manipulator robot mentioned in the title
-Sections **2** and **4** can be used to test the previous trainings, for the manipulators mentioned in the title.
+```python
+from robotic_manipulator_rloa import ManipulatorFramework
 
-It is important to note that **ONLY** the section that is required to be executed can be uncommented to ensure 
-a controlled execution of the framework. It is also worth noting that the code related to the execution of the training
-and testing expects to be running for 3000 episodes, with 400 timesteps per episode. If either the number of episodes or the number
-of timesteps change, so must change the testing code related to that training, as the testing code will load the 
-trained model from episode 3000. This means that, if the training is executed for less than 3000 episodes, the test 
-will not find the required model, and that if more than 3000 episodes are executed, the test will only show the 
-behaviour of the model trained until 3000 episodes. 
+# Initialize the framework
+mf = ManipulatorFramework()
 
+# Run a demo of the training process for the KUKA IIWA Robotic Manipulator
+mf.run_demo_training('kuka_training', verbose=False)
 
-### Execution of customized training
+# Run a demo of the testing process for the KUKA IIWA Robotic Manipulator
+mf.run_demo_testing('kuka_testing')
+```
 
-1. **Initialize the framework**
+### Execution of a training for the KUKA IIWA Robotic Manipulator
 
-    ```bash
-    $ framework = ManipulatorFramework()
-    ```
+```python
+from robotic_manipulator_rloa import ManipulatorFramework
 
-2. **Initialize environment**
+# Initialize the framework
+mf = ManipulatorFramework()
 
-    ```bash
-    $ framework.initialize_environment(manipulator_file=<path_to_sdf_urdf_file>>,
-                                       endeffector_index=<endeffector_index>,
-                                       fixed_joints=<list_of_indices_of_joints_to_fix>,
-                                       involved_joints=<list_of_indices_of_joints_to_involve>,
-                                       target_position=<target_pos_as_3d_array>,
-                                       obstacle_position=<obstacle_pos_as_3d_array>,
-                                       initial_joint_positions=<list_of_initial_pos_for_each_joint>,
-                                       initial_positions_variation_range=<list_of_variation_range_for_each_joint>,
-                                       visualize=<bool>)
-    ```
+# Initialize KUKA IIWA Robotic Manipulator environment
+mf.initialize_environment(manipulator_file='kuka_iiwa/kuka_with_gripper2.sdf',
+                          endeffector_index=13,
+                          fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                          involved_joints=[0, 1, 2, 3, 4, 5],
+                          target_position=[0.4, 0.85, 0.71],
+                          obstacle_position=[0.45, 0.55, 0.55],
+                          initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                          initial_positions_variation_range=[0, 0, 0.5, 0.5, 0.5, 0.5],
+                          visualize=False)
 
-3. **Initialize NAF Agent**
+# Initialize NAF Agent (checkpoint files will be generated every 100 episodes)
+mf.initialize_naf_agent(checkpoint_frequency=100)
 
-    ```bash
-    $ framework.initialize_naf_agent()
-    ```
+# Run training for 3000 episodes, 400 timesteps per episode
+mf.run_training(3000, 400, verbose=False)
+```
 
-4. **Run Training**
+### Execution of a testing process for the KUKA IIWA Robotic Manipulator (must execute a training for 3000 episodes before)
 
-    ```bash
-    $ framework.run_training(n_episodes, n_timesteps)
-    ```
+```python
+import os
+import pybullet_data
+from robotic_manipulator_rloa import ManipulatorFramework
+
+# Initialize the framework
+mf = ManipulatorFramework()
+
+# Initialize KUKA IIWA Robotic Manipulator environment
+kuka_path = os.path.join(pybullet_data.getDataPath(), 'kuka_iiwa/kuka_with_gripper2.sdf')
+mf.initialize_environment(manipulator_file=kuka_path,
+                          endeffector_index=13,
+                          fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                          involved_joints=[0, 1, 2, 3, 4, 5],
+                          target_position=[0.4, 0.85, 0.71],
+                          obstacle_position=[0.45, 0.55, 0.55],
+                          initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                          initial_positions_variation_range=[0, 0, .5, .5, .5, .5],
+                          visualize=False)
+
+# Initialize NAF Agent
+mf.initialize_naf_agent()
+
+# Load pretrained weights from .p file
+mf.load_pretrained_parameters_from_episode(3000)
+
+# Test the pretrained model for 50 test episodes, 750 timesteps each
+mf.test_trained_model(50, 750)
+
+```
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first
+to discuss what you would like to change. Please make sure to update and execute the tests!
+
+```bash
+robotic_manipulator_rloa$ pytest --cov-report term-missing --cov=robotic_manipulator_rloa/ tests/robotic_manipulator_rloa/
+```
+
+## License
+
+[MIT License](https://choosealicense.com/licenses/mit/)
