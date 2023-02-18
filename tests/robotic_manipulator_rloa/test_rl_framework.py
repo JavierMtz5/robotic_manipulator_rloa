@@ -1,5 +1,6 @@
 from mock import patch, MagicMock, mock_open
 from typing import Union
+import os
 import pytest
 import numpy as np
 import json
@@ -132,7 +133,7 @@ def test_manipulatorframework__plot_training_rewards__filenotfound(mock_open_fil
     ('gamma', 0.5),
     ('GAMMA', 0.5),
     ('tau', 1),
-    ('TAU', 1),
+    ('TAU', 0),
     ('learning_rate', 1),
     ('learningrate', 1),
     ('LEARNING_RATE', 1),
@@ -153,19 +154,19 @@ def test_manipulatorframework__set_hyperparameter(mock_logger: MagicMock,
     mf = ManipulatorFramework()
     mf.set_hyperparameter(hyperparam, value)
     if hyperparam in ['buffer_size', 'buffersize', 'BUFFER_SIZE', 'BUFFERSIZE']:
-        assert mf._hyperparameters.buffer_size == 200
+        assert mf._hyperparameters.buffer_size == value
     elif hyperparam in ['batch_size', 'batchsize', 'BATCH_SIZE', 'BATCHSIZE']:
-        assert mf._hyperparameters.batch_size == 1
+        assert mf._hyperparameters.batch_size == value
     elif hyperparam in ['gamma', 'GAMMA']:
-        assert mf._hyperparameters.gamma == 0.5
+        assert mf._hyperparameters.gamma == value
     elif hyperparam in ['tau', 'TAU']:
-        assert mf._hyperparameters.tau == 1
+        assert mf._hyperparameters.tau == value
     elif hyperparam in ['learning_rate', 'learningrate', 'LEARNING_RATE', 'LEARNINGRATE']:
-        assert mf._hyperparameters.learning_rate == 1
+        assert mf._hyperparameters.learning_rate == value
     elif hyperparam in ['update_freq', 'updatefreq', 'UPDATE_FREQ', 'UPDATEFREQ']:
-        assert mf._hyperparameters.update_freq == 10
+        assert mf._hyperparameters.update_freq == value
     elif hyperparam in ['num_update', 'numupdate', 'NUM_UPDATE', 'NUMUPDATE']:
-        assert mf._hyperparameters.num_updates == 20
+        assert mf._hyperparameters.num_updates == value
 
 
 @pytest.mark.parametrize('hyperparam, value', [
@@ -187,7 +188,7 @@ def test_manipulatorframework__set_hyperparameter(mock_logger: MagicMock,
     ('tau', 'str'),
     ('TAU', []),
     ('TAU', -0.5),
-    ('TAU', -1),
+    ('TAU', 2),
     ('learning_rate', 'str'),
     ('learningrate', []),
     ('LEARNING_RATE', -0.01),
@@ -578,7 +579,9 @@ def test_manipulatorframework__run_demo_testing(mock_input: MagicMock,
                                                     initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
                                                     initial_positions_variation_range=[0, 0, .5, .5, .5, .5])
         mock_initialize_naf_agent.assert_any_call()
-        mock_load_pretrained_parameters_from_weights_file.assert_any_call('demo_weights/weights_kuka.p')
+        mock_load_pretrained_parameters_from_weights_file.assert_any_call(
+            os.path.dirname(os.path.realpath(__file__)).replace('tests/', '') +
+            '/naf_components/demo_weights/weights_kuka.p')
         mock_test_trained_model.assert_any_call(50, 750)
 
     if demo_type == 'xarm6_testing':
@@ -593,7 +596,9 @@ def test_manipulatorframework__run_demo_testing(mock_input: MagicMock,
                                                     max_force=200,
                                                     visualize=True)
         mock_initialize_naf_agent.assert_any_call()
-        mock_load_pretrained_parameters_from_weights_file.assert_any_call('demo_weights/weights_xarm6.p')
+        mock_load_pretrained_parameters_from_weights_file.assert_any_call(
+            os.path.dirname(os.path.realpath(__file__)).replace('tests/', '') +
+            '/naf_components/demo_weights/weights_xarm6.p')
         mock_test_trained_model.assert_any_call(50, 750)
 
     if demo_type == 'wrong_demo_type':

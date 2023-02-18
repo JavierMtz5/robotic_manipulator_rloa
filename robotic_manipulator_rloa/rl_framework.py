@@ -84,8 +84,8 @@ class ManipulatorFramework:
         level_name_mappings = {10: 'DEBUG', 20: 'INFO', 30: 'WARNING', 40: 'ERROR', 50: 'CRITICAL'}
         # Set Log level
         if log_level in [10, 20, 30, 40, 50]:
-            logger.setLevel(log_level)
             logger.info(f'Log Level has been set to {logger.level} ({level_name_mappings[logger.level]})')
+            logger.setLevel(log_level)
         else:
             logger.error(
                 f'The Log level provided is invalid, so the previous Log Level is maintained ({logger.level}))')
@@ -198,8 +198,8 @@ class ManipulatorFramework:
 
         # Set TAU
         elif re.match(r'^(tau|TAU)$', hyperparameter):
-            if not (isinstance(value, (int, float)) and value > 0):
-                raise InvalidHyperParameter('Tau is not a float or has a value lower than 0')
+            if not (isinstance(value, (int, float)) and 0 <= value <= 1):
+                raise InvalidHyperParameter('Tau is not a float or its value is out of range [0, 1]')
             self._hyperparameters.tau = value
             logger.info(f'Hyperparameter {hyperparameter} has been set to {value}')
 
@@ -653,7 +653,7 @@ class ManipulatorFramework:
 
             logger.info('Loading demo pretrained parameters')
             self.load_pretrained_parameters_from_weights_file(os.path.dirname(
-                os.path.realpath(__file__)) + '/demo_weights/weights_kuka.p')
+                os.path.realpath(__file__)) + '/naf_components/demo_weights/weights_kuka.p')
 
             logger.info('Running 50 test episodes...')
             self.test_trained_model(50, 750)
@@ -682,7 +682,7 @@ class ManipulatorFramework:
 
             logger.info('Loading demo pretrained parameters')
             self.load_pretrained_parameters_from_weights_file(
-                os.path.dirname(os.path.realpath(__file__)) + '/demo_weights/weights_xarm6.p')
+                os.path.dirname(os.path.realpath(__file__)) + '/naf_components/demo_weights/weights_xarm6.p')
 
             logger.info('Running 50 test episodes...')
             self.test_trained_model(50, 750)

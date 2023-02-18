@@ -1,0 +1,2 @@
+include robotic_manipulator_rloa/naf_components/demo_weights/weights_kuka.p
+include robotic_manipulator_rloa/naf_components/demo_weights/weights_xarm6.p
