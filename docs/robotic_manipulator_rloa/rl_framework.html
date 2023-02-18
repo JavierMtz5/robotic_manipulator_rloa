@@ -1,0 +1,2533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>robotic_manipulator_rloa.rl_framework API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0;color:#058}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>robotic_manipulator_rloa.rl_framework</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import json
+import logging
+import os
+import re
+from dataclasses import dataclass
+from typing import List, Union, Optional
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pybullet as p
+import pybullet_data
+import torch
+
+from robotic_manipulator_rloa.environment.environment import Environment, EnvironmentConfiguration
+from robotic_manipulator_rloa.utils.exceptions import (
+    EnvironmentNotInitialized,
+    NAFAgentNotInitialized,
+    ConfigurationIncomplete,
+    InvalidHyperParameter,
+    InvalidNAFAgentParameter
+)
+from robotic_manipulator_rloa.utils.logger import get_global_logger, Logger
+from robotic_manipulator_rloa.naf_components.naf_algorithm import NAFAgent
+
+# Mute matplotlib and PIL logs
+plt.set_loglevel(&#39;critical&#39;)
+logging.getLogger(&#39;PIL&#39;).setLevel(logging.WARNING)
+# Initialize framework logger
+logger = get_global_logger()
+Logger.set_logger_setup()
+
+
+@dataclass
+class HyperParameters:
+    &#34;&#34;&#34;
+    Data Class for the storage of the required hyper-parameters.
+    &#34;&#34;&#34;
+    buffer_size: int = 100000
+    batch_size: int = 128
+    gamma: float = 0.99
+    tau: float = 0.001
+    learning_rate: float = 0.001
+    update_freq: int = 1
+    num_updates: int = 1
+
+
+class ManipulatorFramework:
+
+    def __init__(self) -&gt; None:
+        &#34;&#34;&#34;
+        Main class of the package. Initializes the required hyper-parameters to their default value.
+        &#34;&#34;&#34;
+        self.env: Union[Environment, None] = None
+        self.naf_agent: Union[NAFAgent, None] = None
+        self._hyperparameters: Union[HyperParameters, None] = None
+
+        self._initialize_hyperparameters()
+        logger.info(&#39;The Framework has been initialized with the default hyperparameters configuration&#39;)
+        logger.debug(&#39;* Custom hyperparameters can be set via the set_hyperparameter() method&#39;)
+        logger.debug(&#39;* All the required hyperparameters can be printed via the get_required_hyperparameters() method&#39;)
+        logger.debug(&#39;* Load a manipulator via the initialize_environment() method to start with the training &#39;
+                     &#39;configuration&#39;)
+
+    def _initialize_hyperparameters(self) -&gt; None:
+        &#34;&#34;&#34;
+        Initializes the hyper-parameters with their default values.
+        &#34;&#34;&#34;
+        self._hyperparameters = HyperParameters(buffer_size=100000,
+                                                batch_size=128,
+                                                gamma=0.99,
+                                                tau=0.001,
+                                                learning_rate=0.001,
+                                                update_freq=1,
+                                                num_updates=1)
+
+    @staticmethod
+    def set_log_level(log_level: int) -&gt; None:
+        &#34;&#34;&#34;
+        Set Log Level for the Logger.
+        Args:
+            log_level: Log level to be set.\n
+                Valid values: 10 (DEBUG), 20 (INFO), 30 (WARNING), 40 (ERROR), 50 (CRITICAL)
+        &#34;&#34;&#34;
+        level_name_mappings = {10: &#39;DEBUG&#39;, 20: &#39;INFO&#39;, 30: &#39;WARNING&#39;, 40: &#39;ERROR&#39;, 50: &#39;CRITICAL&#39;}
+        # Set Log level
+        if log_level in [10, 20, 30, 40, 50]:
+            logger.info(f&#39;Log Level has been set to {logger.level} ({level_name_mappings[logger.level]})&#39;)
+            logger.setLevel(log_level)
+        else:
+            logger.error(
+                f&#39;The Log level provided is invalid, so the previous Log Level is maintained ({logger.level}))&#39;)
+            logger.error(&#39;Valid values: 10 (DEBUG), 20 (INFO), 30 (WARNING), 40 (ERROR), 50 (CRITICAL)&#39;)
+
+    @staticmethod
+    def get_required_hyperparameters() -&gt; None:
+        &#34;&#34;&#34;
+        Returns a list with the required hyper-parameters. This function does not imply
+        any logic, as it is only intended to help the user to know what hyper-parameters can be set.
+        The required hyper-parameters are shown as DEBUG logs, so if the Log level is set to INFO or higher
+        the function will not return anything.
+        &#34;&#34;&#34;
+        if logger.level &gt; 10:
+            logger.error(&#39;get_required_hyperparameters() only shows information for DEBUG log level. &#39;
+                         &#39;Try running this method after setting the log level to DEBUG by calling &#39;
+                         &#39;set_log_level(10) class method&#39;)
+            return
+
+        hyperparameters_info_map = {
+            &#39;Buffer Size&#39;: &#39;https://www.tensorflow.org/agents/tutorials/5_replay_buffers_tutorial?hl=es-419&#39;,
+            &#39;Batch Size&#39;: &#39;https://www.kaggle.com/general/276990&#39;,
+            &#39;Gamma (discount factor)&#39;: &#39;https://arxiv.org/pdf/2007.02040.pdf&#39;,
+            &#39;Tau&#39;: &#39;https://arxiv.org/abs/1603.00748&#39;,
+            &#39;Learning Rate&#39;: &#39;https://machinelearningmastery.com/understand-the-dynamics-of-learning-rate-on-deep&#39;
+                             &#39;-learning-neural-networks/&#39;,
+            &#39;Update Frequency&#39;: &#39;https://medium.com/towards-data-science/applied-reinforcement-learning-v-normalized&#39;
+                                &#39;-advantage-function-naf-for-continuous-control-62ad143d3095&#39;,
+            &#39;Number of Updates&#39;: &#39;https://medium.com/towards-data-science/applied-reinforcement-learning-v-normalized&#39;
+                                 &#39;-advantage-function-naf-for-continuous-control-62ad143d3095&#39;}
+
+        logger.debug(&#39;Required Hyperparameters:&#39;)
+        for hyperparam, info in hyperparameters_info_map.items():
+            logger.debug(&#39;{:&lt;25} (see {:&lt;10})&#39;.format(hyperparam, info))
+
+    @staticmethod
+    def plot_training_rewards(episode: int, mean_range: int = 50) -&gt; None:
+        &#34;&#34;&#34;
+        Plots the mean reward of each batch of {mean_range} episodes for the &#34;scores.txt&#34; file stored
+        in the checkpoints/ folder, corresponding to the episode received as parameter.
+        Args:
+            episode: Episode number from which to plot the results. The episode provided must be one of the
+                checkpoints generated in the /checkpoints directory.
+            mean_range: Range of episodes on which the mean is calculated. If the execution lasted for
+                200 episodes, and the mean_range is set to 50, 4 metric points will be generated.
+        Raises:
+            FileNotFoundError: Raises if the episode provided is not present as a directory in the /checkpoints
+                directory generated after executing a training.
+        &#34;&#34;&#34;
+
+        try:
+            with open(f&#39;checkpoints/{episode}/scores.txt&#39;, &#39;r&#39;) as f:
+                file = f.read()
+                scores = json.loads(file)
+        except FileNotFoundError as err:
+            logger.error(f&#39;File &#34;scores.txt&#34; located in checkpoints/{episode}/ folder was not found&#39;)
+            raise err
+
+        counter, cummulative_reward, values_to_plot = 0, list(), list()
+        for episode, result in scores.items():
+            cummulative_reward.append(result[0])
+            counter += 1
+            if counter % mean_range == 0:
+                mean = sum(cummulative_reward) / len(cummulative_reward)
+                values_to_plot.append(mean)
+                cummulative_reward = list()
+
+        plt.plot(range(len(values_to_plot)), values_to_plot)
+        plt.show()
+
+    def set_hyperparameter(self, hyperparameter: str, value: Union[float, int]) -&gt; None:
+        &#34;&#34;&#34;
+        Sets the specified value on the given hyper-parameter. Checking are performed to
+        ensure that the new value for the hyper-parameter is a valid value.
+        Args:
+            hyperparameter: Name of the hyper-parameter to be updated.
+                Allowed names are:\n
+                - buffer_size/buffersize/BUFFER_SIZE/BUFFERSIZE\n
+                - batch_size/batchsize/BATCH_SIZE/BATCHSIZE\n
+                - gamma/GAMMA\n
+                - tau/TAU\n
+                - learning_rate/learningrate/LEARNING_RATE/LEARNINGRATE\n
+                - update_freq/updatefreq/UPDATE_FREQ/UPDATEFREQ\n
+                - num_update/numupdate/NUMUPDATE/NUM_UPDATE\n
+            value: New value for the given hyper-parameter.
+        Raises:
+            InvalidHyperParameter: The hyperparameter received has an invalid value/type, or the hyperparameter
+                name received is not one of the accepted values.
+        &#34;&#34;&#34;
+        # Set BUFFER SIZE
+        if re.match(r&#39;^(buffer_size|buffersize|BUFFER_SIZE|BUFFERSIZE)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Buffer Size is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.buffer_size = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set BATCH SIZE
+        elif re.match(r&#39;^(batch_size|batchsize|BATCH_SIZE|BATCHSIZE)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Batch Size is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.batch_size = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set GAMMA
+        elif re.match(r&#39;^(gamma|GAMMA)$&#39;, hyperparameter):
+            if not (isinstance(value, (int, float)) and 0 &lt; value &lt; 1):
+                raise InvalidHyperParameter(&#39;Gamma is not a float or its value is out of range (0, 1)&#39;)
+            self._hyperparameters.gamma = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set TAU
+        elif re.match(r&#39;^(tau|TAU)$&#39;, hyperparameter):
+            if not (isinstance(value, (int, float)) and 0 &lt;= value &lt;= 1):
+                raise InvalidHyperParameter(&#39;Tau is not a float or its value is out of range [0, 1]&#39;)
+            self._hyperparameters.tau = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set LEARNING RATE
+        elif re.match(r&#39;^(learning_rate|learningrate|LEARNING_RATE|LEARNINGRATE)$&#39;, hyperparameter):
+            if not (isinstance(value, (int, float)) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Learning Rate is not a float or has a value lower than 0&#39;)
+            self._hyperparameters.learning_rate = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set UPDATE EVERY
+        elif re.match(r&#39;^(update_freq|updatefreq|UPDATE_FREQ|UPDATEFREQ)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Update Frequency is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.update_freq = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set NUPDATE
+        elif re.match(r&#39;^(num_update|numupdate|NUMUPDATE|NUM_UPDATE)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Buffer Size is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.num_updates = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        else:
+            raise InvalidHyperParameter(
+                &#39;The hyperparameter name passed as parameter is not valid. Valid hyperparameters are: &#39;
+                &#39;[&#34;buffer_size&#34;, &#34;batch_size&#34;, &#34;gamma&#34;, &#34;tau&#34;, &#34;learning_rate&#34;, &#34;update_freq&#34;, &#34;num_update&#34;]&#39;)
+
+    def load_pretrained_parameters_from_weights_file(self, parameters_file_path: str) -&gt; None:
+        &#34;&#34;&#34;
+        Loads a pretrained network&#39;s weights into the current networks. The weights are loaded from the path
+        provided in the {parameters_file_path} parameter. As the weights are loaded in the neural networks
+        contained in the NAFAgent class, the method will raise an error if either the Environment or the NAFAgent
+        class are not initialized.
+        Args:
+            parameters_file_path: Path to the .p file where the weights are stored.
+        Raises:
+            EnvironmentNotInitialized: The Environment class has not been initialized.
+            NAFAgentNotInitialized: The NAFAgentNotInitialized class has not been initialized.
+            MissingWeightsFile: The .p file path provided does not exist.
+        &#34;&#34;&#34;
+        if not self.env:
+            raise EnvironmentNotInitialized
+
+        if not self.naf_agent:
+            raise NAFAgentNotInitialized
+
+        self.naf_agent.initialize_pretrained_agent_from_weights_file(parameters_file_path)
+
+    def load_pretrained_parameters_from_episode(self, episode: int) -&gt; None:
+        &#34;&#34;&#34;
+        Loads previously trained weights into the current networks.
+        The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+        the episode provided must be present in the checkpoints/ folder. As the weights are loaded in the
+        neural networks contained in the NAFAgent class, the method will raise an error if either
+        the Environment or the NAFAgent class are not initialized.
+        Args:
+            episode: Episode in the /checkpoints folder from which to retrieve the pretrained weights.
+        Raises:
+            EnvironmentNotInitialized: The Environment class has not been initialized.
+            NAFAgentNotInitialized: The NAFAgentNotInitialized class has not been initialized.
+            MissingWeightsFile: The weights.p file does not exist in the folder provided.
+        &#34;&#34;&#34;
+        if not self.env:
+            raise EnvironmentNotInitialized
+
+        if not self.naf_agent:
+            raise NAFAgentNotInitialized
+
+        self.naf_agent.initialize_pretrained_agent_from_episode(episode)
+
+    def get_environment_configuration(self) -&gt; None:
+        &#34;&#34;&#34;
+        Shows the Environment configuration as logs on stdout.
+        &#34;&#34;&#34;
+        if not self.env:
+            logger.error(&#34;Environment is not initialized yet, can&#39;t show configuration&#34;)
+            return
+
+        logger.info(&#39;Environment Configuration:&#39;)
+        logger.info(f&#39;* Manipulator File:                    {self.env.manipulator_file}&#39;)
+        logger.info(f&#39;* End Effector index:                  {self.env.endeffector_index}&#39;)
+        logger.info(f&#39;* List of fixed Joints:                {self.env.fixed_joints}&#39;)
+        logger.info(f&#39;* List of Joints involved in training: {self.env.involved_joints}&#39;)
+        logger.info(f&#39;* Position of the Target:              {self.env.target_pos}&#39;)
+        logger.info(f&#39;* Position of the Obstacle:            {self.env.obstacle_pos}&#39;)
+        logger.info(f&#39;* Initial position of joints:          {self.env.initial_joint_positions}&#39;)
+        logger.info(f&#39;* Initial variation range of joints:   {self.env.initial_positions_variation_range}&#39;)
+        logger.info(f&#39;* Max Force to be applied on joints:   {self.env.max_force}&#39;)
+        logger.info(f&#39;* Visualize mode:                      {self.env.visualize}&#39;)
+        logger.info(f&#39;* Instance of the Environment:         {self.env}&#39;)
+
+    def get_nafagent_configuration(self) -&gt; None:
+        &#34;&#34;&#34;
+        Shows the NAFAgent configuration as logs on stdout.
+        &#34;&#34;&#34;
+        if not self.naf_agent:
+            logger.error(&#34;NAFAgent is not initialized yet, can&#39;t show configuration&#34;)
+            return
+
+        logger.info(&#39;NAFAgent Configuration:&#39;)
+        logger.info(f&#39;* Environment Instance:                    {self.naf_agent.environment}&#39;)
+        logger.info(f&#39;* State Size:                              {self.naf_agent.state_size}&#39;)
+        logger.info(f&#39;* Action Size:                             {self.naf_agent.action_size}&#39;)
+        logger.info(f&#39;* Size of layers of the Neural Network:    {self.naf_agent.layer_size}&#39;)
+        logger.info(f&#39;* Batch Size:                              {self.naf_agent.batch_size}&#39;)
+        logger.info(f&#39;* Buffer Size:                             {self.naf_agent.buffer_size}&#39;)
+        logger.info(f&#39;* Learning Rate:                           {self.naf_agent.learning_rate}&#39;)
+        logger.info(f&#39;* Tau:                                     {self.naf_agent.tau}&#39;)
+        logger.info(f&#39;* Gamma:                                   {self.naf_agent.gamma}&#39;)
+        logger.info(f&#39;* Update Frequency:                        {self.naf_agent.update_freq}&#39;)
+        logger.info(f&#39;* Number of Updates:                       {self.naf_agent.num_updates}&#39;)
+        logger.info(f&#39;* Checkpoint frequency:                    {self.naf_agent.checkpoint_frequency}&#39;)
+        logger.info(f&#39;* Device:                                  {self.naf_agent.device}&#39;)
+
+    def test_trained_model(self, n_episodes: int, frames: int) -&gt; None:
+        &#34;&#34;&#34;
+        Tests a previously trained agent through the execution of {n_episodes} test episodes,
+        for {frames} timesteps each. When the test concludes, the results of the test are logged on terminal.
+        Args:
+            n_episodes: Number of test episodes to execute.
+            frames: Number of timesteps per test episode.
+        Raises:
+            ConfigurationIncomplete: Either the Environment class or the NAFAgent class are not initialized.
+        &#34;&#34;&#34;
+        # Check if Environment and NAFAgent initialized
+        if not self.naf_agent or not self.env:
+            raise ConfigurationIncomplete
+
+        # Initialize Test result&#39;s history
+        results, num_collisions = list(), 0
+
+        for _ in range(n_episodes):
+            state = self.env.reset()
+
+            for frame in range(frames):
+                action = self.naf_agent.act(state)
+                next_state, reward, done = self.env.step(action)
+                state = next_state
+                if done:
+                    if reward == 250:
+                        results.append((True, frame))
+                        break
+                    else:
+                        results.append((False, frame))
+                        num_collisions += 1
+                        break
+
+                if frame == frames - 1 and not done:
+                    results.append((False, frame))
+                    break
+
+            logger.info(&#39;Test Episode number {ep} completed\n&#39;.format(ep=_ + 1))
+
+        logger.info(&#39;RESULTS OF THE TEST:&#39;)
+        for i, result in enumerate(results):
+            logger.info(f&#39;Results of Iteration {i + 1}: COMPLETED: {result[0]}. FRAMES: {result[1]}&#39;)
+
+        logger.info(f&#39;Number of successful executions: &#39;
+                    f&#39;{[res[0] for res in results].count(True)}/{len(results)}  &#39;
+                    f&#39;({([res[0] for res in results].count(True) / len(results)) * 100}%)&#39;)
+        logger.info(f&#39;Average number of frames required to complete an episode: &#39;
+                    f&#39;{np.mean(np.array([res[1] for res in results if res[0]]))}&#39;)
+        logger.info(f&#39;Number of episodes terminated because of collisions: {num_collisions}&#39;)
+
+    def initialize_environment(
+            self,
+            manipulator_file: str,
+            endeffector_index: int,
+            fixed_joints: List[int],
+            involved_joints: List[int],
+            target_position: List[float],
+            obstacle_position: List[float],
+            initial_joint_positions: List[float] = None,
+            initial_positions_variation_range: List[float] = None,
+            max_force: float = 200.,
+            visualize: bool = True) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize the Environment by creating an instance of the Environment class.
+        Args:
+            manipulator_file: Path to the manipulator&#39;s URDF or SDF file.
+            endeffector_index: Index of the manipulator&#39;s end-effector.
+            fixed_joints: List containing the indices of every joint not involved in the training.
+            involved_joints: List containing the indices of every joint involved in the training.
+            target_position: List containing the position of the target object, as 3D Cartesian coordinates.
+            obstacle_position: List containing the position of the obstacle, as 3D Cartesian coordinates.
+            initial_joint_positions: List containing as many items as the number of joints of the manipulator.
+                Each item in the list corresponds to the initial position wanted for the joint with that same index.
+            initial_positions_variation_range: List containing as many items as the number of joints of the manipulator.
+                Each item in the list corresponds to the variation range wanted for the joint with that same index.
+            max_force: Maximum force to be applied on the joints.
+            visualize: Visualization mode.
+        Raises:
+            InvalidEnvironmentParameter: One or more parameters provided for the Environment initialization are invalid.
+            InvalidManipulatorFile: The URDF/SDF file provided does not exist or cannot be loaded
+                into the Pybullet Environment.
+        &#34;&#34;&#34;
+        logger.debug(&#39;Initializing Pybullet Environment...&#39;)
+
+        environment_config = EnvironmentConfiguration(
+            endeffector_index=endeffector_index,
+            fixed_joints=fixed_joints,
+            involved_joints=involved_joints,
+            target_position=target_position,
+            obstacle_position=obstacle_position,
+            initial_joint_positions=initial_joint_positions,
+            initial_positions_variation_range=initial_positions_variation_range,
+            max_force=max_force,
+            visualize=visualize)
+        self.env = Environment(manipulator_file=manipulator_file,
+                               environment_config=environment_config)
+
+        logger.info(&#39;Pybullet Environment successfully initialized&#39;)
+        logger.debug(f&#39;* The NAF Agent can now be initialized via the initialize_naf_agent() method&#39;)
+
+    def delete_environment(self) -&gt; None:
+        &#34;&#34;&#34;
+        Deletes the existing Environment instance, and disconnects the current Pybullet instance.
+        &#34;&#34;&#34;
+        if not self.env:
+            logger.error(&#39;No existing instance of Environment found&#39;)
+            return
+
+        p.disconnect(self.env.physics_client)
+        self.env = None
+        logger.info(&#39;Environment instance has been successfully removed&#39;)
+
+    def initialize_naf_agent(self, checkpoint_frequency: int = 500, seed: int = 0) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize the NAF Agent by creating an instance of the NAFAgent class.
+        Args:
+            checkpoint_frequency: Number of episodes required to generate a checkpoint.
+            seed: Random seed.
+        Raises:
+            EnvironmentNotInitialized: Environment class has not been initialized.
+            InvalidNAFAgentParameter: Either &#34;checkpoint_frequency&#34; or &#34;seed&#34; parameters have an invalid value/type.
+        &#34;&#34;&#34;
+        if not self.env:
+            raise EnvironmentNotInitialized
+
+        if not isinstance(checkpoint_frequency, int) or not isinstance(seed, int):
+            raise InvalidNAFAgentParameter(&#39;Checkpoint Frequency or Seed received is not an integer&#39;)
+
+        logger.debug(&#39;Initializing NAF Agent...&#39;)
+        device = torch.device(&#34;cuda:0&#34; if torch.cuda.is_available() else &#34;cpu&#34;)
+        self.naf_agent = NAFAgent(environment=self.env,
+                                  state_size=self.env.observation_space.shape[0],
+                                  action_size=self.env.action_space.shape[0],
+                                  layer_size=256,
+                                  batch_size=self._hyperparameters.batch_size,
+                                  buffer_size=self._hyperparameters.buffer_size,
+                                  learning_rate=self._hyperparameters.learning_rate,
+                                  tau=self._hyperparameters.tau,
+                                  gamma=self._hyperparameters.gamma,
+                                  update_freq=self._hyperparameters.update_freq,
+                                  num_updates=self._hyperparameters.num_updates,
+                                  checkpoint_frequency=checkpoint_frequency,
+                                  device=device,
+                                  seed=seed)
+
+        logger.info(&#39;NAF Agent successfully initialized&#39;)
+        logger.debug(&#39;* The Robotic Manipulator training can now be launched via the run_training() method&#39;)
+
+    def delete_naf_agent(self) -&gt; None:
+        &#34;&#34;&#34;
+        Deletes the existing NAFAgent instance.
+        &#34;&#34;&#34;
+        if not self.naf_agent:
+            logger.error(&#39;No existing instance of NAFAgent found&#39;)
+            return
+
+        self.naf_agent = None
+        logger.info(&#39;NAFAgent instance has been successfully removed&#39;)
+
+    def run_training(self, episodes: int, frames: Optional[int] = 500, verbose: bool = True):
+        &#34;&#34;&#34;
+        Execute a training on the configured Environment with the configured NAF Agent. The training is
+        executed for {episodes}, and for {frames} timesteps per episode.
+        Args:
+            episodes: Maximum number of episodes to execute.
+            frames: Maximum number of timesteps to execute per episode.
+            verbose: Verbose mode.\n
+            - If set to True, each timestep will log information about the current state,
+            the action chosen from that state, the current reward and the cummulative reward until that timestep.
+            In addition, each time an episode ends information about the total reward obtained, the number of
+            frames required to complete the episode, the mean reward obtained along the episode and the
+            execution time of the episode are logged.\n
+            - If set to False, each time an episode ends information about the total reward obtained, the number of
+            frames required to complete the episode, the mean reward obtained along the episode and the
+            execution time of the episode are logged.\n
+            It is recommended to use the verbose mode only in a development/debugging context, since logging
+            information for each timestep greatly reduces the visibility of what is happening during the training.
+        Raises:
+            ConfigurationIncomplete: Either NAFAgent or Environment has not been initialized.
+        &#34;&#34;&#34;
+        if not self.naf_agent or not self.env:
+            raise ConfigurationIncomplete
+        self.naf_agent.run(frames, episodes, verbose)
+
+    def run_demo_training(self, demo_type: str, verbose: bool = False) -&gt; None:
+        &#34;&#34;&#34;
+        Run a demo from a preconfigured Environment and NAFAgent, which shows how the framework works.
+        The training is executed for 20 episodes. Do not expect good results, as this is just a demo of the training
+        configuration process and the number of episodes is not enough to achieve a good performance in the manipulator.
+        Args:
+            demo_type: Valid values:\n
+            - &#39;kuka_training&#39;: training with the KUKA IIWA Robotic Manipulator.\n
+            - &#39;xarm6_training&#39;: training with the XArm6 Robotic Manipulator.\n
+            verbose: Verbose mode. Verbose mode functionality is applied on the same way as for the
+                run_training() method.
+        &#34;&#34;&#34;
+        logger.warning(&#39;Both the demo testing and the demo training are executed with the Log level &#39;
+                       &#39;set to DEBUG, so that the framework can be understood at a low level.&#39;)
+        old_level = logger.level
+        logger.setLevel(10)
+
+        # CHECK EXISTENT ENVIRONMENT AND NAF AGENT
+
+        # Overwrite previous Environment configuration if present
+        if self.env:
+
+            overwrite_env = input(&#39;Environment instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_env:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured Environment instance&#39;)
+                return
+
+            self.delete_environment()
+
+        # Overwrite previous NAFAgent configuration if present
+        if self.naf_agent:
+
+            overwrite_naf_agent = input(&#39;NAFAgent instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_naf_agent:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured NAFAgent instance&#39;)
+                return
+
+            self.delete_naf_agent()
+
+        # START DEMO
+
+        if demo_type == &#39;kuka_training&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            self.initialize_environment(manipulator_file=&#39;kuka_iiwa/kuka_with_gripper2.sdf&#39;,
+                                        endeffector_index=13,
+                                        fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[0, 1, 2, 3, 4, 5],
+                                        target_position=[0.4, 0.85, 0.71],
+                                        obstacle_position=[0.45, 0.55, 0.55],
+                                        initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                                        initial_positions_variation_range=[0, 0, 0, 0, 0, 0],
+                                        visualize=True)
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Running training for 20 episodes. Do not expect good results, &#39;
+                        &#39;this is just a demo of the training configuration process&#39;)
+            self.run_training(20, 400, verbose=verbose)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        elif demo_type == &#39;xarm6_training&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            xarm_path = os.path.join(pybullet_data.getDataPath(), &#39;xarm/xarm6_with_gripper.urdf&#39;)
+            self.initialize_environment(manipulator_file=xarm_path,
+                                        endeffector_index=12,
+                                        fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[1, 2, 3, 4, 5, 6],
+                                        target_position=[0.3, 0.47, 0.61],
+                                        obstacle_position=[0.25, 0.27, 0.5],
+                                        initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
+                                        initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
+                                        visualize=True)
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Running training for 20 episodes. Do not expect good results, &#39;
+                        &#39;this is just a demo of the confiuration process&#39;)
+            self.run_training(20, 400, verbose=verbose)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        else:
+            logger.error(&#39;Incorrect demo type!&#39;)
+
+        # Reset log level
+        logger.setLevel(old_level)
+        logger.warning(&#39;Log level has been reset to its original value&#39;)
+
+    def run_demo_testing(self, demo_type: str) -&gt; None:
+        &#34;&#34;&#34;
+        Run a demo testing from a preconfigured Environment and NAFAgent, which shows how a robotic
+        manipulator learns with the framework. The demo loads pretrained weights and executes 50 test episodes.
+        Args:
+            demo_type: Valid values:\n
+            - &#39;kuka_testing&#39;: testing with the KUKA IIWA Robotic Manipulator.\n
+            - &#39;xarm6_testing&#39;: testing with the XArm6 Robotic Manipulator.\n
+        &#34;&#34;&#34;
+        logger.warning(&#39;Both the demo testing and the demo training are executed with the Log level &#39;
+                       &#39;set to DEBUG, so that the framework can be understood at a low level.&#39;)
+        old_level = logger.level
+        logger.setLevel(10)
+
+        # CHECK EXISTENT ENVIRONMENT AND NAF AGENT
+
+        # Overwrite previous Environment configuration if present
+        if self.env:
+
+            overwrite_env = input(&#39;Environment instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_env:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured Environment instance&#39;)
+                return
+
+            self.delete_environment()
+
+        # Overwrite previous NAFAgent configuration if present
+        if self.naf_agent:
+
+            overwrite_naf_agent = input(&#39;NAFAgent instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_naf_agent:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured NAFAgent instance&#39;)
+                return
+
+            self.delete_naf_agent()
+
+        # START DEMO
+
+        if demo_type == &#39;kuka_testing&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            kuka_path = os.path.join(pybullet_data.getDataPath(), &#39;kuka_iiwa/kuka_with_gripper2.sdf&#39;)
+            self.initialize_environment(manipulator_file=kuka_path,
+                                        endeffector_index=13,
+                                        fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[0, 1, 2, 3, 4, 5],
+                                        target_position=[0.4, 0.85, 0.71],
+                                        obstacle_position=[0.45, 0.55, 0.55],
+                                        initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                                        initial_positions_variation_range=[0, 0, .5, .5, .5, .5])
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Loading demo pretrained parameters&#39;)
+            self.load_pretrained_parameters_from_weights_file(os.path.dirname(
+                os.path.realpath(__file__)) + &#39;/naf_components/demo_weights/weights_kuka.p&#39;)
+
+            logger.info(&#39;Running 50 test episodes...&#39;)
+            self.test_trained_model(50, 750)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        elif demo_type == &#39;xarm6_testing&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            xarm_path = os.path.join(pybullet_data.getDataPath(), &#39;xarm/xarm6_with_gripper.urdf&#39;)
+            self.initialize_environment(manipulator_file=xarm_path,
+                                        endeffector_index=12,
+                                        fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[1, 2, 3, 4, 5, 6],
+                                        target_position=[0.3, 0.47, 0.61],
+                                        obstacle_position=[0.25, 0.27, 0.5],
+                                        initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
+                                        initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
+                                        max_force=200,
+                                        visualize=True)
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Loading demo pretrained parameters&#39;)
+            self.load_pretrained_parameters_from_weights_file(
+                os.path.dirname(os.path.realpath(__file__)) + &#39;/naf_components/demo_weights/weights_xarm6.p&#39;)
+
+            logger.info(&#39;Running 50 test episodes...&#39;)
+            self.test_trained_model(50, 750)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        else:
+            logger.error(&#39;Incorrect demo type!&#39;)
+
+        # Reset log level
+        logger.setLevel(old_level)
+        logger.warning(&#39;Log level has been reset to its original value&#39;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters"><code class="flex name class">
+<span>class <span class="ident">HyperParameters</span></span>
+<span>(</span><span>buffer_size: int = 100000, batch_size: int = 128, gamma: float = 0.99, tau: float = 0.001, learning_rate: float = 0.001, update_freq: int = 1, num_updates: int = 1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Data Class for the storage of the required hyper-parameters.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class HyperParameters:
+    &#34;&#34;&#34;
+    Data Class for the storage of the required hyper-parameters.
+    &#34;&#34;&#34;
+    buffer_size: int = 100000
+    batch_size: int = 128
+    gamma: float = 0.99
+    tau: float = 0.001
+    learning_rate: float = 0.001
+    update_freq: int = 1
+    num_updates: int = 1</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters.batch_size"><code class="name">var <span class="ident">batch_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters.buffer_size"><code class="name">var <span class="ident">buffer_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters.gamma"><code class="name">var <span class="ident">gamma</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters.learning_rate"><code class="name">var <span class="ident">learning_rate</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters.num_updates"><code class="name">var <span class="ident">num_updates</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters.tau"><code class="name">var <span class="ident">tau</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.HyperParameters.update_freq"><code class="name">var <span class="ident">update_freq</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework"><code class="flex name class">
+<span>class <span class="ident">ManipulatorFramework</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Main class of the package. Initializes the required hyper-parameters to their default value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ManipulatorFramework:
+
+    def __init__(self) -&gt; None:
+        &#34;&#34;&#34;
+        Main class of the package. Initializes the required hyper-parameters to their default value.
+        &#34;&#34;&#34;
+        self.env: Union[Environment, None] = None
+        self.naf_agent: Union[NAFAgent, None] = None
+        self._hyperparameters: Union[HyperParameters, None] = None
+
+        self._initialize_hyperparameters()
+        logger.info(&#39;The Framework has been initialized with the default hyperparameters configuration&#39;)
+        logger.debug(&#39;* Custom hyperparameters can be set via the set_hyperparameter() method&#39;)
+        logger.debug(&#39;* All the required hyperparameters can be printed via the get_required_hyperparameters() method&#39;)
+        logger.debug(&#39;* Load a manipulator via the initialize_environment() method to start with the training &#39;
+                     &#39;configuration&#39;)
+
+    def _initialize_hyperparameters(self) -&gt; None:
+        &#34;&#34;&#34;
+        Initializes the hyper-parameters with their default values.
+        &#34;&#34;&#34;
+        self._hyperparameters = HyperParameters(buffer_size=100000,
+                                                batch_size=128,
+                                                gamma=0.99,
+                                                tau=0.001,
+                                                learning_rate=0.001,
+                                                update_freq=1,
+                                                num_updates=1)
+
+    @staticmethod
+    def set_log_level(log_level: int) -&gt; None:
+        &#34;&#34;&#34;
+        Set Log Level for the Logger.
+        Args:
+            log_level: Log level to be set.\n
+                Valid values: 10 (DEBUG), 20 (INFO), 30 (WARNING), 40 (ERROR), 50 (CRITICAL)
+        &#34;&#34;&#34;
+        level_name_mappings = {10: &#39;DEBUG&#39;, 20: &#39;INFO&#39;, 30: &#39;WARNING&#39;, 40: &#39;ERROR&#39;, 50: &#39;CRITICAL&#39;}
+        # Set Log level
+        if log_level in [10, 20, 30, 40, 50]:
+            logger.info(f&#39;Log Level has been set to {logger.level} ({level_name_mappings[logger.level]})&#39;)
+            logger.setLevel(log_level)
+        else:
+            logger.error(
+                f&#39;The Log level provided is invalid, so the previous Log Level is maintained ({logger.level}))&#39;)
+            logger.error(&#39;Valid values: 10 (DEBUG), 20 (INFO), 30 (WARNING), 40 (ERROR), 50 (CRITICAL)&#39;)
+
+    @staticmethod
+    def get_required_hyperparameters() -&gt; None:
+        &#34;&#34;&#34;
+        Returns a list with the required hyper-parameters. This function does not imply
+        any logic, as it is only intended to help the user to know what hyper-parameters can be set.
+        The required hyper-parameters are shown as DEBUG logs, so if the Log level is set to INFO or higher
+        the function will not return anything.
+        &#34;&#34;&#34;
+        if logger.level &gt; 10:
+            logger.error(&#39;get_required_hyperparameters() only shows information for DEBUG log level. &#39;
+                         &#39;Try running this method after setting the log level to DEBUG by calling &#39;
+                         &#39;set_log_level(10) class method&#39;)
+            return
+
+        hyperparameters_info_map = {
+            &#39;Buffer Size&#39;: &#39;https://www.tensorflow.org/agents/tutorials/5_replay_buffers_tutorial?hl=es-419&#39;,
+            &#39;Batch Size&#39;: &#39;https://www.kaggle.com/general/276990&#39;,
+            &#39;Gamma (discount factor)&#39;: &#39;https://arxiv.org/pdf/2007.02040.pdf&#39;,
+            &#39;Tau&#39;: &#39;https://arxiv.org/abs/1603.00748&#39;,
+            &#39;Learning Rate&#39;: &#39;https://machinelearningmastery.com/understand-the-dynamics-of-learning-rate-on-deep&#39;
+                             &#39;-learning-neural-networks/&#39;,
+            &#39;Update Frequency&#39;: &#39;https://medium.com/towards-data-science/applied-reinforcement-learning-v-normalized&#39;
+                                &#39;-advantage-function-naf-for-continuous-control-62ad143d3095&#39;,
+            &#39;Number of Updates&#39;: &#39;https://medium.com/towards-data-science/applied-reinforcement-learning-v-normalized&#39;
+                                 &#39;-advantage-function-naf-for-continuous-control-62ad143d3095&#39;}
+
+        logger.debug(&#39;Required Hyperparameters:&#39;)
+        for hyperparam, info in hyperparameters_info_map.items():
+            logger.debug(&#39;{:&lt;25} (see {:&lt;10})&#39;.format(hyperparam, info))
+
+    @staticmethod
+    def plot_training_rewards(episode: int, mean_range: int = 50) -&gt; None:
+        &#34;&#34;&#34;
+        Plots the mean reward of each batch of {mean_range} episodes for the &#34;scores.txt&#34; file stored
+        in the checkpoints/ folder, corresponding to the episode received as parameter.
+        Args:
+            episode: Episode number from which to plot the results. The episode provided must be one of the
+                checkpoints generated in the /checkpoints directory.
+            mean_range: Range of episodes on which the mean is calculated. If the execution lasted for
+                200 episodes, and the mean_range is set to 50, 4 metric points will be generated.
+        Raises:
+            FileNotFoundError: Raises if the episode provided is not present as a directory in the /checkpoints
+                directory generated after executing a training.
+        &#34;&#34;&#34;
+
+        try:
+            with open(f&#39;checkpoints/{episode}/scores.txt&#39;, &#39;r&#39;) as f:
+                file = f.read()
+                scores = json.loads(file)
+        except FileNotFoundError as err:
+            logger.error(f&#39;File &#34;scores.txt&#34; located in checkpoints/{episode}/ folder was not found&#39;)
+            raise err
+
+        counter, cummulative_reward, values_to_plot = 0, list(), list()
+        for episode, result in scores.items():
+            cummulative_reward.append(result[0])
+            counter += 1
+            if counter % mean_range == 0:
+                mean = sum(cummulative_reward) / len(cummulative_reward)
+                values_to_plot.append(mean)
+                cummulative_reward = list()
+
+        plt.plot(range(len(values_to_plot)), values_to_plot)
+        plt.show()
+
+    def set_hyperparameter(self, hyperparameter: str, value: Union[float, int]) -&gt; None:
+        &#34;&#34;&#34;
+        Sets the specified value on the given hyper-parameter. Checking are performed to
+        ensure that the new value for the hyper-parameter is a valid value.
+        Args:
+            hyperparameter: Name of the hyper-parameter to be updated.
+                Allowed names are:\n
+                - buffer_size/buffersize/BUFFER_SIZE/BUFFERSIZE\n
+                - batch_size/batchsize/BATCH_SIZE/BATCHSIZE\n
+                - gamma/GAMMA\n
+                - tau/TAU\n
+                - learning_rate/learningrate/LEARNING_RATE/LEARNINGRATE\n
+                - update_freq/updatefreq/UPDATE_FREQ/UPDATEFREQ\n
+                - num_update/numupdate/NUMUPDATE/NUM_UPDATE\n
+            value: New value for the given hyper-parameter.
+        Raises:
+            InvalidHyperParameter: The hyperparameter received has an invalid value/type, or the hyperparameter
+                name received is not one of the accepted values.
+        &#34;&#34;&#34;
+        # Set BUFFER SIZE
+        if re.match(r&#39;^(buffer_size|buffersize|BUFFER_SIZE|BUFFERSIZE)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Buffer Size is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.buffer_size = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set BATCH SIZE
+        elif re.match(r&#39;^(batch_size|batchsize|BATCH_SIZE|BATCHSIZE)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Batch Size is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.batch_size = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set GAMMA
+        elif re.match(r&#39;^(gamma|GAMMA)$&#39;, hyperparameter):
+            if not (isinstance(value, (int, float)) and 0 &lt; value &lt; 1):
+                raise InvalidHyperParameter(&#39;Gamma is not a float or its value is out of range (0, 1)&#39;)
+            self._hyperparameters.gamma = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set TAU
+        elif re.match(r&#39;^(tau|TAU)$&#39;, hyperparameter):
+            if not (isinstance(value, (int, float)) and 0 &lt;= value &lt;= 1):
+                raise InvalidHyperParameter(&#39;Tau is not a float or its value is out of range [0, 1]&#39;)
+            self._hyperparameters.tau = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set LEARNING RATE
+        elif re.match(r&#39;^(learning_rate|learningrate|LEARNING_RATE|LEARNINGRATE)$&#39;, hyperparameter):
+            if not (isinstance(value, (int, float)) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Learning Rate is not a float or has a value lower than 0&#39;)
+            self._hyperparameters.learning_rate = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set UPDATE EVERY
+        elif re.match(r&#39;^(update_freq|updatefreq|UPDATE_FREQ|UPDATEFREQ)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Update Frequency is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.update_freq = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        # Set NUPDATE
+        elif re.match(r&#39;^(num_update|numupdate|NUMUPDATE|NUM_UPDATE)$&#39;, hyperparameter):
+            if not (isinstance(value, int) and value &gt; 0):
+                raise InvalidHyperParameter(&#39;Buffer Size is not an int or has a value lower than 0&#39;)
+            self._hyperparameters.num_updates = value
+            logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+        else:
+            raise InvalidHyperParameter(
+                &#39;The hyperparameter name passed as parameter is not valid. Valid hyperparameters are: &#39;
+                &#39;[&#34;buffer_size&#34;, &#34;batch_size&#34;, &#34;gamma&#34;, &#34;tau&#34;, &#34;learning_rate&#34;, &#34;update_freq&#34;, &#34;num_update&#34;]&#39;)
+
+    def load_pretrained_parameters_from_weights_file(self, parameters_file_path: str) -&gt; None:
+        &#34;&#34;&#34;
+        Loads a pretrained network&#39;s weights into the current networks. The weights are loaded from the path
+        provided in the {parameters_file_path} parameter. As the weights are loaded in the neural networks
+        contained in the NAFAgent class, the method will raise an error if either the Environment or the NAFAgent
+        class are not initialized.
+        Args:
+            parameters_file_path: Path to the .p file where the weights are stored.
+        Raises:
+            EnvironmentNotInitialized: The Environment class has not been initialized.
+            NAFAgentNotInitialized: The NAFAgentNotInitialized class has not been initialized.
+            MissingWeightsFile: The .p file path provided does not exist.
+        &#34;&#34;&#34;
+        if not self.env:
+            raise EnvironmentNotInitialized
+
+        if not self.naf_agent:
+            raise NAFAgentNotInitialized
+
+        self.naf_agent.initialize_pretrained_agent_from_weights_file(parameters_file_path)
+
+    def load_pretrained_parameters_from_episode(self, episode: int) -&gt; None:
+        &#34;&#34;&#34;
+        Loads previously trained weights into the current networks.
+        The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+        the episode provided must be present in the checkpoints/ folder. As the weights are loaded in the
+        neural networks contained in the NAFAgent class, the method will raise an error if either
+        the Environment or the NAFAgent class are not initialized.
+        Args:
+            episode: Episode in the /checkpoints folder from which to retrieve the pretrained weights.
+        Raises:
+            EnvironmentNotInitialized: The Environment class has not been initialized.
+            NAFAgentNotInitialized: The NAFAgentNotInitialized class has not been initialized.
+            MissingWeightsFile: The weights.p file does not exist in the folder provided.
+        &#34;&#34;&#34;
+        if not self.env:
+            raise EnvironmentNotInitialized
+
+        if not self.naf_agent:
+            raise NAFAgentNotInitialized
+
+        self.naf_agent.initialize_pretrained_agent_from_episode(episode)
+
+    def get_environment_configuration(self) -&gt; None:
+        &#34;&#34;&#34;
+        Shows the Environment configuration as logs on stdout.
+        &#34;&#34;&#34;
+        if not self.env:
+            logger.error(&#34;Environment is not initialized yet, can&#39;t show configuration&#34;)
+            return
+
+        logger.info(&#39;Environment Configuration:&#39;)
+        logger.info(f&#39;* Manipulator File:                    {self.env.manipulator_file}&#39;)
+        logger.info(f&#39;* End Effector index:                  {self.env.endeffector_index}&#39;)
+        logger.info(f&#39;* List of fixed Joints:                {self.env.fixed_joints}&#39;)
+        logger.info(f&#39;* List of Joints involved in training: {self.env.involved_joints}&#39;)
+        logger.info(f&#39;* Position of the Target:              {self.env.target_pos}&#39;)
+        logger.info(f&#39;* Position of the Obstacle:            {self.env.obstacle_pos}&#39;)
+        logger.info(f&#39;* Initial position of joints:          {self.env.initial_joint_positions}&#39;)
+        logger.info(f&#39;* Initial variation range of joints:   {self.env.initial_positions_variation_range}&#39;)
+        logger.info(f&#39;* Max Force to be applied on joints:   {self.env.max_force}&#39;)
+        logger.info(f&#39;* Visualize mode:                      {self.env.visualize}&#39;)
+        logger.info(f&#39;* Instance of the Environment:         {self.env}&#39;)
+
+    def get_nafagent_configuration(self) -&gt; None:
+        &#34;&#34;&#34;
+        Shows the NAFAgent configuration as logs on stdout.
+        &#34;&#34;&#34;
+        if not self.naf_agent:
+            logger.error(&#34;NAFAgent is not initialized yet, can&#39;t show configuration&#34;)
+            return
+
+        logger.info(&#39;NAFAgent Configuration:&#39;)
+        logger.info(f&#39;* Environment Instance:                    {self.naf_agent.environment}&#39;)
+        logger.info(f&#39;* State Size:                              {self.naf_agent.state_size}&#39;)
+        logger.info(f&#39;* Action Size:                             {self.naf_agent.action_size}&#39;)
+        logger.info(f&#39;* Size of layers of the Neural Network:    {self.naf_agent.layer_size}&#39;)
+        logger.info(f&#39;* Batch Size:                              {self.naf_agent.batch_size}&#39;)
+        logger.info(f&#39;* Buffer Size:                             {self.naf_agent.buffer_size}&#39;)
+        logger.info(f&#39;* Learning Rate:                           {self.naf_agent.learning_rate}&#39;)
+        logger.info(f&#39;* Tau:                                     {self.naf_agent.tau}&#39;)
+        logger.info(f&#39;* Gamma:                                   {self.naf_agent.gamma}&#39;)
+        logger.info(f&#39;* Update Frequency:                        {self.naf_agent.update_freq}&#39;)
+        logger.info(f&#39;* Number of Updates:                       {self.naf_agent.num_updates}&#39;)
+        logger.info(f&#39;* Checkpoint frequency:                    {self.naf_agent.checkpoint_frequency}&#39;)
+        logger.info(f&#39;* Device:                                  {self.naf_agent.device}&#39;)
+
+    def test_trained_model(self, n_episodes: int, frames: int) -&gt; None:
+        &#34;&#34;&#34;
+        Tests a previously trained agent through the execution of {n_episodes} test episodes,
+        for {frames} timesteps each. When the test concludes, the results of the test are logged on terminal.
+        Args:
+            n_episodes: Number of test episodes to execute.
+            frames: Number of timesteps per test episode.
+        Raises:
+            ConfigurationIncomplete: Either the Environment class or the NAFAgent class are not initialized.
+        &#34;&#34;&#34;
+        # Check if Environment and NAFAgent initialized
+        if not self.naf_agent or not self.env:
+            raise ConfigurationIncomplete
+
+        # Initialize Test result&#39;s history
+        results, num_collisions = list(), 0
+
+        for _ in range(n_episodes):
+            state = self.env.reset()
+
+            for frame in range(frames):
+                action = self.naf_agent.act(state)
+                next_state, reward, done = self.env.step(action)
+                state = next_state
+                if done:
+                    if reward == 250:
+                        results.append((True, frame))
+                        break
+                    else:
+                        results.append((False, frame))
+                        num_collisions += 1
+                        break
+
+                if frame == frames - 1 and not done:
+                    results.append((False, frame))
+                    break
+
+            logger.info(&#39;Test Episode number {ep} completed\n&#39;.format(ep=_ + 1))
+
+        logger.info(&#39;RESULTS OF THE TEST:&#39;)
+        for i, result in enumerate(results):
+            logger.info(f&#39;Results of Iteration {i + 1}: COMPLETED: {result[0]}. FRAMES: {result[1]}&#39;)
+
+        logger.info(f&#39;Number of successful executions: &#39;
+                    f&#39;{[res[0] for res in results].count(True)}/{len(results)}  &#39;
+                    f&#39;({([res[0] for res in results].count(True) / len(results)) * 100}%)&#39;)
+        logger.info(f&#39;Average number of frames required to complete an episode: &#39;
+                    f&#39;{np.mean(np.array([res[1] for res in results if res[0]]))}&#39;)
+        logger.info(f&#39;Number of episodes terminated because of collisions: {num_collisions}&#39;)
+
+    def initialize_environment(
+            self,
+            manipulator_file: str,
+            endeffector_index: int,
+            fixed_joints: List[int],
+            involved_joints: List[int],
+            target_position: List[float],
+            obstacle_position: List[float],
+            initial_joint_positions: List[float] = None,
+            initial_positions_variation_range: List[float] = None,
+            max_force: float = 200.,
+            visualize: bool = True) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize the Environment by creating an instance of the Environment class.
+        Args:
+            manipulator_file: Path to the manipulator&#39;s URDF or SDF file.
+            endeffector_index: Index of the manipulator&#39;s end-effector.
+            fixed_joints: List containing the indices of every joint not involved in the training.
+            involved_joints: List containing the indices of every joint involved in the training.
+            target_position: List containing the position of the target object, as 3D Cartesian coordinates.
+            obstacle_position: List containing the position of the obstacle, as 3D Cartesian coordinates.
+            initial_joint_positions: List containing as many items as the number of joints of the manipulator.
+                Each item in the list corresponds to the initial position wanted for the joint with that same index.
+            initial_positions_variation_range: List containing as many items as the number of joints of the manipulator.
+                Each item in the list corresponds to the variation range wanted for the joint with that same index.
+            max_force: Maximum force to be applied on the joints.
+            visualize: Visualization mode.
+        Raises:
+            InvalidEnvironmentParameter: One or more parameters provided for the Environment initialization are invalid.
+            InvalidManipulatorFile: The URDF/SDF file provided does not exist or cannot be loaded
+                into the Pybullet Environment.
+        &#34;&#34;&#34;
+        logger.debug(&#39;Initializing Pybullet Environment...&#39;)
+
+        environment_config = EnvironmentConfiguration(
+            endeffector_index=endeffector_index,
+            fixed_joints=fixed_joints,
+            involved_joints=involved_joints,
+            target_position=target_position,
+            obstacle_position=obstacle_position,
+            initial_joint_positions=initial_joint_positions,
+            initial_positions_variation_range=initial_positions_variation_range,
+            max_force=max_force,
+            visualize=visualize)
+        self.env = Environment(manipulator_file=manipulator_file,
+                               environment_config=environment_config)
+
+        logger.info(&#39;Pybullet Environment successfully initialized&#39;)
+        logger.debug(f&#39;* The NAF Agent can now be initialized via the initialize_naf_agent() method&#39;)
+
+    def delete_environment(self) -&gt; None:
+        &#34;&#34;&#34;
+        Deletes the existing Environment instance, and disconnects the current Pybullet instance.
+        &#34;&#34;&#34;
+        if not self.env:
+            logger.error(&#39;No existing instance of Environment found&#39;)
+            return
+
+        p.disconnect(self.env.physics_client)
+        self.env = None
+        logger.info(&#39;Environment instance has been successfully removed&#39;)
+
+    def initialize_naf_agent(self, checkpoint_frequency: int = 500, seed: int = 0) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize the NAF Agent by creating an instance of the NAFAgent class.
+        Args:
+            checkpoint_frequency: Number of episodes required to generate a checkpoint.
+            seed: Random seed.
+        Raises:
+            EnvironmentNotInitialized: Environment class has not been initialized.
+            InvalidNAFAgentParameter: Either &#34;checkpoint_frequency&#34; or &#34;seed&#34; parameters have an invalid value/type.
+        &#34;&#34;&#34;
+        if not self.env:
+            raise EnvironmentNotInitialized
+
+        if not isinstance(checkpoint_frequency, int) or not isinstance(seed, int):
+            raise InvalidNAFAgentParameter(&#39;Checkpoint Frequency or Seed received is not an integer&#39;)
+
+        logger.debug(&#39;Initializing NAF Agent...&#39;)
+        device = torch.device(&#34;cuda:0&#34; if torch.cuda.is_available() else &#34;cpu&#34;)
+        self.naf_agent = NAFAgent(environment=self.env,
+                                  state_size=self.env.observation_space.shape[0],
+                                  action_size=self.env.action_space.shape[0],
+                                  layer_size=256,
+                                  batch_size=self._hyperparameters.batch_size,
+                                  buffer_size=self._hyperparameters.buffer_size,
+                                  learning_rate=self._hyperparameters.learning_rate,
+                                  tau=self._hyperparameters.tau,
+                                  gamma=self._hyperparameters.gamma,
+                                  update_freq=self._hyperparameters.update_freq,
+                                  num_updates=self._hyperparameters.num_updates,
+                                  checkpoint_frequency=checkpoint_frequency,
+                                  device=device,
+                                  seed=seed)
+
+        logger.info(&#39;NAF Agent successfully initialized&#39;)
+        logger.debug(&#39;* The Robotic Manipulator training can now be launched via the run_training() method&#39;)
+
+    def delete_naf_agent(self) -&gt; None:
+        &#34;&#34;&#34;
+        Deletes the existing NAFAgent instance.
+        &#34;&#34;&#34;
+        if not self.naf_agent:
+            logger.error(&#39;No existing instance of NAFAgent found&#39;)
+            return
+
+        self.naf_agent = None
+        logger.info(&#39;NAFAgent instance has been successfully removed&#39;)
+
+    def run_training(self, episodes: int, frames: Optional[int] = 500, verbose: bool = True):
+        &#34;&#34;&#34;
+        Execute a training on the configured Environment with the configured NAF Agent. The training is
+        executed for {episodes}, and for {frames} timesteps per episode.
+        Args:
+            episodes: Maximum number of episodes to execute.
+            frames: Maximum number of timesteps to execute per episode.
+            verbose: Verbose mode.\n
+            - If set to True, each timestep will log information about the current state,
+            the action chosen from that state, the current reward and the cummulative reward until that timestep.
+            In addition, each time an episode ends information about the total reward obtained, the number of
+            frames required to complete the episode, the mean reward obtained along the episode and the
+            execution time of the episode are logged.\n
+            - If set to False, each time an episode ends information about the total reward obtained, the number of
+            frames required to complete the episode, the mean reward obtained along the episode and the
+            execution time of the episode are logged.\n
+            It is recommended to use the verbose mode only in a development/debugging context, since logging
+            information for each timestep greatly reduces the visibility of what is happening during the training.
+        Raises:
+            ConfigurationIncomplete: Either NAFAgent or Environment has not been initialized.
+        &#34;&#34;&#34;
+        if not self.naf_agent or not self.env:
+            raise ConfigurationIncomplete
+        self.naf_agent.run(frames, episodes, verbose)
+
+    def run_demo_training(self, demo_type: str, verbose: bool = False) -&gt; None:
+        &#34;&#34;&#34;
+        Run a demo from a preconfigured Environment and NAFAgent, which shows how the framework works.
+        The training is executed for 20 episodes. Do not expect good results, as this is just a demo of the training
+        configuration process and the number of episodes is not enough to achieve a good performance in the manipulator.
+        Args:
+            demo_type: Valid values:\n
+            - &#39;kuka_training&#39;: training with the KUKA IIWA Robotic Manipulator.\n
+            - &#39;xarm6_training&#39;: training with the XArm6 Robotic Manipulator.\n
+            verbose: Verbose mode. Verbose mode functionality is applied on the same way as for the
+                run_training() method.
+        &#34;&#34;&#34;
+        logger.warning(&#39;Both the demo testing and the demo training are executed with the Log level &#39;
+                       &#39;set to DEBUG, so that the framework can be understood at a low level.&#39;)
+        old_level = logger.level
+        logger.setLevel(10)
+
+        # CHECK EXISTENT ENVIRONMENT AND NAF AGENT
+
+        # Overwrite previous Environment configuration if present
+        if self.env:
+
+            overwrite_env = input(&#39;Environment instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_env:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured Environment instance&#39;)
+                return
+
+            self.delete_environment()
+
+        # Overwrite previous NAFAgent configuration if present
+        if self.naf_agent:
+
+            overwrite_naf_agent = input(&#39;NAFAgent instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_naf_agent:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured NAFAgent instance&#39;)
+                return
+
+            self.delete_naf_agent()
+
+        # START DEMO
+
+        if demo_type == &#39;kuka_training&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            self.initialize_environment(manipulator_file=&#39;kuka_iiwa/kuka_with_gripper2.sdf&#39;,
+                                        endeffector_index=13,
+                                        fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[0, 1, 2, 3, 4, 5],
+                                        target_position=[0.4, 0.85, 0.71],
+                                        obstacle_position=[0.45, 0.55, 0.55],
+                                        initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                                        initial_positions_variation_range=[0, 0, 0, 0, 0, 0],
+                                        visualize=True)
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Running training for 20 episodes. Do not expect good results, &#39;
+                        &#39;this is just a demo of the training configuration process&#39;)
+            self.run_training(20, 400, verbose=verbose)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        elif demo_type == &#39;xarm6_training&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            xarm_path = os.path.join(pybullet_data.getDataPath(), &#39;xarm/xarm6_with_gripper.urdf&#39;)
+            self.initialize_environment(manipulator_file=xarm_path,
+                                        endeffector_index=12,
+                                        fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[1, 2, 3, 4, 5, 6],
+                                        target_position=[0.3, 0.47, 0.61],
+                                        obstacle_position=[0.25, 0.27, 0.5],
+                                        initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
+                                        initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
+                                        visualize=True)
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Running training for 20 episodes. Do not expect good results, &#39;
+                        &#39;this is just a demo of the confiuration process&#39;)
+            self.run_training(20, 400, verbose=verbose)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        else:
+            logger.error(&#39;Incorrect demo type!&#39;)
+
+        # Reset log level
+        logger.setLevel(old_level)
+        logger.warning(&#39;Log level has been reset to its original value&#39;)
+
+    def run_demo_testing(self, demo_type: str) -&gt; None:
+        &#34;&#34;&#34;
+        Run a demo testing from a preconfigured Environment and NAFAgent, which shows how a robotic
+        manipulator learns with the framework. The demo loads pretrained weights and executes 50 test episodes.
+        Args:
+            demo_type: Valid values:\n
+            - &#39;kuka_testing&#39;: testing with the KUKA IIWA Robotic Manipulator.\n
+            - &#39;xarm6_testing&#39;: testing with the XArm6 Robotic Manipulator.\n
+        &#34;&#34;&#34;
+        logger.warning(&#39;Both the demo testing and the demo training are executed with the Log level &#39;
+                       &#39;set to DEBUG, so that the framework can be understood at a low level.&#39;)
+        old_level = logger.level
+        logger.setLevel(10)
+
+        # CHECK EXISTENT ENVIRONMENT AND NAF AGENT
+
+        # Overwrite previous Environment configuration if present
+        if self.env:
+
+            overwrite_env = input(&#39;Environment instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_env:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured Environment instance&#39;)
+                return
+
+            self.delete_environment()
+
+        # Overwrite previous NAFAgent configuration if present
+        if self.naf_agent:
+
+            overwrite_naf_agent = input(&#39;NAFAgent instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+            if not overwrite_naf_agent:
+                logger.info(&#39;Demo could not run due to the presence of a user-configured NAFAgent instance&#39;)
+                return
+
+            self.delete_naf_agent()
+
+        # START DEMO
+
+        if demo_type == &#39;kuka_testing&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            kuka_path = os.path.join(pybullet_data.getDataPath(), &#39;kuka_iiwa/kuka_with_gripper2.sdf&#39;)
+            self.initialize_environment(manipulator_file=kuka_path,
+                                        endeffector_index=13,
+                                        fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[0, 1, 2, 3, 4, 5],
+                                        target_position=[0.4, 0.85, 0.71],
+                                        obstacle_position=[0.45, 0.55, 0.55],
+                                        initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                                        initial_positions_variation_range=[0, 0, .5, .5, .5, .5])
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Loading demo pretrained parameters&#39;)
+            self.load_pretrained_parameters_from_weights_file(os.path.dirname(
+                os.path.realpath(__file__)) + &#39;/naf_components/demo_weights/weights_kuka.p&#39;)
+
+            logger.info(&#39;Running 50 test episodes...&#39;)
+            self.test_trained_model(50, 750)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        elif demo_type == &#39;xarm6_testing&#39;:
+
+            logger.info(&#39;Initializing demo Environment instance...&#39;)
+            xarm_path = os.path.join(pybullet_data.getDataPath(), &#39;xarm/xarm6_with_gripper.urdf&#39;)
+            self.initialize_environment(manipulator_file=xarm_path,
+                                        endeffector_index=12,
+                                        fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
+                                        involved_joints=[1, 2, 3, 4, 5, 6],
+                                        target_position=[0.3, 0.47, 0.61],
+                                        obstacle_position=[0.25, 0.27, 0.5],
+                                        initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
+                                        initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
+                                        max_force=200,
+                                        visualize=True)
+
+            logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+            self.initialize_naf_agent()
+
+            logger.info(&#39;Loading demo pretrained parameters&#39;)
+            self.load_pretrained_parameters_from_weights_file(
+                os.path.dirname(os.path.realpath(__file__)) + &#39;/naf_components/demo_weights/weights_xarm6.p&#39;)
+
+            logger.info(&#39;Running 50 test episodes...&#39;)
+            self.test_trained_model(50, 750)
+
+            # Reset Environment and NAFAgent
+            self.delete_environment()
+            self.delete_naf_agent()
+
+        else:
+            logger.error(&#39;Incorrect demo type!&#39;)
+
+        # Reset log level
+        logger.setLevel(old_level)
+        logger.warning(&#39;Log level has been reset to its original value&#39;)</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_required_hyperparameters"><code class="name flex">
+<span>def <span class="ident">get_required_hyperparameters</span></span>(<span>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a list with the required hyper-parameters. This function does not imply
+any logic, as it is only intended to help the user to know what hyper-parameters can be set.
+The required hyper-parameters are shown as DEBUG logs, so if the Log level is set to INFO or higher
+the function will not return anything.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_required_hyperparameters() -&gt; None:
+    &#34;&#34;&#34;
+    Returns a list with the required hyper-parameters. This function does not imply
+    any logic, as it is only intended to help the user to know what hyper-parameters can be set.
+    The required hyper-parameters are shown as DEBUG logs, so if the Log level is set to INFO or higher
+    the function will not return anything.
+    &#34;&#34;&#34;
+    if logger.level &gt; 10:
+        logger.error(&#39;get_required_hyperparameters() only shows information for DEBUG log level. &#39;
+                     &#39;Try running this method after setting the log level to DEBUG by calling &#39;
+                     &#39;set_log_level(10) class method&#39;)
+        return
+
+    hyperparameters_info_map = {
+        &#39;Buffer Size&#39;: &#39;https://www.tensorflow.org/agents/tutorials/5_replay_buffers_tutorial?hl=es-419&#39;,
+        &#39;Batch Size&#39;: &#39;https://www.kaggle.com/general/276990&#39;,
+        &#39;Gamma (discount factor)&#39;: &#39;https://arxiv.org/pdf/2007.02040.pdf&#39;,
+        &#39;Tau&#39;: &#39;https://arxiv.org/abs/1603.00748&#39;,
+        &#39;Learning Rate&#39;: &#39;https://machinelearningmastery.com/understand-the-dynamics-of-learning-rate-on-deep&#39;
+                         &#39;-learning-neural-networks/&#39;,
+        &#39;Update Frequency&#39;: &#39;https://medium.com/towards-data-science/applied-reinforcement-learning-v-normalized&#39;
+                            &#39;-advantage-function-naf-for-continuous-control-62ad143d3095&#39;,
+        &#39;Number of Updates&#39;: &#39;https://medium.com/towards-data-science/applied-reinforcement-learning-v-normalized&#39;
+                             &#39;-advantage-function-naf-for-continuous-control-62ad143d3095&#39;}
+
+    logger.debug(&#39;Required Hyperparameters:&#39;)
+    for hyperparam, info in hyperparameters_info_map.items():
+        logger.debug(&#39;{:&lt;25} (see {:&lt;10})&#39;.format(hyperparam, info))</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.plot_training_rewards"><code class="name flex">
+<span>def <span class="ident">plot_training_rewards</span></span>(<span>episode: int, mean_range: int = 50) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots the mean reward of each batch of {mean_range} episodes for the "scores.txt" file stored
+in the checkpoints/ folder, corresponding to the episode received as parameter.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>episode</code></strong></dt>
+<dd>Episode number from which to plot the results. The episode provided must be one of the
+checkpoints generated in the /checkpoints directory.</dd>
+<dt><strong><code>mean_range</code></strong></dt>
+<dd>Range of episodes on which the mean is calculated. If the execution lasted for
+200 episodes, and the mean_range is set to 50, 4 metric points will be generated.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FileNotFoundError</code></dt>
+<dd>Raises if the episode provided is not present as a directory in the /checkpoints
+directory generated after executing a training.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def plot_training_rewards(episode: int, mean_range: int = 50) -&gt; None:
+    &#34;&#34;&#34;
+    Plots the mean reward of each batch of {mean_range} episodes for the &#34;scores.txt&#34; file stored
+    in the checkpoints/ folder, corresponding to the episode received as parameter.
+    Args:
+        episode: Episode number from which to plot the results. The episode provided must be one of the
+            checkpoints generated in the /checkpoints directory.
+        mean_range: Range of episodes on which the mean is calculated. If the execution lasted for
+            200 episodes, and the mean_range is set to 50, 4 metric points will be generated.
+    Raises:
+        FileNotFoundError: Raises if the episode provided is not present as a directory in the /checkpoints
+            directory generated after executing a training.
+    &#34;&#34;&#34;
+
+    try:
+        with open(f&#39;checkpoints/{episode}/scores.txt&#39;, &#39;r&#39;) as f:
+            file = f.read()
+            scores = json.loads(file)
+    except FileNotFoundError as err:
+        logger.error(f&#39;File &#34;scores.txt&#34; located in checkpoints/{episode}/ folder was not found&#39;)
+        raise err
+
+    counter, cummulative_reward, values_to_plot = 0, list(), list()
+    for episode, result in scores.items():
+        cummulative_reward.append(result[0])
+        counter += 1
+        if counter % mean_range == 0:
+            mean = sum(cummulative_reward) / len(cummulative_reward)
+            values_to_plot.append(mean)
+            cummulative_reward = list()
+
+    plt.plot(range(len(values_to_plot)), values_to_plot)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.set_log_level"><code class="name flex">
+<span>def <span class="ident">set_log_level</span></span>(<span>log_level: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set Log Level for the Logger.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>log_level</code></strong></dt>
+<dd>
+<p>Log level to be set.</p>
+<p>Valid values: 10 (DEBUG), 20 (INFO), 30 (WARNING), 40 (ERROR), 50 (CRITICAL)</p>
+</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def set_log_level(log_level: int) -&gt; None:
+    &#34;&#34;&#34;
+    Set Log Level for the Logger.
+    Args:
+        log_level: Log level to be set.\n
+            Valid values: 10 (DEBUG), 20 (INFO), 30 (WARNING), 40 (ERROR), 50 (CRITICAL)
+    &#34;&#34;&#34;
+    level_name_mappings = {10: &#39;DEBUG&#39;, 20: &#39;INFO&#39;, 30: &#39;WARNING&#39;, 40: &#39;ERROR&#39;, 50: &#39;CRITICAL&#39;}
+    # Set Log level
+    if log_level in [10, 20, 30, 40, 50]:
+        logger.info(f&#39;Log Level has been set to {logger.level} ({level_name_mappings[logger.level]})&#39;)
+        logger.setLevel(log_level)
+    else:
+        logger.error(
+            f&#39;The Log level provided is invalid, so the previous Log Level is maintained ({logger.level}))&#39;)
+        logger.error(&#39;Valid values: 10 (DEBUG), 20 (INFO), 30 (WARNING), 40 (ERROR), 50 (CRITICAL)&#39;)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_environment"><code class="name flex">
+<span>def <span class="ident">delete_environment</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Deletes the existing Environment instance, and disconnects the current Pybullet instance.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_environment(self) -&gt; None:
+    &#34;&#34;&#34;
+    Deletes the existing Environment instance, and disconnects the current Pybullet instance.
+    &#34;&#34;&#34;
+    if not self.env:
+        logger.error(&#39;No existing instance of Environment found&#39;)
+        return
+
+    p.disconnect(self.env.physics_client)
+    self.env = None
+    logger.info(&#39;Environment instance has been successfully removed&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_naf_agent"><code class="name flex">
+<span>def <span class="ident">delete_naf_agent</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Deletes the existing NAFAgent instance.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_naf_agent(self) -&gt; None:
+    &#34;&#34;&#34;
+    Deletes the existing NAFAgent instance.
+    &#34;&#34;&#34;
+    if not self.naf_agent:
+        logger.error(&#39;No existing instance of NAFAgent found&#39;)
+        return
+
+    self.naf_agent = None
+    logger.info(&#39;NAFAgent instance has been successfully removed&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_environment_configuration"><code class="name flex">
+<span>def <span class="ident">get_environment_configuration</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Shows the Environment configuration as logs on stdout.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_environment_configuration(self) -&gt; None:
+    &#34;&#34;&#34;
+    Shows the Environment configuration as logs on stdout.
+    &#34;&#34;&#34;
+    if not self.env:
+        logger.error(&#34;Environment is not initialized yet, can&#39;t show configuration&#34;)
+        return
+
+    logger.info(&#39;Environment Configuration:&#39;)
+    logger.info(f&#39;* Manipulator File:                    {self.env.manipulator_file}&#39;)
+    logger.info(f&#39;* End Effector index:                  {self.env.endeffector_index}&#39;)
+    logger.info(f&#39;* List of fixed Joints:                {self.env.fixed_joints}&#39;)
+    logger.info(f&#39;* List of Joints involved in training: {self.env.involved_joints}&#39;)
+    logger.info(f&#39;* Position of the Target:              {self.env.target_pos}&#39;)
+    logger.info(f&#39;* Position of the Obstacle:            {self.env.obstacle_pos}&#39;)
+    logger.info(f&#39;* Initial position of joints:          {self.env.initial_joint_positions}&#39;)
+    logger.info(f&#39;* Initial variation range of joints:   {self.env.initial_positions_variation_range}&#39;)
+    logger.info(f&#39;* Max Force to be applied on joints:   {self.env.max_force}&#39;)
+    logger.info(f&#39;* Visualize mode:                      {self.env.visualize}&#39;)
+    logger.info(f&#39;* Instance of the Environment:         {self.env}&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_nafagent_configuration"><code class="name flex">
+<span>def <span class="ident">get_nafagent_configuration</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Shows the NAFAgent configuration as logs on stdout.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_nafagent_configuration(self) -&gt; None:
+    &#34;&#34;&#34;
+    Shows the NAFAgent configuration as logs on stdout.
+    &#34;&#34;&#34;
+    if not self.naf_agent:
+        logger.error(&#34;NAFAgent is not initialized yet, can&#39;t show configuration&#34;)
+        return
+
+    logger.info(&#39;NAFAgent Configuration:&#39;)
+    logger.info(f&#39;* Environment Instance:                    {self.naf_agent.environment}&#39;)
+    logger.info(f&#39;* State Size:                              {self.naf_agent.state_size}&#39;)
+    logger.info(f&#39;* Action Size:                             {self.naf_agent.action_size}&#39;)
+    logger.info(f&#39;* Size of layers of the Neural Network:    {self.naf_agent.layer_size}&#39;)
+    logger.info(f&#39;* Batch Size:                              {self.naf_agent.batch_size}&#39;)
+    logger.info(f&#39;* Buffer Size:                             {self.naf_agent.buffer_size}&#39;)
+    logger.info(f&#39;* Learning Rate:                           {self.naf_agent.learning_rate}&#39;)
+    logger.info(f&#39;* Tau:                                     {self.naf_agent.tau}&#39;)
+    logger.info(f&#39;* Gamma:                                   {self.naf_agent.gamma}&#39;)
+    logger.info(f&#39;* Update Frequency:                        {self.naf_agent.update_freq}&#39;)
+    logger.info(f&#39;* Number of Updates:                       {self.naf_agent.num_updates}&#39;)
+    logger.info(f&#39;* Checkpoint frequency:                    {self.naf_agent.checkpoint_frequency}&#39;)
+    logger.info(f&#39;* Device:                                  {self.naf_agent.device}&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.initialize_environment"><code class="name flex">
+<span>def <span class="ident">initialize_environment</span></span>(<span>self, manipulator_file: str, endeffector_index: int, fixed_joints: List[int], involved_joints: List[int], target_position: List[float], obstacle_position: List[float], initial_joint_positions: List[float] = None, initial_positions_variation_range: List[float] = None, max_force: float = 200.0, visualize: bool = True) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialize the Environment by creating an instance of the Environment class.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>manipulator_file</code></strong></dt>
+<dd>Path to the manipulator's URDF or SDF file.</dd>
+<dt><strong><code>endeffector_index</code></strong></dt>
+<dd>Index of the manipulator's end-effector.</dd>
+<dt><strong><code>fixed_joints</code></strong></dt>
+<dd>List containing the indices of every joint not involved in the training.</dd>
+<dt><strong><code>involved_joints</code></strong></dt>
+<dd>List containing the indices of every joint involved in the training.</dd>
+<dt><strong><code>target_position</code></strong></dt>
+<dd>List containing the position of the target object, as 3D Cartesian coordinates.</dd>
+<dt><strong><code>obstacle_position</code></strong></dt>
+<dd>List containing the position of the obstacle, as 3D Cartesian coordinates.</dd>
+<dt><strong><code>initial_joint_positions</code></strong></dt>
+<dd>List containing as many items as the number of joints of the manipulator.
+Each item in the list corresponds to the initial position wanted for the joint with that same index.</dd>
+<dt><strong><code>initial_positions_variation_range</code></strong></dt>
+<dd>List containing as many items as the number of joints of the manipulator.
+Each item in the list corresponds to the variation range wanted for the joint with that same index.</dd>
+<dt><strong><code>max_force</code></strong></dt>
+<dd>Maximum force to be applied on the joints.</dd>
+<dt><strong><code>visualize</code></strong></dt>
+<dd>Visualization mode.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>InvalidEnvironmentParameter</code></dt>
+<dd>One or more parameters provided for the Environment initialization are invalid.</dd>
+<dt><code>InvalidManipulatorFile</code></dt>
+<dd>The URDF/SDF file provided does not exist or cannot be loaded
+into the Pybullet Environment.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_environment(
+        self,
+        manipulator_file: str,
+        endeffector_index: int,
+        fixed_joints: List[int],
+        involved_joints: List[int],
+        target_position: List[float],
+        obstacle_position: List[float],
+        initial_joint_positions: List[float] = None,
+        initial_positions_variation_range: List[float] = None,
+        max_force: float = 200.,
+        visualize: bool = True) -&gt; None:
+    &#34;&#34;&#34;
+    Initialize the Environment by creating an instance of the Environment class.
+    Args:
+        manipulator_file: Path to the manipulator&#39;s URDF or SDF file.
+        endeffector_index: Index of the manipulator&#39;s end-effector.
+        fixed_joints: List containing the indices of every joint not involved in the training.
+        involved_joints: List containing the indices of every joint involved in the training.
+        target_position: List containing the position of the target object, as 3D Cartesian coordinates.
+        obstacle_position: List containing the position of the obstacle, as 3D Cartesian coordinates.
+        initial_joint_positions: List containing as many items as the number of joints of the manipulator.
+            Each item in the list corresponds to the initial position wanted for the joint with that same index.
+        initial_positions_variation_range: List containing as many items as the number of joints of the manipulator.
+            Each item in the list corresponds to the variation range wanted for the joint with that same index.
+        max_force: Maximum force to be applied on the joints.
+        visualize: Visualization mode.
+    Raises:
+        InvalidEnvironmentParameter: One or more parameters provided for the Environment initialization are invalid.
+        InvalidManipulatorFile: The URDF/SDF file provided does not exist or cannot be loaded
+            into the Pybullet Environment.
+    &#34;&#34;&#34;
+    logger.debug(&#39;Initializing Pybullet Environment...&#39;)
+
+    environment_config = EnvironmentConfiguration(
+        endeffector_index=endeffector_index,
+        fixed_joints=fixed_joints,
+        involved_joints=involved_joints,
+        target_position=target_position,
+        obstacle_position=obstacle_position,
+        initial_joint_positions=initial_joint_positions,
+        initial_positions_variation_range=initial_positions_variation_range,
+        max_force=max_force,
+        visualize=visualize)
+    self.env = Environment(manipulator_file=manipulator_file,
+                           environment_config=environment_config)
+
+    logger.info(&#39;Pybullet Environment successfully initialized&#39;)
+    logger.debug(f&#39;* The NAF Agent can now be initialized via the initialize_naf_agent() method&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.initialize_naf_agent"><code class="name flex">
+<span>def <span class="ident">initialize_naf_agent</span></span>(<span>self, checkpoint_frequency: int = 500, seed: int = 0) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialize the NAF Agent by creating an instance of the NAFAgent class.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>checkpoint_frequency</code></strong></dt>
+<dd>Number of episodes required to generate a checkpoint.</dd>
+<dt><strong><code>seed</code></strong></dt>
+<dd>Random seed.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>EnvironmentNotInitialized</code></dt>
+<dd>Environment class has not been initialized.</dd>
+<dt><code>InvalidNAFAgentParameter</code></dt>
+<dd>Either "checkpoint_frequency" or "seed" parameters have an invalid value/type.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_naf_agent(self, checkpoint_frequency: int = 500, seed: int = 0) -&gt; None:
+    &#34;&#34;&#34;
+    Initialize the NAF Agent by creating an instance of the NAFAgent class.
+    Args:
+        checkpoint_frequency: Number of episodes required to generate a checkpoint.
+        seed: Random seed.
+    Raises:
+        EnvironmentNotInitialized: Environment class has not been initialized.
+        InvalidNAFAgentParameter: Either &#34;checkpoint_frequency&#34; or &#34;seed&#34; parameters have an invalid value/type.
+    &#34;&#34;&#34;
+    if not self.env:
+        raise EnvironmentNotInitialized
+
+    if not isinstance(checkpoint_frequency, int) or not isinstance(seed, int):
+        raise InvalidNAFAgentParameter(&#39;Checkpoint Frequency or Seed received is not an integer&#39;)
+
+    logger.debug(&#39;Initializing NAF Agent...&#39;)
+    device = torch.device(&#34;cuda:0&#34; if torch.cuda.is_available() else &#34;cpu&#34;)
+    self.naf_agent = NAFAgent(environment=self.env,
+                              state_size=self.env.observation_space.shape[0],
+                              action_size=self.env.action_space.shape[0],
+                              layer_size=256,
+                              batch_size=self._hyperparameters.batch_size,
+                              buffer_size=self._hyperparameters.buffer_size,
+                              learning_rate=self._hyperparameters.learning_rate,
+                              tau=self._hyperparameters.tau,
+                              gamma=self._hyperparameters.gamma,
+                              update_freq=self._hyperparameters.update_freq,
+                              num_updates=self._hyperparameters.num_updates,
+                              checkpoint_frequency=checkpoint_frequency,
+                              device=device,
+                              seed=seed)
+
+    logger.info(&#39;NAF Agent successfully initialized&#39;)
+    logger.debug(&#39;* The Robotic Manipulator training can now be launched via the run_training() method&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.load_pretrained_parameters_from_episode"><code class="name flex">
+<span>def <span class="ident">load_pretrained_parameters_from_episode</span></span>(<span>self, episode: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads previously trained weights into the current networks.
+The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+the episode provided must be present in the checkpoints/ folder. As the weights are loaded in the
+neural networks contained in the NAFAgent class, the method will raise an error if either
+the Environment or the NAFAgent class are not initialized.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>episode</code></strong></dt>
+<dd>Episode in the /checkpoints folder from which to retrieve the pretrained weights.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>EnvironmentNotInitialized</code></dt>
+<dd>The Environment class has not been initialized.</dd>
+<dt><code>NAFAgentNotInitialized</code></dt>
+<dd>The NAFAgentNotInitialized class has not been initialized.</dd>
+<dt><code>MissingWeightsFile</code></dt>
+<dd>The weights.p file does not exist in the folder provided.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_pretrained_parameters_from_episode(self, episode: int) -&gt; None:
+    &#34;&#34;&#34;
+    Loads previously trained weights into the current networks.
+    The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+    the episode provided must be present in the checkpoints/ folder. As the weights are loaded in the
+    neural networks contained in the NAFAgent class, the method will raise an error if either
+    the Environment or the NAFAgent class are not initialized.
+    Args:
+        episode: Episode in the /checkpoints folder from which to retrieve the pretrained weights.
+    Raises:
+        EnvironmentNotInitialized: The Environment class has not been initialized.
+        NAFAgentNotInitialized: The NAFAgentNotInitialized class has not been initialized.
+        MissingWeightsFile: The weights.p file does not exist in the folder provided.
+    &#34;&#34;&#34;
+    if not self.env:
+        raise EnvironmentNotInitialized
+
+    if not self.naf_agent:
+        raise NAFAgentNotInitialized
+
+    self.naf_agent.initialize_pretrained_agent_from_episode(episode)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.load_pretrained_parameters_from_weights_file"><code class="name flex">
+<span>def <span class="ident">load_pretrained_parameters_from_weights_file</span></span>(<span>self, parameters_file_path: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads a pretrained network's weights into the current networks. The weights are loaded from the path
+provided in the {parameters_file_path} parameter. As the weights are loaded in the neural networks
+contained in the NAFAgent class, the method will raise an error if either the Environment or the NAFAgent
+class are not initialized.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>parameters_file_path</code></strong></dt>
+<dd>Path to the .p file where the weights are stored.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>EnvironmentNotInitialized</code></dt>
+<dd>The Environment class has not been initialized.</dd>
+<dt><code>NAFAgentNotInitialized</code></dt>
+<dd>The NAFAgentNotInitialized class has not been initialized.</dd>
+<dt><code>MissingWeightsFile</code></dt>
+<dd>The .p file path provided does not exist.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_pretrained_parameters_from_weights_file(self, parameters_file_path: str) -&gt; None:
+    &#34;&#34;&#34;
+    Loads a pretrained network&#39;s weights into the current networks. The weights are loaded from the path
+    provided in the {parameters_file_path} parameter. As the weights are loaded in the neural networks
+    contained in the NAFAgent class, the method will raise an error if either the Environment or the NAFAgent
+    class are not initialized.
+    Args:
+        parameters_file_path: Path to the .p file where the weights are stored.
+    Raises:
+        EnvironmentNotInitialized: The Environment class has not been initialized.
+        NAFAgentNotInitialized: The NAFAgentNotInitialized class has not been initialized.
+        MissingWeightsFile: The .p file path provided does not exist.
+    &#34;&#34;&#34;
+    if not self.env:
+        raise EnvironmentNotInitialized
+
+    if not self.naf_agent:
+        raise NAFAgentNotInitialized
+
+    self.naf_agent.initialize_pretrained_agent_from_weights_file(parameters_file_path)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_demo_testing"><code class="name flex">
+<span>def <span class="ident">run_demo_testing</span></span>(<span>self, demo_type: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run a demo testing from a preconfigured Environment and NAFAgent, which shows how a robotic
+manipulator learns with the framework. The demo loads pretrained weights and executes 50 test episodes.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>demo_type</code></strong></dt>
+<dd>Valid values:</dd>
+</dl>
+<ul>
+<li>
+<p>'kuka_testing': testing with the KUKA IIWA Robotic Manipulator.</p>
+</li>
+<li>
+<p>'xarm6_testing': testing with the XArm6 Robotic Manipulator.</p>
+</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_demo_testing(self, demo_type: str) -&gt; None:
+    &#34;&#34;&#34;
+    Run a demo testing from a preconfigured Environment and NAFAgent, which shows how a robotic
+    manipulator learns with the framework. The demo loads pretrained weights and executes 50 test episodes.
+    Args:
+        demo_type: Valid values:\n
+        - &#39;kuka_testing&#39;: testing with the KUKA IIWA Robotic Manipulator.\n
+        - &#39;xarm6_testing&#39;: testing with the XArm6 Robotic Manipulator.\n
+    &#34;&#34;&#34;
+    logger.warning(&#39;Both the demo testing and the demo training are executed with the Log level &#39;
+                   &#39;set to DEBUG, so that the framework can be understood at a low level.&#39;)
+    old_level = logger.level
+    logger.setLevel(10)
+
+    # CHECK EXISTENT ENVIRONMENT AND NAF AGENT
+
+    # Overwrite previous Environment configuration if present
+    if self.env:
+
+        overwrite_env = input(&#39;Environment instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+        if not overwrite_env:
+            logger.info(&#39;Demo could not run due to the presence of a user-configured Environment instance&#39;)
+            return
+
+        self.delete_environment()
+
+    # Overwrite previous NAFAgent configuration if present
+    if self.naf_agent:
+
+        overwrite_naf_agent = input(&#39;NAFAgent instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+        if not overwrite_naf_agent:
+            logger.info(&#39;Demo could not run due to the presence of a user-configured NAFAgent instance&#39;)
+            return
+
+        self.delete_naf_agent()
+
+    # START DEMO
+
+    if demo_type == &#39;kuka_testing&#39;:
+
+        logger.info(&#39;Initializing demo Environment instance...&#39;)
+        kuka_path = os.path.join(pybullet_data.getDataPath(), &#39;kuka_iiwa/kuka_with_gripper2.sdf&#39;)
+        self.initialize_environment(manipulator_file=kuka_path,
+                                    endeffector_index=13,
+                                    fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                                    involved_joints=[0, 1, 2, 3, 4, 5],
+                                    target_position=[0.4, 0.85, 0.71],
+                                    obstacle_position=[0.45, 0.55, 0.55],
+                                    initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                                    initial_positions_variation_range=[0, 0, .5, .5, .5, .5])
+
+        logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+        self.initialize_naf_agent()
+
+        logger.info(&#39;Loading demo pretrained parameters&#39;)
+        self.load_pretrained_parameters_from_weights_file(os.path.dirname(
+            os.path.realpath(__file__)) + &#39;/naf_components/demo_weights/weights_kuka.p&#39;)
+
+        logger.info(&#39;Running 50 test episodes...&#39;)
+        self.test_trained_model(50, 750)
+
+        # Reset Environment and NAFAgent
+        self.delete_environment()
+        self.delete_naf_agent()
+
+    elif demo_type == &#39;xarm6_testing&#39;:
+
+        logger.info(&#39;Initializing demo Environment instance...&#39;)
+        xarm_path = os.path.join(pybullet_data.getDataPath(), &#39;xarm/xarm6_with_gripper.urdf&#39;)
+        self.initialize_environment(manipulator_file=xarm_path,
+                                    endeffector_index=12,
+                                    fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
+                                    involved_joints=[1, 2, 3, 4, 5, 6],
+                                    target_position=[0.3, 0.47, 0.61],
+                                    obstacle_position=[0.25, 0.27, 0.5],
+                                    initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
+                                    initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
+                                    max_force=200,
+                                    visualize=True)
+
+        logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+        self.initialize_naf_agent()
+
+        logger.info(&#39;Loading demo pretrained parameters&#39;)
+        self.load_pretrained_parameters_from_weights_file(
+            os.path.dirname(os.path.realpath(__file__)) + &#39;/naf_components/demo_weights/weights_xarm6.p&#39;)
+
+        logger.info(&#39;Running 50 test episodes...&#39;)
+        self.test_trained_model(50, 750)
+
+        # Reset Environment and NAFAgent
+        self.delete_environment()
+        self.delete_naf_agent()
+
+    else:
+        logger.error(&#39;Incorrect demo type!&#39;)
+
+    # Reset log level
+    logger.setLevel(old_level)
+    logger.warning(&#39;Log level has been reset to its original value&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_demo_training"><code class="name flex">
+<span>def <span class="ident">run_demo_training</span></span>(<span>self, demo_type: str, verbose: bool = False) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run a demo from a preconfigured Environment and NAFAgent, which shows how the framework works.
+The training is executed for 20 episodes. Do not expect good results, as this is just a demo of the training
+configuration process and the number of episodes is not enough to achieve a good performance in the manipulator.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>demo_type</code></strong></dt>
+<dd>Valid values:</dd>
+</dl>
+<ul>
+<li>
+<p>'kuka_training': training with the KUKA IIWA Robotic Manipulator.</p>
+</li>
+<li>
+<p>'xarm6_training': training with the XArm6 Robotic Manipulator.</p>
+</li>
+</ul>
+<dl>
+<dt><strong><code>verbose</code></strong></dt>
+<dd>Verbose mode. Verbose mode functionality is applied on the same way as for the
+run_training() method.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_demo_training(self, demo_type: str, verbose: bool = False) -&gt; None:
+    &#34;&#34;&#34;
+    Run a demo from a preconfigured Environment and NAFAgent, which shows how the framework works.
+    The training is executed for 20 episodes. Do not expect good results, as this is just a demo of the training
+    configuration process and the number of episodes is not enough to achieve a good performance in the manipulator.
+    Args:
+        demo_type: Valid values:\n
+        - &#39;kuka_training&#39;: training with the KUKA IIWA Robotic Manipulator.\n
+        - &#39;xarm6_training&#39;: training with the XArm6 Robotic Manipulator.\n
+        verbose: Verbose mode. Verbose mode functionality is applied on the same way as for the
+            run_training() method.
+    &#34;&#34;&#34;
+    logger.warning(&#39;Both the demo testing and the demo training are executed with the Log level &#39;
+                   &#39;set to DEBUG, so that the framework can be understood at a low level.&#39;)
+    old_level = logger.level
+    logger.setLevel(10)
+
+    # CHECK EXISTENT ENVIRONMENT AND NAF AGENT
+
+    # Overwrite previous Environment configuration if present
+    if self.env:
+
+        overwrite_env = input(&#39;Environment instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+        if not overwrite_env:
+            logger.info(&#39;Demo could not run due to the presence of a user-configured Environment instance&#39;)
+            return
+
+        self.delete_environment()
+
+    # Overwrite previous NAFAgent configuration if present
+    if self.naf_agent:
+
+        overwrite_naf_agent = input(&#39;NAFAgent instance found. Overwrite? [Y/n] &#39;).lower() == &#39;y&#39;
+        if not overwrite_naf_agent:
+            logger.info(&#39;Demo could not run due to the presence of a user-configured NAFAgent instance&#39;)
+            return
+
+        self.delete_naf_agent()
+
+    # START DEMO
+
+    if demo_type == &#39;kuka_training&#39;:
+
+        logger.info(&#39;Initializing demo Environment instance...&#39;)
+        self.initialize_environment(manipulator_file=&#39;kuka_iiwa/kuka_with_gripper2.sdf&#39;,
+                                    endeffector_index=13,
+                                    fixed_joints=[6, 7, 8, 9, 10, 11, 12, 13],
+                                    involved_joints=[0, 1, 2, 3, 4, 5],
+                                    target_position=[0.4, 0.85, 0.71],
+                                    obstacle_position=[0.45, 0.55, 0.55],
+                                    initial_joint_positions=[0.9, 0.45, 0, 0, 0, 0],
+                                    initial_positions_variation_range=[0, 0, 0, 0, 0, 0],
+                                    visualize=True)
+
+        logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+        self.initialize_naf_agent()
+
+        logger.info(&#39;Running training for 20 episodes. Do not expect good results, &#39;
+                    &#39;this is just a demo of the training configuration process&#39;)
+        self.run_training(20, 400, verbose=verbose)
+
+        # Reset Environment and NAFAgent
+        self.delete_environment()
+        self.delete_naf_agent()
+
+    elif demo_type == &#39;xarm6_training&#39;:
+
+        logger.info(&#39;Initializing demo Environment instance...&#39;)
+        xarm_path = os.path.join(pybullet_data.getDataPath(), &#39;xarm/xarm6_with_gripper.urdf&#39;)
+        self.initialize_environment(manipulator_file=xarm_path,
+                                    endeffector_index=12,
+                                    fixed_joints=[0, 7, 8, 9, 10, 11, 12, 13],
+                                    involved_joints=[1, 2, 3, 4, 5, 6],
+                                    target_position=[0.3, 0.47, 0.61],
+                                    obstacle_position=[0.25, 0.27, 0.5],
+                                    initial_joint_positions=[0., 1., 0., -2.3, 0., 0., 0.],
+                                    initial_positions_variation_range=[0, 0, 0, 0.3, 1, 1, 1],
+                                    visualize=True)
+
+        logger.info(&#39;Initializing demo NAFAgent instance...&#39;)
+        self.initialize_naf_agent()
+
+        logger.info(&#39;Running training for 20 episodes. Do not expect good results, &#39;
+                    &#39;this is just a demo of the confiuration process&#39;)
+        self.run_training(20, 400, verbose=verbose)
+
+        # Reset Environment and NAFAgent
+        self.delete_environment()
+        self.delete_naf_agent()
+
+    else:
+        logger.error(&#39;Incorrect demo type!&#39;)
+
+    # Reset log level
+    logger.setLevel(old_level)
+    logger.warning(&#39;Log level has been reset to its original value&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_training"><code class="name flex">
+<span>def <span class="ident">run_training</span></span>(<span>self, episodes: int, frames: Optional[int] = 500, verbose: bool = True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Execute a training on the configured Environment with the configured NAF Agent. The training is
+executed for {episodes}, and for {frames} timesteps per episode.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>episodes</code></strong></dt>
+<dd>Maximum number of episodes to execute.</dd>
+<dt><strong><code>frames</code></strong></dt>
+<dd>Maximum number of timesteps to execute per episode.</dd>
+<dt><strong><code>verbose</code></strong></dt>
+<dd>Verbose mode.</dd>
+</dl>
+<ul>
+<li>
+<p>If set to True, each timestep will log information about the current state,
+the action chosen from that state, the current reward and the cummulative reward until that timestep.
+In addition, each time an episode ends information about the total reward obtained, the number of
+frames required to complete the episode, the mean reward obtained along the episode and the
+execution time of the episode are logged.</p>
+</li>
+<li>
+<p>If set to False, each time an episode ends information about the total reward obtained, the number of
+frames required to complete the episode, the mean reward obtained along the episode and the
+execution time of the episode are logged.</p>
+</li>
+</ul>
+<p>It is recommended to use the verbose mode only in a development/debugging context, since logging
+information for each timestep greatly reduces the visibility of what is happening during the training.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ConfigurationIncomplete</code></dt>
+<dd>Either NAFAgent or Environment has not been initialized.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_training(self, episodes: int, frames: Optional[int] = 500, verbose: bool = True):
+    &#34;&#34;&#34;
+    Execute a training on the configured Environment with the configured NAF Agent. The training is
+    executed for {episodes}, and for {frames} timesteps per episode.
+    Args:
+        episodes: Maximum number of episodes to execute.
+        frames: Maximum number of timesteps to execute per episode.
+        verbose: Verbose mode.\n
+        - If set to True, each timestep will log information about the current state,
+        the action chosen from that state, the current reward and the cummulative reward until that timestep.
+        In addition, each time an episode ends information about the total reward obtained, the number of
+        frames required to complete the episode, the mean reward obtained along the episode and the
+        execution time of the episode are logged.\n
+        - If set to False, each time an episode ends information about the total reward obtained, the number of
+        frames required to complete the episode, the mean reward obtained along the episode and the
+        execution time of the episode are logged.\n
+        It is recommended to use the verbose mode only in a development/debugging context, since logging
+        information for each timestep greatly reduces the visibility of what is happening during the training.
+    Raises:
+        ConfigurationIncomplete: Either NAFAgent or Environment has not been initialized.
+    &#34;&#34;&#34;
+    if not self.naf_agent or not self.env:
+        raise ConfigurationIncomplete
+    self.naf_agent.run(frames, episodes, verbose)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.set_hyperparameter"><code class="name flex">
+<span>def <span class="ident">set_hyperparameter</span></span>(<span>self, hyperparameter: str, value: Union[float, int]) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the specified value on the given hyper-parameter. Checking are performed to
+ensure that the new value for the hyper-parameter is a valid value.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>hyperparameter</code></strong></dt>
+<dd>
+<p>Name of the hyper-parameter to be updated.
+Allowed names are:</p>
+<ul>
+<li>
+<p>buffer_size/buffersize/BUFFER_SIZE/BUFFERSIZE</p>
+</li>
+<li>
+<p>batch_size/batchsize/BATCH_SIZE/BATCHSIZE</p>
+</li>
+<li>
+<p>gamma/GAMMA</p>
+</li>
+<li>
+<p>tau/TAU</p>
+</li>
+<li>
+<p>learning_rate/learningrate/LEARNING_RATE/LEARNINGRATE</p>
+</li>
+<li>
+<p>update_freq/updatefreq/UPDATE_FREQ/UPDATEFREQ</p>
+</li>
+<li>
+<p>num_update/numupdate/NUMUPDATE/NUM_UPDATE</p>
+</li>
+</ul>
+</dd>
+<dt><strong><code>value</code></strong></dt>
+<dd>New value for the given hyper-parameter.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>InvalidHyperParameter</code></dt>
+<dd>The hyperparameter received has an invalid value/type, or the hyperparameter
+name received is not one of the accepted values.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_hyperparameter(self, hyperparameter: str, value: Union[float, int]) -&gt; None:
+    &#34;&#34;&#34;
+    Sets the specified value on the given hyper-parameter. Checking are performed to
+    ensure that the new value for the hyper-parameter is a valid value.
+    Args:
+        hyperparameter: Name of the hyper-parameter to be updated.
+            Allowed names are:\n
+            - buffer_size/buffersize/BUFFER_SIZE/BUFFERSIZE\n
+            - batch_size/batchsize/BATCH_SIZE/BATCHSIZE\n
+            - gamma/GAMMA\n
+            - tau/TAU\n
+            - learning_rate/learningrate/LEARNING_RATE/LEARNINGRATE\n
+            - update_freq/updatefreq/UPDATE_FREQ/UPDATEFREQ\n
+            - num_update/numupdate/NUMUPDATE/NUM_UPDATE\n
+        value: New value for the given hyper-parameter.
+    Raises:
+        InvalidHyperParameter: The hyperparameter received has an invalid value/type, or the hyperparameter
+            name received is not one of the accepted values.
+    &#34;&#34;&#34;
+    # Set BUFFER SIZE
+    if re.match(r&#39;^(buffer_size|buffersize|BUFFER_SIZE|BUFFERSIZE)$&#39;, hyperparameter):
+        if not (isinstance(value, int) and value &gt; 0):
+            raise InvalidHyperParameter(&#39;Buffer Size is not an int or has a value lower than 0&#39;)
+        self._hyperparameters.buffer_size = value
+        logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+    # Set BATCH SIZE
+    elif re.match(r&#39;^(batch_size|batchsize|BATCH_SIZE|BATCHSIZE)$&#39;, hyperparameter):
+        if not (isinstance(value, int) and value &gt; 0):
+            raise InvalidHyperParameter(&#39;Batch Size is not an int or has a value lower than 0&#39;)
+        self._hyperparameters.batch_size = value
+        logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+    # Set GAMMA
+    elif re.match(r&#39;^(gamma|GAMMA)$&#39;, hyperparameter):
+        if not (isinstance(value, (int, float)) and 0 &lt; value &lt; 1):
+            raise InvalidHyperParameter(&#39;Gamma is not a float or its value is out of range (0, 1)&#39;)
+        self._hyperparameters.gamma = value
+        logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+    # Set TAU
+    elif re.match(r&#39;^(tau|TAU)$&#39;, hyperparameter):
+        if not (isinstance(value, (int, float)) and 0 &lt;= value &lt;= 1):
+            raise InvalidHyperParameter(&#39;Tau is not a float or its value is out of range [0, 1]&#39;)
+        self._hyperparameters.tau = value
+        logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+    # Set LEARNING RATE
+    elif re.match(r&#39;^(learning_rate|learningrate|LEARNING_RATE|LEARNINGRATE)$&#39;, hyperparameter):
+        if not (isinstance(value, (int, float)) and value &gt; 0):
+            raise InvalidHyperParameter(&#39;Learning Rate is not a float or has a value lower than 0&#39;)
+        self._hyperparameters.learning_rate = value
+        logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+    # Set UPDATE EVERY
+    elif re.match(r&#39;^(update_freq|updatefreq|UPDATE_FREQ|UPDATEFREQ)$&#39;, hyperparameter):
+        if not (isinstance(value, int) and value &gt; 0):
+            raise InvalidHyperParameter(&#39;Update Frequency is not an int or has a value lower than 0&#39;)
+        self._hyperparameters.update_freq = value
+        logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+    # Set NUPDATE
+    elif re.match(r&#39;^(num_update|numupdate|NUMUPDATE|NUM_UPDATE)$&#39;, hyperparameter):
+        if not (isinstance(value, int) and value &gt; 0):
+            raise InvalidHyperParameter(&#39;Buffer Size is not an int or has a value lower than 0&#39;)
+        self._hyperparameters.num_updates = value
+        logger.info(f&#39;Hyperparameter {hyperparameter} has been set to {value}&#39;)
+
+    else:
+        raise InvalidHyperParameter(
+            &#39;The hyperparameter name passed as parameter is not valid. Valid hyperparameters are: &#39;
+            &#39;[&#34;buffer_size&#34;, &#34;batch_size&#34;, &#34;gamma&#34;, &#34;tau&#34;, &#34;learning_rate&#34;, &#34;update_freq&#34;, &#34;num_update&#34;]&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.test_trained_model"><code class="name flex">
+<span>def <span class="ident">test_trained_model</span></span>(<span>self, n_episodes: int, frames: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tests a previously trained agent through the execution of {n_episodes} test episodes,
+for {frames} timesteps each. When the test concludes, the results of the test are logged on terminal.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>n_episodes</code></strong></dt>
+<dd>Number of test episodes to execute.</dd>
+<dt><strong><code>frames</code></strong></dt>
+<dd>Number of timesteps per test episode.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ConfigurationIncomplete</code></dt>
+<dd>Either the Environment class or the NAFAgent class are not initialized.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_trained_model(self, n_episodes: int, frames: int) -&gt; None:
+    &#34;&#34;&#34;
+    Tests a previously trained agent through the execution of {n_episodes} test episodes,
+    for {frames} timesteps each. When the test concludes, the results of the test are logged on terminal.
+    Args:
+        n_episodes: Number of test episodes to execute.
+        frames: Number of timesteps per test episode.
+    Raises:
+        ConfigurationIncomplete: Either the Environment class or the NAFAgent class are not initialized.
+    &#34;&#34;&#34;
+    # Check if Environment and NAFAgent initialized
+    if not self.naf_agent or not self.env:
+        raise ConfigurationIncomplete
+
+    # Initialize Test result&#39;s history
+    results, num_collisions = list(), 0
+
+    for _ in range(n_episodes):
+        state = self.env.reset()
+
+        for frame in range(frames):
+            action = self.naf_agent.act(state)
+            next_state, reward, done = self.env.step(action)
+            state = next_state
+            if done:
+                if reward == 250:
+                    results.append((True, frame))
+                    break
+                else:
+                    results.append((False, frame))
+                    num_collisions += 1
+                    break
+
+            if frame == frames - 1 and not done:
+                results.append((False, frame))
+                break
+
+        logger.info(&#39;Test Episode number {ep} completed\n&#39;.format(ep=_ + 1))
+
+    logger.info(&#39;RESULTS OF THE TEST:&#39;)
+    for i, result in enumerate(results):
+        logger.info(f&#39;Results of Iteration {i + 1}: COMPLETED: {result[0]}. FRAMES: {result[1]}&#39;)
+
+    logger.info(f&#39;Number of successful executions: &#39;
+                f&#39;{[res[0] for res in results].count(True)}/{len(results)}  &#39;
+                f&#39;({([res[0] for res in results].count(True) / len(results)) * 100}%)&#39;)
+    logger.info(f&#39;Average number of frames required to complete an episode: &#39;
+                f&#39;{np.mean(np.array([res[1] for res in results if res[0]]))}&#39;)
+    logger.info(f&#39;Number of episodes terminated because of collisions: {num_collisions}&#39;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="robotic_manipulator_rloa" href="index.html">robotic_manipulator_rloa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters" href="#robotic_manipulator_rloa.rl_framework.HyperParameters">HyperParameters</a></code></h4>
+<ul class="two-column">
+<li><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters.batch_size" href="#robotic_manipulator_rloa.rl_framework.HyperParameters.batch_size">batch_size</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters.buffer_size" href="#robotic_manipulator_rloa.rl_framework.HyperParameters.buffer_size">buffer_size</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters.gamma" href="#robotic_manipulator_rloa.rl_framework.HyperParameters.gamma">gamma</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters.learning_rate" href="#robotic_manipulator_rloa.rl_framework.HyperParameters.learning_rate">learning_rate</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters.num_updates" href="#robotic_manipulator_rloa.rl_framework.HyperParameters.num_updates">num_updates</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters.tau" href="#robotic_manipulator_rloa.rl_framework.HyperParameters.tau">tau</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.HyperParameters.update_freq" href="#robotic_manipulator_rloa.rl_framework.HyperParameters.update_freq">update_freq</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework">ManipulatorFramework</a></code></h4>
+<ul class="">
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_environment" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_environment">delete_environment</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_naf_agent" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.delete_naf_agent">delete_naf_agent</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_environment_configuration" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_environment_configuration">get_environment_configuration</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_nafagent_configuration" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_nafagent_configuration">get_nafagent_configuration</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_required_hyperparameters" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.get_required_hyperparameters">get_required_hyperparameters</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.initialize_environment" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.initialize_environment">initialize_environment</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.initialize_naf_agent" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.initialize_naf_agent">initialize_naf_agent</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.load_pretrained_parameters_from_episode" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.load_pretrained_parameters_from_episode">load_pretrained_parameters_from_episode</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.load_pretrained_parameters_from_weights_file" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.load_pretrained_parameters_from_weights_file">load_pretrained_parameters_from_weights_file</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.plot_training_rewards" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.plot_training_rewards">plot_training_rewards</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_demo_testing" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_demo_testing">run_demo_testing</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_demo_training" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_demo_training">run_demo_training</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_training" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.run_training">run_training</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.set_hyperparameter" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.set_hyperparameter">set_hyperparameter</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.set_log_level" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.set_log_level">set_log_level</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.rl_framework.ManipulatorFramework.test_trained_model" href="#robotic_manipulator_rloa.rl_framework.ManipulatorFramework.test_trained_model">test_trained_model</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

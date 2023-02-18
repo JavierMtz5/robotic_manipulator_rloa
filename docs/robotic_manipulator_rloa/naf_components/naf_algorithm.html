@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>robotic_manipulator_rloa.naf_components.naf_algorithm API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0;color:#058}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>robotic_manipulator_rloa.naf_components.naf_algorithm</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import json
+import os
+import random
+import time
+from typing import Tuple, Dict
+
+import torch
+import torch.nn.functional as F
+import torch.optim as optim
+from numpy.typing import NDArray
+from torch.nn.utils import clip_grad_norm_
+
+from robotic_manipulator_rloa.utils.logger import get_global_logger
+from robotic_manipulator_rloa.environment.environment import Environment
+from robotic_manipulator_rloa.utils.exceptions import MissingWeightsFile
+from robotic_manipulator_rloa.naf_components.naf_neural_network import NAF
+from robotic_manipulator_rloa.utils.replay_buffer import ReplayBuffer
+
+
+logger = get_global_logger()
+
+
+class NAFAgent:
+
+    MODEL_PATH = &#39;model.p&#39;  # Filename where the parameters of the trained torch neural network are stored
+
+    def __init__(self,
+                 environment: Environment,
+                 state_size: int,
+                 action_size: int,
+                 layer_size: int,
+                 batch_size: int,
+                 buffer_size: int,
+                 learning_rate: float,
+                 tau: float,
+                 gamma: float,
+                 update_freq: int,
+                 num_updates: int,
+                 checkpoint_frequency: int,
+                 device: torch.device,
+                 seed: int) -&gt; None:
+        &#34;&#34;&#34;
+        Interacts with and learns from the environment via the NAF algorithm.
+        Args:
+            environment: Instance of Environment class.
+            state_size: Dimension of the states.
+            action_size: Dimension of the actions.
+            layer_size: Size for the hidden layers of the neural network.
+            batch_size: Number of experiences to train with per training batch.
+            buffer_size: Maximum number of experiences to be stored in Replay Buffer.
+            learning_rate: Learning rate for neural network&#39;s optimizer.
+            tau: Hyperparameter for soft updating the target network.
+            gamma: Discount factor.
+            update_freq: Number of timesteps after which the main neural network is updated.
+            num_updates: Number of updates performed when learning.
+            checkpoint_frequency: Number of episodes after which a checkpoint is generated.
+            device: Device used (CPU or CUDA).
+            seed: Random seed.
+        &#34;&#34;&#34;
+        # Create required parent directory
+        os.makedirs(&#39;checkpoints/&#39;, exist_ok=True)
+
+        self.environment = environment
+        self.state_size = state_size
+        self.action_size = action_size
+        self.layer_size = layer_size
+        self.buffer_size = buffer_size
+        self.learning_rate = learning_rate
+        random.seed(seed)
+        self.device = device
+        self.tau = tau
+        self.gamma = gamma
+        self.update_freq = update_freq
+        self.num_updates = num_updates
+        self.batch_size = batch_size
+        self.checkpoint_frequency = checkpoint_frequency
+
+        # Initalize Q-Networks
+        self.qnetwork_main = NAF(state_size, action_size, layer_size, seed, device).to(device)
+        self.qnetwork_target = NAF(state_size, action_size, layer_size, seed, device).to(device)
+
+        # Define Adam as optimizer
+        self.optimizer = optim.Adam(self.qnetwork_main.parameters(), lr=learning_rate)
+
+        # Initialize Replay memory
+        self.memory = ReplayBuffer(buffer_size, batch_size, self.device, seed)
+
+        # Initialize update time step counter (for updating every {update_freq} steps)
+        self.update_t_step = 0
+
+    def initialize_pretrained_agent_from_episode(self, episode: int) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the previously trained weights into the main and target neural networks.
+        The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+        the episode provided must be present in the checkpoints/ folder.
+        Args:
+            episode: Episode from which to retrieve the pretrained weights.
+        Raises:
+            MissingWeightsFile: The weights.p file is not present in the checkpoints/{episode}/ folder provided.
+        &#34;&#34;&#34;
+        # Check if file is present in checkpoints/{episode}/ directory
+        if not os.path.isfile(f&#39;checkpoints/{episode}/weights.p&#39;):
+            raise MissingWeightsFile
+
+        logger.debug(f&#39;Loading naf_components weights from trained naf_components on episode {episode}...&#39;)
+        self.qnetwork_main.load_state_dict(torch.load(f&#39;checkpoints/{episode}/weights.p&#39;))
+        self.qnetwork_target.load_state_dict(torch.load(f&#39;checkpoints/{episode}/weights.p&#39;))
+        logger.info(f&#39;Loaded weights from trained naf_components on episode {episode}&#39;)
+
+    def initialize_pretrained_agent_from_weights_file(self, weights_path: str) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the previously trained weights into the main and target neural networks.
+        The pretrained weights are retrieved from a .p file containing the weights, located in 
+        the {weights_path} path.
+        Args:
+            weights_path: Path to the .p file containing the network&#39;s weights.
+        Raises:
+            MissingWeightsFile: The file path provided does not exist.
+        &#34;&#34;&#34;
+        # Check if file is present
+        if not os.path.isfile(weights_path):
+            raise MissingWeightsFile
+
+        logger.debug(&#39;Loading naf_components weights from trained naf_components...&#39;)
+        self.qnetwork_main.load_state_dict(torch.load(weights_path))
+        self.qnetwork_target.load_state_dict(torch.load(weights_path))
+        logger.info(&#39;Loaded pre-trained weights for the NN&#39;)
+
+    def step(self, state: NDArray, action: NDArray, reward: float, next_state: NDArray, done: int) -&gt; None:
+        &#34;&#34;&#34;
+        Stores in the ReplayBuffer the new experience composed by the parameters received,
+        and learns only if the Buffer contains enough experiences to fill a batch. The
+        learning will occur if the update frequency {update_freq} is reached, in which case it
+        will learn {num_updates} times.
+        Args:
+            state: Current state.
+            action: Action performed from state {state}.
+            reward: Reward obtained after performing action {action} from state {state}.
+            next_state: New state reached after performing action {action} from state {state}.
+            done: Integer (0 or 1) indicating whether a terminal state have been reached.
+        &#34;&#34;&#34;
+
+        # Save experience in replay memory
+        self.memory.add(state, action, reward, next_state, done)
+
+        # Learning will be performed every {update_freq}} time-steps.
+        self.update_t_step = (self.update_t_step + 1) % self.update_freq  # Update time step counter
+        if self.update_t_step == 0:
+            # If enough samples are available in memory, get random subset and learn
+            if len(self.memory) &gt; self.batch_size:
+                for _ in range(self.num_updates):
+                    # Pick random batch of experiences from memory
+                    experiences = self.memory.sample()
+
+                    # Learn from experiences and get loss
+                    self.learn(experiences)
+
+    def act(self, state: NDArray) -&gt; NDArray:
+        &#34;&#34;&#34;
+        Extracts the action which maximizes the Q-Function, by getting the output of the mu layer
+        of the main neural network.
+        Args:
+            state: Current state from which to pick the best action.
+        Returns:
+            Action which maximizes Q-Function.
+        &#34;&#34;&#34;
+        state = torch.from_numpy(state).float().to(self.device)
+
+        # Set evaluation mode on naf_components for obtaining a prediction
+        self.qnetwork_main.eval()
+        with torch.no_grad():
+            # Get the action with maximum Q-Value from the local network
+            action, _, _ = self.qnetwork_main(state.unsqueeze(0))
+
+        # Set training mode on naf_components for future use
+        self.qnetwork_main.train()
+
+        return action.cpu().squeeze().numpy()
+
+    def learn(self, experiences: Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]) -&gt; None:
+        &#34;&#34;&#34;
+        Calculate the Q-Function estimate from the main neural network, the Target value from
+        the target neural network, and calculate the loss with both values, all by feeding the received
+        batch of experience tuples to both networks. After loss is calculated, backpropagation is performed on the
+        main network from the given loss, so that the weights of the main network are updated.
+        Args:
+            experiences: Tuple of five elements, where each element is a torch.Tensor of length {batch_size}.
+        &#34;&#34;&#34;
+        # Set gradients of all optimized torch Tensors to zero
+        self.optimizer.zero_grad()
+        states, actions, rewards, next_states, dones = experiences
+
+        # Get the Value Function for the next state from target naf_components (no_grad() disables gradient calculation)
+        with torch.no_grad():
+            _, _, V_ = self.qnetwork_target(next_states)
+
+        # Compute the target Value Functions for the given experiences.
+        # The target value is calculated as target_val = r + gamma * V(s&#39;)
+        target_values = rewards + (self.gamma * V_)
+
+        # Compute the expected Value Function from main network
+        _, q_estimate, _ = self.qnetwork_main(states, actions)
+
+        # Compute loss between target value and expected Q value
+        loss = F.mse_loss(q_estimate, target_values)
+
+        # Perform backpropagation for minimizing loss
+        loss.backward()
+        clip_grad_norm_(self.qnetwork_main.parameters(), 1)
+        self.optimizer.step()
+
+        # Update the target network softly with the local one
+        self.soft_update(self.qnetwork_main, self.qnetwork_target)
+
+        # return loss.detach().cpu().numpy()
+
+    def soft_update(self, main_nn: NAF, target_nn: NAF) -&gt; None:
+        &#34;&#34;&#34;
+        Soft update naf_components parameters following this formula:\n
+                    θ_target = τ*θ_local + (1 - τ)*θ_target
+        Args:
+            main_nn: Main torch neural network.
+            target_nn: Target torch neural network.
+        &#34;&#34;&#34;
+        for target_param, main_param in zip(target_nn.parameters(), main_nn.parameters()):
+            target_param.data.copy_(self.tau * main_param.data + (1. - self.tau) * target_param.data)
+
+    def run(self, frames: int = 1000, episodes: int = 1000, verbose: bool = True) -&gt; Dict[int, Tuple[float, int]]:
+        &#34;&#34;&#34;
+        Execute training flow of the NAF algorithm on the given environment.
+        Args:
+            frames: Number of maximum frames or timesteps per episode.
+            episodes: Number of episodes required to terminate the training.
+            verbose: Boolean indicating whether many or few logs are shown.
+        Returns:
+            Returns the score history generated along the training.
+        &#34;&#34;&#34;
+        logger.info(&#39;Training started&#39;)
+        # Initialize &#39;scores&#39; dictionary to store rewards and timesteps executed for each episode
+        scores = {episode: (0, 0) for episode in range(1, episodes + 1)}
+
+        # Iterate through every episode
+        for episode in range(episodes):
+            logger.info(f&#39;Running Episode {episode + 1}&#39;)
+            start = time.time()  # Timer to measure execution time per episode
+            state = self.environment.reset(verbose)
+            score, mean = 0, list()
+
+            for frame in range(1, frames + 1):
+                if verbose: logger.info(f&#39;Running frame {frame} in episode {episode + 1}&#39;)
+
+                # Pick action according to current state
+                if verbose: logger.info(f&#39;Current State: {state}&#39;)
+                action = self.act(state)
+                if verbose: logger.info(f&#39;Action chosen for the given state is: {action}&#39;)
+
+                # Perform action on environment and get new state and reward
+                next_state, reward, done = self.environment.step(action)
+
+                # Save the experience in the ReplayBuffer, and learn from previous experiences if applicable
+                self.step(state, action, reward, next_state, done)
+
+                state = next_state  # Update state to next state
+                score += reward
+                mean.append(reward)
+
+                if verbose: logger.info(f&#39;Reward: {reward}  -  Cumulative reward: {score}\n&#39;)
+
+                if done:
+                    break
+
+            # Updates scores history
+            scores[episode + 1] = (score, frame)  # save most recent score and last frame
+            logger.info(f&#39;Reward:                             {score}&#39;)
+            logger.info(f&#39;Number of frames:                   {frame}&#39;)
+            logger.info(f&#39;Mean of rewards on this episode:    {sum(mean) / frames}&#39;)
+            logger.info(f&#39;Time taken for this episode:        {round(time.time() - start, 3)} secs\n&#39;)
+
+            # Save the episode&#39;s performance if it is a checkpoint episode
+            if (episode + 1) % self.checkpoint_frequency == 0:
+                # Create parent directory for current episode
+                os.makedirs(f&#39;checkpoints/{episode + 1}/&#39;, exist_ok=True)
+                # Save naf_components weights
+                torch.save(self.qnetwork_main.state_dict(), f&#39;checkpoints/{episode + 1}/weights.p&#39;)
+                # Save naf_components&#39;s performance metrics
+                with open(f&#39;checkpoints/{episode + 1}/scores.txt&#39;, &#39;w&#39;) as f:
+                    f.write(json.dumps(scores))
+
+        torch.save(self.qnetwork_main.state_dict(), self.MODEL_PATH)
+        logger.info(f&#39;Model has been successfully saved in {self.MODEL_PATH}&#39;)
+
+        return scores</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent"><code class="flex name class">
+<span>class <span class="ident">NAFAgent</span></span>
+<span>(</span><span>environment: <a title="robotic_manipulator_rloa.environment.environment.Environment" href="../environment/environment.html#robotic_manipulator_rloa.environment.environment.Environment">Environment</a>, state_size: int, action_size: int, layer_size: int, batch_size: int, buffer_size: int, learning_rate: float, tau: float, gamma: float, update_freq: int, num_updates: int, checkpoint_frequency: int, device: torch.device, seed: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interacts with and learns from the environment via the NAF algorithm.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>environment</code></strong></dt>
+<dd>Instance of Environment class.</dd>
+<dt><strong><code>state_size</code></strong></dt>
+<dd>Dimension of the states.</dd>
+<dt><strong><code>action_size</code></strong></dt>
+<dd>Dimension of the actions.</dd>
+<dt><strong><code>layer_size</code></strong></dt>
+<dd>Size for the hidden layers of the neural network.</dd>
+<dt><strong><code>batch_size</code></strong></dt>
+<dd>Number of experiences to train with per training batch.</dd>
+<dt><strong><code>buffer_size</code></strong></dt>
+<dd>Maximum number of experiences to be stored in Replay Buffer.</dd>
+<dt><strong><code>learning_rate</code></strong></dt>
+<dd>Learning rate for neural network's optimizer.</dd>
+<dt><strong><code>tau</code></strong></dt>
+<dd>Hyperparameter for soft updating the target network.</dd>
+<dt><strong><code>gamma</code></strong></dt>
+<dd>Discount factor.</dd>
+<dt><strong><code>update_freq</code></strong></dt>
+<dd>Number of timesteps after which the main neural network is updated.</dd>
+<dt><strong><code>num_updates</code></strong></dt>
+<dd>Number of updates performed when learning.</dd>
+<dt><strong><code>checkpoint_frequency</code></strong></dt>
+<dd>Number of episodes after which a checkpoint is generated.</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device used (CPU or CUDA).</dd>
+<dt><strong><code>seed</code></strong></dt>
+<dd>Random seed.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NAFAgent:
+
+    MODEL_PATH = &#39;model.p&#39;  # Filename where the parameters of the trained torch neural network are stored
+
+    def __init__(self,
+                 environment: Environment,
+                 state_size: int,
+                 action_size: int,
+                 layer_size: int,
+                 batch_size: int,
+                 buffer_size: int,
+                 learning_rate: float,
+                 tau: float,
+                 gamma: float,
+                 update_freq: int,
+                 num_updates: int,
+                 checkpoint_frequency: int,
+                 device: torch.device,
+                 seed: int) -&gt; None:
+        &#34;&#34;&#34;
+        Interacts with and learns from the environment via the NAF algorithm.
+        Args:
+            environment: Instance of Environment class.
+            state_size: Dimension of the states.
+            action_size: Dimension of the actions.
+            layer_size: Size for the hidden layers of the neural network.
+            batch_size: Number of experiences to train with per training batch.
+            buffer_size: Maximum number of experiences to be stored in Replay Buffer.
+            learning_rate: Learning rate for neural network&#39;s optimizer.
+            tau: Hyperparameter for soft updating the target network.
+            gamma: Discount factor.
+            update_freq: Number of timesteps after which the main neural network is updated.
+            num_updates: Number of updates performed when learning.
+            checkpoint_frequency: Number of episodes after which a checkpoint is generated.
+            device: Device used (CPU or CUDA).
+            seed: Random seed.
+        &#34;&#34;&#34;
+        # Create required parent directory
+        os.makedirs(&#39;checkpoints/&#39;, exist_ok=True)
+
+        self.environment = environment
+        self.state_size = state_size
+        self.action_size = action_size
+        self.layer_size = layer_size
+        self.buffer_size = buffer_size
+        self.learning_rate = learning_rate
+        random.seed(seed)
+        self.device = device
+        self.tau = tau
+        self.gamma = gamma
+        self.update_freq = update_freq
+        self.num_updates = num_updates
+        self.batch_size = batch_size
+        self.checkpoint_frequency = checkpoint_frequency
+
+        # Initalize Q-Networks
+        self.qnetwork_main = NAF(state_size, action_size, layer_size, seed, device).to(device)
+        self.qnetwork_target = NAF(state_size, action_size, layer_size, seed, device).to(device)
+
+        # Define Adam as optimizer
+        self.optimizer = optim.Adam(self.qnetwork_main.parameters(), lr=learning_rate)
+
+        # Initialize Replay memory
+        self.memory = ReplayBuffer(buffer_size, batch_size, self.device, seed)
+
+        # Initialize update time step counter (for updating every {update_freq} steps)
+        self.update_t_step = 0
+
+    def initialize_pretrained_agent_from_episode(self, episode: int) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the previously trained weights into the main and target neural networks.
+        The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+        the episode provided must be present in the checkpoints/ folder.
+        Args:
+            episode: Episode from which to retrieve the pretrained weights.
+        Raises:
+            MissingWeightsFile: The weights.p file is not present in the checkpoints/{episode}/ folder provided.
+        &#34;&#34;&#34;
+        # Check if file is present in checkpoints/{episode}/ directory
+        if not os.path.isfile(f&#39;checkpoints/{episode}/weights.p&#39;):
+            raise MissingWeightsFile
+
+        logger.debug(f&#39;Loading naf_components weights from trained naf_components on episode {episode}...&#39;)
+        self.qnetwork_main.load_state_dict(torch.load(f&#39;checkpoints/{episode}/weights.p&#39;))
+        self.qnetwork_target.load_state_dict(torch.load(f&#39;checkpoints/{episode}/weights.p&#39;))
+        logger.info(f&#39;Loaded weights from trained naf_components on episode {episode}&#39;)
+
+    def initialize_pretrained_agent_from_weights_file(self, weights_path: str) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the previously trained weights into the main and target neural networks.
+        The pretrained weights are retrieved from a .p file containing the weights, located in 
+        the {weights_path} path.
+        Args:
+            weights_path: Path to the .p file containing the network&#39;s weights.
+        Raises:
+            MissingWeightsFile: The file path provided does not exist.
+        &#34;&#34;&#34;
+        # Check if file is present
+        if not os.path.isfile(weights_path):
+            raise MissingWeightsFile
+
+        logger.debug(&#39;Loading naf_components weights from trained naf_components...&#39;)
+        self.qnetwork_main.load_state_dict(torch.load(weights_path))
+        self.qnetwork_target.load_state_dict(torch.load(weights_path))
+        logger.info(&#39;Loaded pre-trained weights for the NN&#39;)
+
+    def step(self, state: NDArray, action: NDArray, reward: float, next_state: NDArray, done: int) -&gt; None:
+        &#34;&#34;&#34;
+        Stores in the ReplayBuffer the new experience composed by the parameters received,
+        and learns only if the Buffer contains enough experiences to fill a batch. The
+        learning will occur if the update frequency {update_freq} is reached, in which case it
+        will learn {num_updates} times.
+        Args:
+            state: Current state.
+            action: Action performed from state {state}.
+            reward: Reward obtained after performing action {action} from state {state}.
+            next_state: New state reached after performing action {action} from state {state}.
+            done: Integer (0 or 1) indicating whether a terminal state have been reached.
+        &#34;&#34;&#34;
+
+        # Save experience in replay memory
+        self.memory.add(state, action, reward, next_state, done)
+
+        # Learning will be performed every {update_freq}} time-steps.
+        self.update_t_step = (self.update_t_step + 1) % self.update_freq  # Update time step counter
+        if self.update_t_step == 0:
+            # If enough samples are available in memory, get random subset and learn
+            if len(self.memory) &gt; self.batch_size:
+                for _ in range(self.num_updates):
+                    # Pick random batch of experiences from memory
+                    experiences = self.memory.sample()
+
+                    # Learn from experiences and get loss
+                    self.learn(experiences)
+
+    def act(self, state: NDArray) -&gt; NDArray:
+        &#34;&#34;&#34;
+        Extracts the action which maximizes the Q-Function, by getting the output of the mu layer
+        of the main neural network.
+        Args:
+            state: Current state from which to pick the best action.
+        Returns:
+            Action which maximizes Q-Function.
+        &#34;&#34;&#34;
+        state = torch.from_numpy(state).float().to(self.device)
+
+        # Set evaluation mode on naf_components for obtaining a prediction
+        self.qnetwork_main.eval()
+        with torch.no_grad():
+            # Get the action with maximum Q-Value from the local network
+            action, _, _ = self.qnetwork_main(state.unsqueeze(0))
+
+        # Set training mode on naf_components for future use
+        self.qnetwork_main.train()
+
+        return action.cpu().squeeze().numpy()
+
+    def learn(self, experiences: Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]) -&gt; None:
+        &#34;&#34;&#34;
+        Calculate the Q-Function estimate from the main neural network, the Target value from
+        the target neural network, and calculate the loss with both values, all by feeding the received
+        batch of experience tuples to both networks. After loss is calculated, backpropagation is performed on the
+        main network from the given loss, so that the weights of the main network are updated.
+        Args:
+            experiences: Tuple of five elements, where each element is a torch.Tensor of length {batch_size}.
+        &#34;&#34;&#34;
+        # Set gradients of all optimized torch Tensors to zero
+        self.optimizer.zero_grad()
+        states, actions, rewards, next_states, dones = experiences
+
+        # Get the Value Function for the next state from target naf_components (no_grad() disables gradient calculation)
+        with torch.no_grad():
+            _, _, V_ = self.qnetwork_target(next_states)
+
+        # Compute the target Value Functions for the given experiences.
+        # The target value is calculated as target_val = r + gamma * V(s&#39;)
+        target_values = rewards + (self.gamma * V_)
+
+        # Compute the expected Value Function from main network
+        _, q_estimate, _ = self.qnetwork_main(states, actions)
+
+        # Compute loss between target value and expected Q value
+        loss = F.mse_loss(q_estimate, target_values)
+
+        # Perform backpropagation for minimizing loss
+        loss.backward()
+        clip_grad_norm_(self.qnetwork_main.parameters(), 1)
+        self.optimizer.step()
+
+        # Update the target network softly with the local one
+        self.soft_update(self.qnetwork_main, self.qnetwork_target)
+
+        # return loss.detach().cpu().numpy()
+
+    def soft_update(self, main_nn: NAF, target_nn: NAF) -&gt; None:
+        &#34;&#34;&#34;
+        Soft update naf_components parameters following this formula:\n
+                    θ_target = τ*θ_local + (1 - τ)*θ_target
+        Args:
+            main_nn: Main torch neural network.
+            target_nn: Target torch neural network.
+        &#34;&#34;&#34;
+        for target_param, main_param in zip(target_nn.parameters(), main_nn.parameters()):
+            target_param.data.copy_(self.tau * main_param.data + (1. - self.tau) * target_param.data)
+
+    def run(self, frames: int = 1000, episodes: int = 1000, verbose: bool = True) -&gt; Dict[int, Tuple[float, int]]:
+        &#34;&#34;&#34;
+        Execute training flow of the NAF algorithm on the given environment.
+        Args:
+            frames: Number of maximum frames or timesteps per episode.
+            episodes: Number of episodes required to terminate the training.
+            verbose: Boolean indicating whether many or few logs are shown.
+        Returns:
+            Returns the score history generated along the training.
+        &#34;&#34;&#34;
+        logger.info(&#39;Training started&#39;)
+        # Initialize &#39;scores&#39; dictionary to store rewards and timesteps executed for each episode
+        scores = {episode: (0, 0) for episode in range(1, episodes + 1)}
+
+        # Iterate through every episode
+        for episode in range(episodes):
+            logger.info(f&#39;Running Episode {episode + 1}&#39;)
+            start = time.time()  # Timer to measure execution time per episode
+            state = self.environment.reset(verbose)
+            score, mean = 0, list()
+
+            for frame in range(1, frames + 1):
+                if verbose: logger.info(f&#39;Running frame {frame} in episode {episode + 1}&#39;)
+
+                # Pick action according to current state
+                if verbose: logger.info(f&#39;Current State: {state}&#39;)
+                action = self.act(state)
+                if verbose: logger.info(f&#39;Action chosen for the given state is: {action}&#39;)
+
+                # Perform action on environment and get new state and reward
+                next_state, reward, done = self.environment.step(action)
+
+                # Save the experience in the ReplayBuffer, and learn from previous experiences if applicable
+                self.step(state, action, reward, next_state, done)
+
+                state = next_state  # Update state to next state
+                score += reward
+                mean.append(reward)
+
+                if verbose: logger.info(f&#39;Reward: {reward}  -  Cumulative reward: {score}\n&#39;)
+
+                if done:
+                    break
+
+            # Updates scores history
+            scores[episode + 1] = (score, frame)  # save most recent score and last frame
+            logger.info(f&#39;Reward:                             {score}&#39;)
+            logger.info(f&#39;Number of frames:                   {frame}&#39;)
+            logger.info(f&#39;Mean of rewards on this episode:    {sum(mean) / frames}&#39;)
+            logger.info(f&#39;Time taken for this episode:        {round(time.time() - start, 3)} secs\n&#39;)
+
+            # Save the episode&#39;s performance if it is a checkpoint episode
+            if (episode + 1) % self.checkpoint_frequency == 0:
+                # Create parent directory for current episode
+                os.makedirs(f&#39;checkpoints/{episode + 1}/&#39;, exist_ok=True)
+                # Save naf_components weights
+                torch.save(self.qnetwork_main.state_dict(), f&#39;checkpoints/{episode + 1}/weights.p&#39;)
+                # Save naf_components&#39;s performance metrics
+                with open(f&#39;checkpoints/{episode + 1}/scores.txt&#39;, &#39;w&#39;) as f:
+                    f.write(json.dumps(scores))
+
+        torch.save(self.qnetwork_main.state_dict(), self.MODEL_PATH)
+        logger.info(f&#39;Model has been successfully saved in {self.MODEL_PATH}&#39;)
+
+        return scores</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.MODEL_PATH"><code class="name">var <span class="ident">MODEL_PATH</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.act"><code class="name flex">
+<span>def <span class="ident">act</span></span>(<span>self, state: numpy.ndarray[typing.Any, numpy.dtype[+ScalarType]]) ‑> numpy.ndarray[typing.Any, numpy.dtype[+ScalarType]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Extracts the action which maximizes the Q-Function, by getting the output of the mu layer
+of the main neural network.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state</code></strong></dt>
+<dd>Current state from which to pick the best action.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Action which maximizes Q-Function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def act(self, state: NDArray) -&gt; NDArray:
+    &#34;&#34;&#34;
+    Extracts the action which maximizes the Q-Function, by getting the output of the mu layer
+    of the main neural network.
+    Args:
+        state: Current state from which to pick the best action.
+    Returns:
+        Action which maximizes Q-Function.
+    &#34;&#34;&#34;
+    state = torch.from_numpy(state).float().to(self.device)
+
+    # Set evaluation mode on naf_components for obtaining a prediction
+    self.qnetwork_main.eval()
+    with torch.no_grad():
+        # Get the action with maximum Q-Value from the local network
+        action, _, _ = self.qnetwork_main(state.unsqueeze(0))
+
+    # Set training mode on naf_components for future use
+    self.qnetwork_main.train()
+
+    return action.cpu().squeeze().numpy()</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.initialize_pretrained_agent_from_episode"><code class="name flex">
+<span>def <span class="ident">initialize_pretrained_agent_from_episode</span></span>(<span>self, episode: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the previously trained weights into the main and target neural networks.
+The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+the episode provided must be present in the checkpoints/ folder.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>episode</code></strong></dt>
+<dd>Episode from which to retrieve the pretrained weights.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>MissingWeightsFile</code></dt>
+<dd>The weights.p file is not present in the checkpoints/{episode}/ folder provided.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_pretrained_agent_from_episode(self, episode: int) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the previously trained weights into the main and target neural networks.
+    The pretrained weights are retrieved from the checkpoints generated on a training execution, so
+    the episode provided must be present in the checkpoints/ folder.
+    Args:
+        episode: Episode from which to retrieve the pretrained weights.
+    Raises:
+        MissingWeightsFile: The weights.p file is not present in the checkpoints/{episode}/ folder provided.
+    &#34;&#34;&#34;
+    # Check if file is present in checkpoints/{episode}/ directory
+    if not os.path.isfile(f&#39;checkpoints/{episode}/weights.p&#39;):
+        raise MissingWeightsFile
+
+    logger.debug(f&#39;Loading naf_components weights from trained naf_components on episode {episode}...&#39;)
+    self.qnetwork_main.load_state_dict(torch.load(f&#39;checkpoints/{episode}/weights.p&#39;))
+    self.qnetwork_target.load_state_dict(torch.load(f&#39;checkpoints/{episode}/weights.p&#39;))
+    logger.info(f&#39;Loaded weights from trained naf_components on episode {episode}&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.initialize_pretrained_agent_from_weights_file"><code class="name flex">
+<span>def <span class="ident">initialize_pretrained_agent_from_weights_file</span></span>(<span>self, weights_path: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the previously trained weights into the main and target neural networks.
+The pretrained weights are retrieved from a .p file containing the weights, located in
+the {weights_path} path.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>weights_path</code></strong></dt>
+<dd>Path to the .p file containing the network's weights.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>MissingWeightsFile</code></dt>
+<dd>The file path provided does not exist.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_pretrained_agent_from_weights_file(self, weights_path: str) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the previously trained weights into the main and target neural networks.
+    The pretrained weights are retrieved from a .p file containing the weights, located in 
+    the {weights_path} path.
+    Args:
+        weights_path: Path to the .p file containing the network&#39;s weights.
+    Raises:
+        MissingWeightsFile: The file path provided does not exist.
+    &#34;&#34;&#34;
+    # Check if file is present
+    if not os.path.isfile(weights_path):
+        raise MissingWeightsFile
+
+    logger.debug(&#39;Loading naf_components weights from trained naf_components...&#39;)
+    self.qnetwork_main.load_state_dict(torch.load(weights_path))
+    self.qnetwork_target.load_state_dict(torch.load(weights_path))
+    logger.info(&#39;Loaded pre-trained weights for the NN&#39;)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.learn"><code class="name flex">
+<span>def <span class="ident">learn</span></span>(<span>self, experiences: Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate the Q-Function estimate from the main neural network, the Target value from
+the target neural network, and calculate the loss with both values, all by feeding the received
+batch of experience tuples to both networks. After loss is calculated, backpropagation is performed on the
+main network from the given loss, so that the weights of the main network are updated.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>experiences</code></strong></dt>
+<dd>Tuple of five elements, where each element is a torch.Tensor of length {batch_size}.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def learn(self, experiences: Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]) -&gt; None:
+    &#34;&#34;&#34;
+    Calculate the Q-Function estimate from the main neural network, the Target value from
+    the target neural network, and calculate the loss with both values, all by feeding the received
+    batch of experience tuples to both networks. After loss is calculated, backpropagation is performed on the
+    main network from the given loss, so that the weights of the main network are updated.
+    Args:
+        experiences: Tuple of five elements, where each element is a torch.Tensor of length {batch_size}.
+    &#34;&#34;&#34;
+    # Set gradients of all optimized torch Tensors to zero
+    self.optimizer.zero_grad()
+    states, actions, rewards, next_states, dones = experiences
+
+    # Get the Value Function for the next state from target naf_components (no_grad() disables gradient calculation)
+    with torch.no_grad():
+        _, _, V_ = self.qnetwork_target(next_states)
+
+    # Compute the target Value Functions for the given experiences.
+    # The target value is calculated as target_val = r + gamma * V(s&#39;)
+    target_values = rewards + (self.gamma * V_)
+
+    # Compute the expected Value Function from main network
+    _, q_estimate, _ = self.qnetwork_main(states, actions)
+
+    # Compute loss between target value and expected Q value
+    loss = F.mse_loss(q_estimate, target_values)
+
+    # Perform backpropagation for minimizing loss
+    loss.backward()
+    clip_grad_norm_(self.qnetwork_main.parameters(), 1)
+    self.optimizer.step()
+
+    # Update the target network softly with the local one
+    self.soft_update(self.qnetwork_main, self.qnetwork_target)
+
+    # return loss.detach().cpu().numpy()</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self, frames: int = 1000, episodes: int = 1000, verbose: bool = True) ‑> Dict[int, Tuple[float, int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Execute training flow of the NAF algorithm on the given environment.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>frames</code></strong></dt>
+<dd>Number of maximum frames or timesteps per episode.</dd>
+<dt><strong><code>episodes</code></strong></dt>
+<dd>Number of episodes required to terminate the training.</dd>
+<dt><strong><code>verbose</code></strong></dt>
+<dd>Boolean indicating whether many or few logs are shown.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Returns the score history generated along the training.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self, frames: int = 1000, episodes: int = 1000, verbose: bool = True) -&gt; Dict[int, Tuple[float, int]]:
+    &#34;&#34;&#34;
+    Execute training flow of the NAF algorithm on the given environment.
+    Args:
+        frames: Number of maximum frames or timesteps per episode.
+        episodes: Number of episodes required to terminate the training.
+        verbose: Boolean indicating whether many or few logs are shown.
+    Returns:
+        Returns the score history generated along the training.
+    &#34;&#34;&#34;
+    logger.info(&#39;Training started&#39;)
+    # Initialize &#39;scores&#39; dictionary to store rewards and timesteps executed for each episode
+    scores = {episode: (0, 0) for episode in range(1, episodes + 1)}
+
+    # Iterate through every episode
+    for episode in range(episodes):
+        logger.info(f&#39;Running Episode {episode + 1}&#39;)
+        start = time.time()  # Timer to measure execution time per episode
+        state = self.environment.reset(verbose)
+        score, mean = 0, list()
+
+        for frame in range(1, frames + 1):
+            if verbose: logger.info(f&#39;Running frame {frame} in episode {episode + 1}&#39;)
+
+            # Pick action according to current state
+            if verbose: logger.info(f&#39;Current State: {state}&#39;)
+            action = self.act(state)
+            if verbose: logger.info(f&#39;Action chosen for the given state is: {action}&#39;)
+
+            # Perform action on environment and get new state and reward
+            next_state, reward, done = self.environment.step(action)
+
+            # Save the experience in the ReplayBuffer, and learn from previous experiences if applicable
+            self.step(state, action, reward, next_state, done)
+
+            state = next_state  # Update state to next state
+            score += reward
+            mean.append(reward)
+
+            if verbose: logger.info(f&#39;Reward: {reward}  -  Cumulative reward: {score}\n&#39;)
+
+            if done:
+                break
+
+        # Updates scores history
+        scores[episode + 1] = (score, frame)  # save most recent score and last frame
+        logger.info(f&#39;Reward:                             {score}&#39;)
+        logger.info(f&#39;Number of frames:                   {frame}&#39;)
+        logger.info(f&#39;Mean of rewards on this episode:    {sum(mean) / frames}&#39;)
+        logger.info(f&#39;Time taken for this episode:        {round(time.time() - start, 3)} secs\n&#39;)
+
+        # Save the episode&#39;s performance if it is a checkpoint episode
+        if (episode + 1) % self.checkpoint_frequency == 0:
+            # Create parent directory for current episode
+            os.makedirs(f&#39;checkpoints/{episode + 1}/&#39;, exist_ok=True)
+            # Save naf_components weights
+            torch.save(self.qnetwork_main.state_dict(), f&#39;checkpoints/{episode + 1}/weights.p&#39;)
+            # Save naf_components&#39;s performance metrics
+            with open(f&#39;checkpoints/{episode + 1}/scores.txt&#39;, &#39;w&#39;) as f:
+                f.write(json.dumps(scores))
+
+    torch.save(self.qnetwork_main.state_dict(), self.MODEL_PATH)
+    logger.info(f&#39;Model has been successfully saved in {self.MODEL_PATH}&#39;)
+
+    return scores</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.soft_update"><code class="name flex">
+<span>def <span class="ident">soft_update</span></span>(<span>self, main_nn: <a title="robotic_manipulator_rloa.naf_components.naf_neural_network.NAF" href="naf_neural_network.html#robotic_manipulator_rloa.naf_components.naf_neural_network.NAF">NAF</a>, target_nn: <a title="robotic_manipulator_rloa.naf_components.naf_neural_network.NAF" href="naf_neural_network.html#robotic_manipulator_rloa.naf_components.naf_neural_network.NAF">NAF</a>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Soft update naf_components parameters following this formula:</p>
+<pre><code>        θ_target = τ*θ_local + (1 - τ)*θ_target
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>main_nn</code></strong></dt>
+<dd>Main torch neural network.</dd>
+<dt><strong><code>target_nn</code></strong></dt>
+<dd>Target torch neural network.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def soft_update(self, main_nn: NAF, target_nn: NAF) -&gt; None:
+    &#34;&#34;&#34;
+    Soft update naf_components parameters following this formula:\n
+                θ_target = τ*θ_local + (1 - τ)*θ_target
+    Args:
+        main_nn: Main torch neural network.
+        target_nn: Target torch neural network.
+    &#34;&#34;&#34;
+    for target_param, main_param in zip(target_nn.parameters(), main_nn.parameters()):
+        target_param.data.copy_(self.tau * main_param.data + (1. - self.tau) * target_param.data)</code></pre>
+</details>
+</dd>
+<dt id="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, state: numpy.ndarray[typing.Any, numpy.dtype[+ScalarType]], action: numpy.ndarray[typing.Any, numpy.dtype[+ScalarType]], reward: float, next_state: numpy.ndarray[typing.Any, numpy.dtype[+ScalarType]], done: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Stores in the ReplayBuffer the new experience composed by the parameters received,
+and learns only if the Buffer contains enough experiences to fill a batch. The
+learning will occur if the update frequency {update_freq} is reached, in which case it
+will learn {num_updates} times.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state</code></strong></dt>
+<dd>Current state.</dd>
+<dt><strong><code>action</code></strong></dt>
+<dd>Action performed from state {state}.</dd>
+<dt><strong><code>reward</code></strong></dt>
+<dd>Reward obtained after performing action {action} from state {state}.</dd>
+<dt><strong><code>next_state</code></strong></dt>
+<dd>New state reached after performing action {action} from state {state}.</dd>
+<dt><strong><code>done</code></strong></dt>
+<dd>Integer (0 or 1) indicating whether a terminal state have been reached.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, state: NDArray, action: NDArray, reward: float, next_state: NDArray, done: int) -&gt; None:
+    &#34;&#34;&#34;
+    Stores in the ReplayBuffer the new experience composed by the parameters received,
+    and learns only if the Buffer contains enough experiences to fill a batch. The
+    learning will occur if the update frequency {update_freq} is reached, in which case it
+    will learn {num_updates} times.
+    Args:
+        state: Current state.
+        action: Action performed from state {state}.
+        reward: Reward obtained after performing action {action} from state {state}.
+        next_state: New state reached after performing action {action} from state {state}.
+        done: Integer (0 or 1) indicating whether a terminal state have been reached.
+    &#34;&#34;&#34;
+
+    # Save experience in replay memory
+    self.memory.add(state, action, reward, next_state, done)
+
+    # Learning will be performed every {update_freq}} time-steps.
+    self.update_t_step = (self.update_t_step + 1) % self.update_freq  # Update time step counter
+    if self.update_t_step == 0:
+        # If enough samples are available in memory, get random subset and learn
+        if len(self.memory) &gt; self.batch_size:
+            for _ in range(self.num_updates):
+                # Pick random batch of experiences from memory
+                experiences = self.memory.sample()
+
+                # Learn from experiences and get loss
+                self.learn(experiences)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="robotic_manipulator_rloa.naf_components" href="index.html">robotic_manipulator_rloa.naf_components</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent">NAFAgent</a></code></h4>
+<ul class="">
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.MODEL_PATH" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.MODEL_PATH">MODEL_PATH</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.act" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.act">act</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.initialize_pretrained_agent_from_episode" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.initialize_pretrained_agent_from_episode">initialize_pretrained_agent_from_episode</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.initialize_pretrained_agent_from_weights_file" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.initialize_pretrained_agent_from_weights_file">initialize_pretrained_agent_from_weights_file</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.learn" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.learn">learn</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.run" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.run">run</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.soft_update" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.soft_update">soft_update</a></code></li>
+<li><code><a title="robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.step" href="#robotic_manipulator_rloa.naf_components.naf_algorithm.NAFAgent.step">step</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
