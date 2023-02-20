@@ -7,8 +7,11 @@
 Install the package with [pip](https://pip.pypa.io/en/stable/).
 
 ```bash
-$ pip install robotic_manipulator_rloa
+$ pip install robotic-manipulator-rloa
 ```
+
+> **_For Windows:_**  If the installation is not successful because Microsoft Visual C++ 14.0 or greater is required, 
+> download and install the Microsoft C++ Build Tools from here: https://visualstudio.microsoft.com/es/visual-cpp-build-tools/
 
 ## Usage
 

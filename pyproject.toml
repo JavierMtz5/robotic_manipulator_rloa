@@ -13,6 +13,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Framework :: Robot Framework"
 ]
 keywords = ["Robotics", "Manipulator", "Framework", "Reinforcement Learning", "Obstacle Avoidance"]
 dependencies = [
@@ -27,4 +30,6 @@ requires-python = ">=3.8"
 myModule = ["*.p"]
 
 [project.urls]
-homepage = "https://github.com/JavierMtz5/robotic_manipulator_rloa"
+Homepage = "https://github.com/JavierMtz5/robotic_manipulator_rloa"
+Repository = "https://github.com/JavierMtz5/robotic_manipulator_rloa"
+Documentation = "https://javiermtz5.github.io/robotic_manipulator_rloa/"
