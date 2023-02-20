@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "robotic-manipulator-rloa"
-version = "0.2.0"
+version = "1.0.0"
 description = "Framework for training Robotic Manipulators on the Obstacle Avoidance task through Reinforcement Learning."
 readme = "README.md"
 authors = [{ name = "Javier Martinez", email = "jmartinezojeda5upv@gmail.com" }]
